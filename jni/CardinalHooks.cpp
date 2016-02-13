@@ -32,9 +32,10 @@ void Item$initCreativeItems()
 	//CardinalItems::initItems();
 	//CardinalItems::initCreativeItems();
 	
-	Item* myItem = new Item("myItem", 500);
+	Item* myItem = new Item("myItem", 500 - 0x100);
 	myItem->setIcon("string", 0);
 	myItem->creativeCategory = 3;
+	Item::mItems[500] = myItem;
 	Item::addCreativeItem(myItem, 0);
 }
 
