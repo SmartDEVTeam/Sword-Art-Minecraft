@@ -30,7 +30,7 @@ void Item$initCreativeItems()
 {
 	_Item$initCreativeItems();
 	CardinalItems::initItems();
-	CardinalItems::addCreativeItems();
+	CardinalItems::initCreativeItems();
 }
 
 
