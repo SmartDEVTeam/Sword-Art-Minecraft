@@ -8,4 +8,4 @@
 #include "com/mojang/minecraftpe/custom/AppPlatform_android.h"
 //#include "com/mojang/minecraftpe/locale/I18n.h"
 #include "com/mojang/minecraftpe/world/item/Item.h"
-#include "com/khristian/saomashup/swords/CardinalItems.h"
+#include "com/smartdev/saomashup/items/CardinalItems.h"
