@@ -2,10 +2,10 @@
 
 #include "com/mojang/minecraftpe/world/item/ItemInstance.h"
 
-Elucidator::Elucidator(short itemId) : Item("elucidator", itemId - 0x100)
+Elucidator::Elucidator(const std::string& name, short itemId) : Item(name, itemId - 0x100)
 {
 	creativeCategory = 3;
-	setIcon("elucidator", 0);
+	setIcon("sword", 0);
 	setMaxStackSize(1);
 	setMaxDamage(13800);
 	setHandEquipped();

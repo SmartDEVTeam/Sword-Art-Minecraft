@@ -22,21 +22,14 @@ static std::string AppPlatform_getEdition_hook() {
 
 static int (*AppPlatform_android_getScreenType_real)();
 static int AppPlatform_android_getScreenType_hook() {
-	return 0;
+	return 1;
 }
 
 void (*_Item$initCreativeItems)();
 void Item$initCreativeItems()
 {
 	_Item$initCreativeItems();
-	//CardinalItems::initItems();
-	//CardinalItems::initCreativeItems();
-	
-	Item* myItem = new Item("myItem", 500 - 0x100);
-	myItem->setIcon("string", 0);
-	myItem->creativeCategory = 3;
-	Item::mItems[500] = myItem;
-	Item::addCreativeItem(myItem, 0);
+	CardinalItems::initItems();
 }
 
 

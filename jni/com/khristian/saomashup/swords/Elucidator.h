@@ -5,7 +5,7 @@
 class Elucidator : public Item
 {
 public:
-    Elucidator(short);
+    Elucidator(const std::string&, short);
 	virtual bool canDestroyInCreative() const;
 	virtual int getAttackDamage();
 	virtual int getEnchantSlot() const;

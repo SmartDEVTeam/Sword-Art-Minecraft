@@ -7,7 +7,9 @@
 Item* CardinalItems::elucidator;
 
 void CardinalItems::initItems() {
-	elucidator = new Elucidator(getNextItemId());
+	elucidator = new Elucidator("elucidator", getNextItemId());
+	
+	initCreativeItems();
 }
 
 void CardinalItems::initCreativeItems() {
