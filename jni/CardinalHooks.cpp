@@ -29,8 +29,8 @@ void (*_Item$initCreativeItems)();
 void Item$initCreativeItems()
 {
 	_Item$initCreativeItems();
-	CardinalItems::initItems();
-	CardinalItems::initCreativeItems();
+	//CardinalItems::initItems();
+	//CardinalItems::initCreativeItems();
 	
 	Item* myItem = new Item("myItem", 500);
 	myItem->setIcon("string", 0);
