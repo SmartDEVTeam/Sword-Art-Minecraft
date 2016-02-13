@@ -25,18 +25,12 @@ static int AppPlatform_android_getScreenType_hook() {
 	return 0;
 }
 
-void (*_Item$initItems)();
-void Item$initItems()
-{
-    _Item$initItems();
-	Item::mItems[1000] = new Elucidator(1000 - 0x100);
-}
-
 void (*_Item$initCreativeItems)();
 void Item$initCreativeItems()
 {
-     _Item$initCreativeItems();
-	Item::addCreativeItem(1000, 0);
+	_Item$initCreativeItems();
+	CardinalItems::initItems();
+	CardinalItems::addCreativeItems();
 }
 
 
@@ -45,8 +39,7 @@ JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	MSHookFunction((void*) &Common::getGameVersionString, (void*) &Common_getGameVersionString_hook, (void**) &Common_getGameVersionString_real);
 	MSHookFunction((void*) &AppPlatform::getEdition, (void*) &AppPlatform_getEdition_hook, (void**) &AppPlatform_getEdition_real);
 	MSHookFunction((void*) &AppPlatform_android::getScreenType, (void*) &AppPlatform_android_getScreenType_hook, (void**) &AppPlatform_android_getScreenType_real);
-MSHookFunction((void*) &Item::initItems, (void*) &Item$initItems, (void**) &_Item$initItems);
-	//MSHookFunction((void*) &Item::initCreativeItems, (void*) &Item$initCreativeItems, (void**) &_Item$initCreativeItems);
+	MSHookFunction((void*) &Item::initCreativeItems, (void*) &Item$initCreativeItems, (void**) &_Item$initCreativeItems);
 
 	return JNI_VERSION_1_2;
 }

@@ -1,13 +1,15 @@
 #include "Elucidator.h"
 
-Elucidator::Elucidator(short itemId) : Item("elucidator", itemId)
+#include "com/mojang/minecraftpe/world/item/ItemInstance.h"
+
+Elucidator::Elucidator(short itemId) : Item("elucidator", itemId - 0x100)
 {
-	this->creativeCategory = 3;
-	this->setIcon("elucidator", 0);
-	this->setMaxStackSize(1);
-	this->setMaxDamage(13800);
-	this->setHandEquipped();
-	this->setStackedByData(true);
+	creativeCategory = 3;
+	setIcon("elucidator", 0);
+	setMaxStackSize(1);
+	setMaxDamage(13800);
+	setHandEquipped();
+	setStackedByData(true);
 }
 
 bool Elucidator::canDestroyInCreative() const{

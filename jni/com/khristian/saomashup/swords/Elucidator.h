@@ -1,7 +1,6 @@
 #pragma once
 
 #include "com/mojang/minecraftpe/world/item/Item.h"
-#include "com/mojang/minecraftpe/world/item/ItemInstance.h"
 
 class Elucidator : public Item
 {
