@@ -2,10 +2,10 @@
 #include <dlfcn.h>
 #include <android/log.h>
 #include <stdlib.h>
-#include "com/mojang/minecraftpe/custom/Substrate.h"
-#include "com/mojang/minecraftpe/custom/Common.h"
-#include "com/mojang/minecraftpe/custom/AppPlatform.h" 
-#include "com/mojang/minecraftpe/custom/AppPlatform_android.h"
+#include "Substrate.h"
+#include "com/mojang/minecraftpe/Common.h"
+#include "com/mojang/minecraftpe/client/AppPlatform.h" 
+#include "com/mojang/minecraftpe/client/AppPlatform_android.h"
 //#include "com/mojang/minecraftpe/locale/I18n.h"
 #include "com/mojang/minecraftpe/world/item/Item.h"
 #include "com/mojang/minecraftpe/world/entity/Mob.h"
