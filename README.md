@@ -14,7 +14,7 @@ Sword Art Online (Japanese: ソードアート・オンライン Hepburn: Sōdo 
 ######*example: (Sylph Class Wings)*
 ![alt tag](http://pre14.deviantart.net/208e/th/pre/f/2014/322/1/e/wings_of_sylph___alfheim_online_by_darkblackswords-d86uvzp.png)
 
-#####Add no fall damage (not started)
+#####Add no fall damage (done)
 
 #####Add Advanced Dual Wielding (not use both hand at the same time, not started)
 
