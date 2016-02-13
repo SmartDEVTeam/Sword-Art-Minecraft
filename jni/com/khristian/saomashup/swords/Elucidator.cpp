@@ -10,6 +10,7 @@ Elucidator::Elucidator(short itemId) : Item("elucidator", itemId - 0x100)
 	setMaxDamage(13800);
 	setHandEquipped();
 	setStackedByData(true);
+	Item::mItems[itemId] = this;
 }
 
 bool Elucidator::canDestroyInCreative() const{
