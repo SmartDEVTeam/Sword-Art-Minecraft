@@ -31,6 +31,11 @@ void Item$initCreativeItems()
 	_Item$initCreativeItems();
 	CardinalItems::initItems();
 	CardinalItems::initCreativeItems();
+	
+	Item* myItem = new Item("myItem", 500);
+	myItem->setIcon("string", 0);
+	myItem->creativeCategory = 3;
+	Item::addCreativeItem(myItem, 0);
 }
 
 
