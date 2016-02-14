@@ -46,6 +46,11 @@ dead->playSound("random.explode", 1.0F, 1.0F);//sao.localplayer.death
 }*/
 }
 
+static void (*_LevelListener$onEntityAdded)(LevelListener*, Entity&);
+static void LevelListener$onEntityAdded(LevelListener* self, Entity& spawned) {
+_LevelListener$onEntityAdded(self, spawned);
+spawned.playSound("random.explode", 1.0F, 1.0F);
+}
 
 JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	MSHookFunction((void*) &Common::getGameDevVersionString, (void*) &Common$getGameDevVersionString, (void**) &_Common$getGameDevVersionString);
@@ -55,6 +60,7 @@ JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	MSHookFunction((void*) &Item::initCreativeItems, (void*) &Item$initCreativeItems, (void**) &_Item$initCreativeItems);
 	MSHookFunction((void*) &Mob::causeFallDamage, (void*) &Mob$causeFallDamage, (void**) &_Mob$causeFallDamage);
      MSHookFunction((void*) &Mob::die, (void*) &Mob$die, (void**) &_Mob$die);
+     MSHookFunction((void*) &LevelListener::onEntityAdded, (void*) &LevelListener$onEntityAdded, (void**) &_LevelListener$onEntityAdded);
 
 	return JNI_VERSION_1_2;
 }
