@@ -5,7 +5,7 @@
 Elucidator::Elucidator(const std::string& name, short itemId) : Item(name, itemId - 0x100)
 {
 	creativeCategory = 3;
-	setIcon("sword", 0);
+	setIcon("elucidator", 0);
 	setMaxStackSize(1);
 	setMaxDamage(13800);
 	setHandEquipped();
