@@ -11,6 +11,6 @@ public:
 	virtual int getEnchantSlot() const;
 	virtual int getEnchantValue() const;
 	virtual void hurtEnemy(ItemInstance*, Mob*, Mob*);
-    virtual const std::string appendFormattedHovertext(ItemInstance const&,Player const&,std::string &,bool) const;
+    	virtual const std::string appendFormattedHovertext(const ItemInstance&, const Player&, std::string&, bool) const;
 	//virtual void mineBlock(ItemInstance*, BlockID, int, int, int, Mob*);
 };
