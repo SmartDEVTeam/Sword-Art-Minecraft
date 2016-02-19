@@ -22,7 +22,7 @@ static std::string AppPlatform$getEdition() {
 
 static int (*_AppPlatform_android$getScreenType)();
 static int AppPlatform_android$getScreenType() {
-	return 1;
+	return _AppPlatform_android$getScreenType();
 }
 
 static void (*_Item$initCreativeItems)();

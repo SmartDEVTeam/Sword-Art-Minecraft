@@ -1,24 +1,28 @@
 #include "CardinalItems.h"
 
 #include "Elucidator.h"
-#include "darkRepulser.h"
+#include "DarkRepulser.h"
+#include "Kagemitsu.h"
 
 #include "com/mojang/minecraftpe/world/item/Item.h"
 
 Item* CardinalItems::elucidator;
-Item* CardinalItems::DarkRepulser;
+Item* CardinalItems::darkRepulser;
+Item* CardinalItems::kagemitsu;
 
 
 void CardinalItems::initItems() {
 	elucidator = new Elucidator("elucidator", 1000);
-   //DarkRepulser = new darkRepulser("darkRepulser", 1001);
+   darkRepulser = new DarkRepulser("darkRepulser", 1001);
+   kagemitsu = new Kagemitsu("kagemitsu", 1002);
 	
 	initCreativeItems();
 }
 
 void CardinalItems::initCreativeItems() {
 	Item::addCreativeItem(elucidator, 0);
-    //Item::addCreativeItem(DarkRepulser, 0);
+   Item::addCreativeItem(darkRepulser, 0);
+   Item::addCreativeItem(kagemitsu, 0);
 }
 
 int CardinalItems::getNextItemId() {

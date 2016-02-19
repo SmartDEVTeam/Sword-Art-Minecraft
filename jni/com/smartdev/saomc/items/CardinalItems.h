@@ -5,7 +5,8 @@ class Item;
 class CardinalItems {
 public:
 	static Item* elucidator;
-   static Item* DarkRepulser;
+   static Item* darkRepulser;
+   static Item* kagemitsu;
 	
 	static void initItems();
 	static void initCreativeItems();
