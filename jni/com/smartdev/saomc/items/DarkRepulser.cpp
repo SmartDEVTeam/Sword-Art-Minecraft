@@ -10,7 +10,7 @@ DarkRepulser::DarkRepulser(const std::string& name, short itemId) : Item(name, i
 	setMaxDamage(13800);
 	setHandEquipped();
 	setStackedByData(true);
-   setMaxUseDuration(1);
+   	setMaxUseDuration(1);
 	Item::mItems[itemId] = this;
 }
 
@@ -34,9 +34,9 @@ void DarkRepulser::hurtEnemy(ItemInstance *item, Mob *m1, Mob *m2) {
 	item->hurtAndBreak(1, m2);
 }
 
-const std::string& DarkRepulser::appendFormattedHovertext(ItemInstance const& item, Player const& player,std::string & currentName, bool b1) const{
+const std::string& DarkRepulser::appendFormattedHovertext(const ItemInstance& item, const Player& player, std::string& currentName, bool b1) const{
 return "test?"
-};
+}
 
 /*void DarkRepulser::mineBlock(ItemInstance *item, BlockID block, int x, int y, int z, Mob *m){
 	item->hurtAndBreak(2, m);
