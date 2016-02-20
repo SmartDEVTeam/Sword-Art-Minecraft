@@ -32,8 +32,8 @@ static void Item$initCreativeItems() {
 	CardinalItems::initItems();
 }
 
-void (*_Block$initBlocks)();
-void Block$initBlocks() {
+static void (*_Block$initBlocks)();
+static void Block$initBlocks() {
 	_Block$initBlocks();
 	
 	CardinalBlocks::initBlocks();
