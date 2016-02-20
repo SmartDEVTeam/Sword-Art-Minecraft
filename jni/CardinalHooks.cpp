@@ -20,10 +20,10 @@ static std::string AppPlatform$getEdition() {
 	return "win10";
 }
 
-static int (*_AppPlatform_android$getScreenType)();
+/*static int (*_AppPlatform_android$getScreenType)();
 static int AppPlatform_android$getScreenType() {
 	return _AppPlatform_android$getScreenType();
-}
+}*/
 
 static void (*_Item$initCreativeItems)();
 static void Item$initCreativeItems() {
@@ -31,6 +31,15 @@ static void Item$initCreativeItems() {
 	
 	CardinalItems::initItems();
 }
+
+void (*_Block$initBlocks)();
+void Block$initBlocks() {
+	_Block$initBlocks();
+	
+	CardinalBlocks::initBlocks();
+}
+
+
 
 static void (*_Mob$causeFallDamage)(Mob*, float);
 static void Mob$causeFallDamage(Mob* self, float blocksFallen) {
@@ -57,8 +66,9 @@ JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	MSHookFunction((void*) &Common::getGameDevVersionString, (void*) &Common$getGameDevVersionString, (void**) &_Common$getGameDevVersionString);
 	MSHookFunction((void*) &Common::getGameVersionString, (void*) &Common$getGameVersionString, (void**) &_Common$getGameVersionString);
 	MSHookFunction((void*) &AppPlatform::getEdition, (void*) &AppPlatform$getEdition, (void**) &_AppPlatform$getEdition);
-	MSHookFunction((void*) &AppPlatform_android::getScreenType, (void*) &AppPlatform_android$getScreenType, (void**) &_AppPlatform_android$getScreenType);
+	//MSHookFunction((void*) &AppPlatform_android::getScreenType, (void*) &AppPlatform_android$getScreenType, (void**) &_AppPlatform_android$getScreenType);
 	MSHookFunction((void*) &Item::initCreativeItems, (void*) &Item$initCreativeItems, (void**) &_Item$initCreativeItems);
+   MSHookFunction((void*) &Block::initBlocks, (void*) &Block$initBlocks, (void**) &_Block$initBlocks);
 	MSHookFunction((void*) &Mob::causeFallDamage, (void*) &Mob$causeFallDamage, (void**) &_Mob$causeFallDamage);
     MSHookFunction((void*) &Mob::die, (void*) &Mob$die, (void**) &_Mob$die);
     //MSHookFunction((void*) &LevelListener::onEntityAdded, (void*) &LevelListener$onEntityAdded, (void**) &_LevelListener$onEntityAdded);

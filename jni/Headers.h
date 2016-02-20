@@ -10,5 +10,6 @@
 #include "com/mojang/minecraftpe/world/item/Item.h"
 #include "com/mojang/minecraftpe/world/entity/Mob.h"
 #include "com/smartdev/saomc/items/CardinalItems.h"
+#include "com/smartdev/saomc/blocks/CardinalBlocks.h"
 #include "com/mojang/minecraftpe/world/level/Level.h"
 #include "com/mojang/minecraftpe/world/level/LevelListener.h"
