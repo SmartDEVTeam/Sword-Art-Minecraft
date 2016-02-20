@@ -8,6 +8,7 @@
 #include "com/mojang/minecraftpe/client/AppPlatform_android.h"
 //#include "com/mojang/minecraftpe/locale/I18n.h"
 #include "com/mojang/minecraftpe/world/item/Item.h"
+#include "com/mojang/minecraftpe/world/level/block/Block.h"
 #include "com/mojang/minecraftpe/world/entity/Mob.h"
 #include "com/smartdev/saomc/items/CardinalItems.h"
 #include "com/smartdev/saomc/blocks/CardinalBlocks.h"
