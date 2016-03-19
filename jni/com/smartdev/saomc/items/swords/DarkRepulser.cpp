@@ -14,12 +14,20 @@ DarkRepulser::DarkRepulser(const std::string& name, short itemId) : Item(name, i
 	Item::mItems[itemId] = this;
 }
 
+const std::string DarkRepulser::buildDescriptionName(ItemInstance const& id) const{
+return "§b§l[One-Handed] §rDark Repulser";
+}
+
+const std::string DarkRepulser::buildEffectDescriptionName(ItemInstance const& id) const{
+return "§7+6.5 Attack Damage";
+}
+
 bool DarkRepulser::canDestroyInCreative() const{
 	return false;
 }
 
 int DarkRepulser::getAttackDamage() {
-	return 6.0F;
+	return 6.5F;
 }
 
 int DarkRepulser::getEnchantSlot() const{
@@ -34,10 +42,6 @@ void DarkRepulser::hurtEnemy(ItemInstance *item, Mob *m1, Mob *m2) {
 	item->hurtAndBreak(1, m2);
 }
 
-/*const std::string& DarkRepulser::appendFormattedHovertext(const ItemInstance& item, const Player& player, std::string& currentName, bool b1) const{
-return "test?";
-}*/
-
-/*void DarkRepulser::mineBlock(ItemInstance *item, BlockID block, int x, int y, int z, Mob *m){
+void DarkRepulser::mineBlock(ItemInstance *item, BlockID block, int x, int y, int z, Mob *m){
 	item->hurtAndBreak(2, m);
-}*/
+}

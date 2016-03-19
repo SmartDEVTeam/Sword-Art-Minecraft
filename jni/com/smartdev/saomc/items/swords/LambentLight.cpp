@@ -13,6 +13,14 @@ LambentLight::LambentLight(const std::string& name, short itemId) : Item(name, i
 	Item::mItems[itemId] = this;
 }
 
+const std::string LambentLight::buildDescriptionName(ItemInstance const& id) const{
+return "§b§l[???] §rLambent Light";
+}
+
+const std::string LambentLight::buildEffectDescriptionName(ItemInstance const& id) const{
+return "§7+5.5 Attack Damage";
+}
+
 bool LambentLight::canDestroyInCreative() const{
 	return false;
 }
@@ -33,6 +41,6 @@ void LambentLight::hurtEnemy(ItemInstance *item, Mob *m1, Mob *m2) {
 	item->hurtAndBreak(1, m2);
 }
 
-/*void LambentLight::mineBlock(ItemInstance *item, BlockID block, int x, int y, int z, Mob *m){
+void LambentLight::mineBlock(ItemInstance *item, BlockID block, int x, int y, int z, Mob *m){
 	item->hurtAndBreak(2, m);
-}*/
+}

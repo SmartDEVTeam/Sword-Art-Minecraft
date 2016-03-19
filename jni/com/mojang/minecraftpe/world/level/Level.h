@@ -21,7 +21,6 @@ public:
 	virtual void addPlayer(std::unique_ptr<Player>);
 	virtual void addGlobalEntity(std::unique_ptr<Entity>);
 	virtual void onPlayerDeath(Player&, const EntityDamageSource&);
-     virtual void playSound(EntityDamageSource const&,std::string const&,float,float);
 	virtual void tick();
 	virtual void directTickEntities(BlockSource&);
 	virtual void updateSleepingPlayerList();

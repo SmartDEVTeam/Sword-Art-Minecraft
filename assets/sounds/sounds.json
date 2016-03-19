@@ -1316,7 +1316,7 @@
     "sounds": [
       {
         "name": "music/sao/lost_song/menu_0",
-        "volume": 0.1,
+        "volume": 0.001,
         "stream": true
       }
     ]
@@ -1326,7 +1326,7 @@
     "sounds": [
       {
         "name": "music/sao/lost_song/overworld_0",
-        "volume": 0.1,
+        "volume": 0.001,
         "stream": true
       }
     ]
@@ -1336,7 +1336,7 @@
     "sounds": [
       {
         "name": "music/sao/lost_song/overworld_0",
-        "volume": 0.1,
+        "volume": 0.001,
         "stream": true
       }
     ]
@@ -1346,7 +1346,7 @@
     "sounds": [
       {
         "name": "music/sao/lost_song/nether_0",
-        "volume": 0.1,
+        "volume": 0.001,
         "stream": true
       }
     ]
@@ -1356,6 +1356,19 @@
     "category": "neutral",
     "sounds": [
       "saomc/entity_death"
+    ]
+  },
+  "random.player.linkstart": {
+    "category": "player",
+    "sounds": [
+      "saomc/linkstart/link_start_0", 
+      "saomc/linkstart/link_start_1", 
+      "saomc/linkstart/link_start_3", 
+      "saomc/linkstart/link_start_4", 
+      "saomc/linkstart/link_start_5", 
+      "saomc/linkstart/link_start_6", 
+      "saomc/linkstart/link_start_7", 
+      "saomc/linkstart/link_start_8"
     ]
   }
 }

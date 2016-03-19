@@ -1,9 +1,9 @@
 #pragma once
-class Block;
-struct BlockPos;
+#include "block/Block.h"
+#include "BlockPos.h"
+#include "../material/Material.h"
 class BlockEntity;
-class Level;
-class Material;
+#include "Level.h"
 #include "../../CommonTypes.h"
 
 class BlockSource {

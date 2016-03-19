@@ -13,12 +13,20 @@ Kagemitsu::Kagemitsu(const std::string& name, short itemId) : Item(name, itemId 
 	Item::mItems[itemId] = this;
 }
 
+const std::string Kagemitsu::buildDescriptionName(ItemInstance const& id) const{
+return "§b§l[Photon] §rKagemitsu";
+}
+
+const std::string Kagemitsu::buildEffectDescriptionName(ItemInstance const& id) const{
+return "§7+6.0 Attack Damage";
+}
+
 bool Kagemitsu::canDestroyInCreative() const{
 	return false;
 }
 
 int Kagemitsu::getAttackDamage() {
-	return 6.5F;
+	return 6.0F;
 }
 
 int Kagemitsu::getEnchantSlot() const{
@@ -33,6 +41,6 @@ void Kagemitsu::hurtEnemy(ItemInstance *item, Mob *m1, Mob *m2) {
 	item->hurtAndBreak(1, m2);
 }
 
-/*void Kagemitsu::mineBlock(ItemInstance *item, BlockID block, int x, int y, int z, Mob *m){
+void Kagemitsu::mineBlock(ItemInstance *item, BlockID block, int x, int y, int z, Mob *m){
 	item->hurtAndBreak(2, m);
-}*/
+}

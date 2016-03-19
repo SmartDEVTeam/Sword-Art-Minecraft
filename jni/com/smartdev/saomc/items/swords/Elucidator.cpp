@@ -13,6 +13,16 @@ Elucidator::Elucidator(const std::string& name, short itemId) : Item(name, itemI
 	Item::mItems[itemId] = this;
 }
 
+const std::string Elucidator::buildDescriptionName(ItemInstance const& id) const{
+return "§b§l[One-Handed] §rElucidator";
+}
+
+const std::string Elucidator::buildEffectDescriptionName(ItemInstance const& id) const{
+return "§7+7 Attack Damage";
+}
+
+
+
 bool Elucidator::canDestroyInCreative() const{
 	return false;
 }
@@ -33,6 +43,6 @@ void Elucidator::hurtEnemy(ItemInstance *item, Mob *m1, Mob *m2) {
 	item->hurtAndBreak(1, m2);
 }
 
-/*void Elucidator::mineBlock(ItemInstance *item, BlockID block, int x, int y, int z, Mob *m){
+void Elucidator::mineBlock(ItemInstance *item, BlockID block, int x, int y, int z, Mob *m){
 	item->hurtAndBreak(2, m);
-}*/
+}

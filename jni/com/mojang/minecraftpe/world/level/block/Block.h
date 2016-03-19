@@ -2,27 +2,27 @@
 #include <string>
 #include <vector>
 #include <memory>
-class Material;
 class BlockEntity;
-struct BlockPos;
-class BlockSource;
 class Entity;
 class ItemInstance;
 class Player;
 class Mob;
-class Random;
 struct Vec3;
 class Brightness;
 class TextureAtlas;
 class Container;
+class CreativeItemCategory;
+#include "../../material/Material.h"
+#include "../BlockPos.h"
+#include "../BlockSource.h"
 #include "../../../client/renderer/texture/TextureUVCoordinateSet.h"
 #include "../../../client/renderer/texture/TextureAtlasTextureItem.h"
 #include "../../util/Color.h"
+#include "../../util/Random.h"
 #include "../../phys/AABB.h"
 #include "../../../CommonTypes.h"
 #include "entity/BlockEntityType.h"
 #include "BlockShape.h"
-#include "../../../CreativeItemCategory.h"
 
 class Block {
 public:
@@ -67,7 +67,7 @@ public:
 	bool heavy; // 108
 	float hardness; // 112
 	float explosionResistance; // 116
-	CreativeItemCategory creativeCategory; // 120
+	//CreativeItemCategory creativeCategory; // 120
 	AABB hitbox; // 124
 
 

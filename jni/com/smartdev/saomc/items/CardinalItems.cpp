@@ -1,11 +1,13 @@
 #include "CardinalItems.h"
+#include <string>
 
-#include "Elucidator.h"
-#include "DarkRepulser.h"
-#include "Kagemitsu.h"
-#include "LambentLight.h"
+#include "swords/Elucidator.h"
+#include "swords/DarkRepulser.h"
+#include "swords/Kagemitsu.h"
+#include "swords/LambentLight.h"
+#include "valuables/CrystalliteFragment.h"
+#include "valuables/CrystalliteStick.h"
 
-#include "../blocks/CardinalBlocks.h"
 
 #include "com/mojang/minecraftpe/world/item/Item.h"
 
@@ -13,29 +15,32 @@ Item* CardinalItems::elucidator;
 Item* CardinalItems::darkRepulser;
 Item* CardinalItems::kagemitsu;
 Item* CardinalItems::lambentLight;
+Item* CardinalItems::crystalliteFragment;
+Item* CardinalItems::crystalliteStick;
+
 
 
 void CardinalItems::initItems() {
-   elucidator = new Elucidator("elucidator", getNextItemId());
-   darkRepulser = new DarkRepulser("darkRepulser", getNextItemId());
-   kagemitsu = new Kagemitsu("kagemitsu", getNextItemId());
-   lambentLight = new LambentLight("lambentLight", getNextItemId());
-	
+//Swords
+   elucidator = new Elucidator("elucidator", 1000);
+   darkRepulser = new DarkRepulser("darkRepulser", 1001);
+   kagemitsu = new Kagemitsu("kagemitsu", 1002);
+   lambentLight = new LambentLight("lambentLight", 1003);
+
+//Valuables
+	 crystalliteFragment = new CrystalliteFragment("crystalliteFragment", 900);
+	 crystalliteStick = new CrystalliteStick("crystalliteStick", 901);
 	initCreativeItems();
 }
 
 void CardinalItems::initCreativeItems() {
+//Swords
 	Item::addCreativeItem(elucidator, 0);
    Item::addCreativeItem(darkRepulser, 0);
    Item::addCreativeItem(kagemitsu, 0);
    Item::addCreativeItem(lambentLight, 0);
-   Item::addCreativeItem(CardinalBlocks::testBlock, 0);
-}
-
-int CardinalItems::getNextItemId() {
-	for(int testId = 1000; testId < 4096; testId++) {
-		if(Item::mItems[testId] == NULL)
-			return testId;
-	}
-	return 4096;
+ 
+//Valuables 
+Item::addCreativeItem(crystalliteFragment, 0);
+Item::addCreativeItem(crystalliteStick, 0);
 }

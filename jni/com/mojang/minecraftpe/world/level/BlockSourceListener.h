@@ -1,7 +1,7 @@
 #pragma once
 #include <memory>
-class BlockSource;
-class BlockPos;
+#include "BlockSource.h"
+#include "BlockPos.h"
 class FullBlock;
 class BlockEntity;
 

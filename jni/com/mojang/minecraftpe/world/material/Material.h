@@ -2,7 +2,7 @@
 #include <vector>
 #include <memory>
 #include "MaterialType.h"
-class Color;
+#include "../util/Color.h"
 
 class Material {
 public:
