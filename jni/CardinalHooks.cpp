@@ -19,7 +19,11 @@ static void Item$initCreativeItems() {
 	CardinalItems::initItems();
 }
 
-void (*_Recipes$init)(Recipes*);void Recipes$init(Recipes* self) {	_Recipes$init(self);		 CardinalItemRecipes::initRecipes(self);
+void (*_Recipes$init)(Recipes*);
+void Recipes$init(Recipes* self) {	
+	_Recipes$init(self);	
+	
+	CardinalItemRecipes::initRecipes(self);
 }
 
 static void (*_Mob$causeFallDamage)(Mob*, float);
@@ -29,8 +33,9 @@ static void Mob$causeFallDamage(Mob* self, float blocksFallen) {
 
 static void (*_Mob$die)( Mob*, EntityDamageSource const&);
 static void Mob$die(Mob* dead, EntityDamageSource const& damage) {
-_Mob$die(dead, damage);
-dead->playSound("saomc.entity.death", 1.0F, 1.0F);//sao.mob.death
+	_Mob$die(dead, damage);
+	
+	dead->playSound("saomc.entity.death", 1.0F, 1.0F);//sao.mob.death
 }
 
 JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
