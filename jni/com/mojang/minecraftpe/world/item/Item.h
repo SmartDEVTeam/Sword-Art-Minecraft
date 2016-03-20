@@ -20,12 +20,9 @@ class UseAnimation;
 class BlockID;
 struct IDataInput;
 struct IDataOutput;
-namespace Json {
-	class Value;
-};
+namespace Json { class Value; };
 
-class Item
-{
+class Item {
 public:
 	/* constructor */
 	Item(const std::string&, short);
@@ -33,7 +30,7 @@ public:
 	/* fields */
 	uint8_t _maxStackSize; // 4
 	std::string atlas; // 8
-	int idk; // 12
+	int frameCount; // 12
 	short idk2; // 16
 	short itemId; // 18
 	std::string name; // 20
@@ -42,14 +39,16 @@ public:
 	int useDuration; // 28
 	int useAnimation; // 32
 	int creativeCategory; // 36
-	int idk3, idk4; // 40, 44
+	int idk3; // 40
+	int hovorTextColor; // 44
 	TextureUVCoordinateSet& icon; // 48
 	int idk5; // 52
 	std::unique_ptr<FoodItemComponent> _foodDetails; // 56
 	std::unique_ptr<SeedItemComponent> _seedDetails; // 60
+	std::unique_ptr<CameraItemComponenet> _cameraDetails; // 64
 
 	/* list */
-	static Item* mItems[512];
+	static Item* mItems[4096];
 
 	/* vtable */
 	virtual ~Item();
