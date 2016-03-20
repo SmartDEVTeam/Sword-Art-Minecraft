@@ -6,6 +6,7 @@
 class TextureUVCoordinateSet;
 struct SeedItemComponent;
 class FoodItemComponent;
+class CameraItemComponent;
 class Block;
 class CreativeItemCategory;
 class ItemInstance;
@@ -40,12 +41,12 @@ public:
 	int useAnimation; // 32
 	int creativeCategory; // 36
 	int idk3; // 40
-	int hovorTextColor; // 44
+	int hoverTextColor; // 44
 	TextureUVCoordinateSet& icon; // 48
 	int idk5; // 52
 	std::unique_ptr<FoodItemComponent> _foodDetails; // 56
 	std::unique_ptr<SeedItemComponent> _seedDetails; // 60
-	std::unique_ptr<CameraItemComponenet> _cameraDetails; // 64
+	std::unique_ptr<CameraItemComponent> _cameraDetails; // 64
 
 	/* list */
 	static Item* mItems[4096];
