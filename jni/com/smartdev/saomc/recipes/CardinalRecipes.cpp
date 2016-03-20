@@ -1,15 +1,17 @@
-#include "CardinalItemRecipes.h"
-#include "../CardinalItems.h"
+#include "CardinalRecipes.h"
+#include "../items/CardinalItems.h"
+#include "../blocks/CardinalBlocks.h"
 #include "com/mojang/minecraftpe/world/item/ItemInstance.h"
 #include "com/mojang/minecraftpe/world/item/Item.h" 
-Recipes* CardinalItemRecipes::_Instance;
-std::vector<Recipes::Type> CardinalItemRecipes::_ingredients;
+#include "com/mojang/minecraftpe/world/level/block/Block.h" 
+Recipes* CardinalRecipes::_Instance;
+std::vector<Recipes::Type> CardinalRecipes::_ingredients;
 
-void CardinalItemRecipes::initRecipes(Recipes* instance) {	
+void CardinalRecipes::initRecipes(Recipes* instance) {	
 _Instance = instance;		
 //Elucidator	
-pushIngredient(331, 0, 'R');		
-pushIngredient(280, 0, 'S');	
+pushIngredient(902, 0, 'R');		
+pushIngredient(903, 0, 'S');	
 addRecipe(1000, 1, {" R ", " R ", " S "});	
 
 //Dark Repulser
@@ -26,14 +28,24 @@ addRecipe(1002, 1, {" R ", " R ", " S "});
 pushIngredient(2, 0, 'R');		
 pushIngredient(280, 0, 'S');	
 addRecipe(1003, 1, {" R ", " R ", " S "});	
+
+//Crystalline Stick
+pushIngredient(900, 0, 'R');		
+pushIngredient(280, 0, 'S');	
+addRecipe(901, 4, {"RSR", "SRS", "RSR"});
+
+//Elucidador Stick
+pushIngredient(902, 0, 'R');		
+pushIngredient(280, 0, 'S');	
+addRecipe(903, 4, {"RSR", "SRS", "RSR"});
 } 
 
-void CardinalItemRecipes::pushIngredient(int id, int data, char letter) {
+void CardinalRecipes::pushIngredient(int id, int data, char letter) {
 	Recipes::Type type {Item::mItems[id], NULL, ItemInstance(), letter};
 	_ingredients.push_back(type);
 } 
 
-void CardinalItemRecipes::addRecipe(int outputID, int outputCount, const std::vector<std::string>& shape) {
+void CardinalRecipes::addRecipe(int outputID, int outputCount, const std::vector<std::string>& shape) {
 	ItemInstance output(outputID, 1, 0);
 	output.count = outputCount;
 	_Instance->addShapedRecipe(output, shape, _ingredients);	

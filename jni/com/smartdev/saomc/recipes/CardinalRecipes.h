@@ -4,7 +4,7 @@
 #include <string> 
 #include <vector> 
 
-class CardinalItemRecipes { 
+class CardinalRecipes { 
 public: 
 static void initRecipes(Recipes*);
 private: 	

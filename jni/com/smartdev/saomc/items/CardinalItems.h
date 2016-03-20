@@ -11,6 +11,8 @@ public:
    static Item* lambentLight;
    static Item* crystalliteFragment;
    static Item* crystalliteStick;
+   static Item* elucidadorFragment;
+   static Item* elucidadorStick;
 	
 	static void initItems();
 	static void initCreativeItems();

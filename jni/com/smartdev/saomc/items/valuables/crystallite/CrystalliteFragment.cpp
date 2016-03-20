@@ -12,5 +12,5 @@ CrystalliteFragment::CrystalliteFragment(const std::string& name, short itemId) 
 }
 
 const std::string CrystalliteFragment::buildDescriptionName(ItemInstance const& id) const{
-return "§b§l[Valuable] §rCrystallite Fragment";
+return "§b§l[Valuable] §r§fCrystallite Fragment";
 }

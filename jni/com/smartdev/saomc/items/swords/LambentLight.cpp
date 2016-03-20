@@ -14,11 +14,11 @@ LambentLight::LambentLight(const std::string& name, short itemId) : Item(name, i
 }
 
 const std::string LambentLight::buildDescriptionName(ItemInstance const& id) const{
-return "§b§l[???] §rLambent Light";
+return "§b§l[Rapier] §r§fLambent Light";
 }
 
 const std::string LambentLight::buildEffectDescriptionName(ItemInstance const& id) const{
-return "§7+5.5 Attack Damage";
+return "§bType: §a§lUncommon";
 }
 
 bool LambentLight::canDestroyInCreative() const{

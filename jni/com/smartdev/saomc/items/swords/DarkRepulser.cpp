@@ -15,11 +15,11 @@ DarkRepulser::DarkRepulser(const std::string& name, short itemId) : Item(name, i
 }
 
 const std::string DarkRepulser::buildDescriptionName(ItemInstance const& id) const{
-return "§b§l[One-Handed] §rDark Repulser";
+return "§b§l[One-Handed] §r§fDark Repulser";
 }
 
 const std::string DarkRepulser::buildEffectDescriptionName(ItemInstance const& id) const{
-return "§7+6.5 Attack Damage";
+return "§bType: §6§lLegendary";
 }
 
 bool DarkRepulser::canDestroyInCreative() const{

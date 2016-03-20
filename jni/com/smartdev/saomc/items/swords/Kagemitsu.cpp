@@ -14,11 +14,11 @@ Kagemitsu::Kagemitsu(const std::string& name, short itemId) : Item(name, itemId 
 }
 
 const std::string Kagemitsu::buildDescriptionName(ItemInstance const& id) const{
-return "§b§l[Photon] §rKagemitsu";
+return "§b§l[Photon] §r§fKagemitsu";
 }
 
 const std::string Kagemitsu::buildEffectDescriptionName(ItemInstance const& id) const{
-return "§7+6.0 Attack Damage";
+return "§bType: §e§lElectric";
 }
 
 bool Kagemitsu::canDestroyInCreative() const{

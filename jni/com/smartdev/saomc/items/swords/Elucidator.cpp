@@ -14,11 +14,11 @@ Elucidator::Elucidator(const std::string& name, short itemId) : Item(name, itemI
 }
 
 const std::string Elucidator::buildDescriptionName(ItemInstance const& id) const{
-return "§b§l[One-Handed] §rElucidator";
+return "§b§l[One-Handed] §r§fElucidator";
 }
 
 const std::string Elucidator::buildEffectDescriptionName(ItemInstance const& id) const{
-return "§7+7 Attack Damage";
+return "§bType: §5§lLegit";
 }
 
 
