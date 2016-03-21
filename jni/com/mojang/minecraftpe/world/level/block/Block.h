@@ -22,7 +22,7 @@ class Container;
 #include "../../../CommonTypes.h"
 #include "entity/BlockEntityType.h"
 #include "BlockShape.h"
-class CreativeItemCategory;
+#include "../../../CreativeItemCategory.h"
 
 class Block {
 public:
@@ -70,7 +70,7 @@ public:
 	bool heavy; // 108
 	float hardness; // 112
 	float explosionResistance; // 116
-   int creativeCategory; //120
+	CreativeItemCategory creativeCategory; //120
 	AABB hitbox; // 124
 
 
