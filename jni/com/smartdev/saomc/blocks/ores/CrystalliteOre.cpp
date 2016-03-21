@@ -6,15 +6,17 @@
 #include "../CardinalBlocks.h"
 #include "../../items/CardinalItems.h"
 
-CrystalliteOre::CrystalliteOre(std::string asset, int id) : 
-	Block("crystalliteOre", id, asset, Material::getMaterial(MaterialType::STONE)) {
-	init();
+CrystalliteOre::CrystalliteOre(std::string asset, int id) : Block("crystalliteOre", id, asset, Material::getMaterial(MaterialType::STONE)) {
    setSolid(true);
 	creativeCategory = 3;
 	setDestroyTime(0.5F);
 	setSoundType(SOUND_STONE);
 	
 	CardinalBlocks::registerBlock(this);
+}
+
+const TextureUVCoordinateSet& CrystalliteOre::getTexture(signed char side, int data){
+	return getTextureUVCoordinateSet("crystalliteOre", 0);
 }
 
 int CrystalliteOre::getExperienceDrop(Random& rand) const{
