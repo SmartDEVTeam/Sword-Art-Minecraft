@@ -10,7 +10,6 @@ Block* CardinalBlocks::crystalliteOre;
 
 void CardinalBlocks::initBlocks() {
 	crystalliteOre = new CrystalliteOre("crystalliteore", 210);
-
 }
 
 void CardinalBlocks::registerBlock(Block* block) {
@@ -21,5 +20,5 @@ void CardinalBlocks::registerBlock(Block* block) {
 }
 
 void CardinalBlocks::initCreativeItems() {
-	Item::addCreativeItem(Item::mItems[crystalliteOre->blockId], 0);
+	Item::addCreativeItem(crystalliteOre, 0);
 }

@@ -4,11 +4,9 @@
 
 class CrystalliteOre : public Block {
 public:
-	 CrystalliteOre(std::string, int);
+	CrystalliteOre(std::string, int);
 
-    virtual int getExperienceDrop(Random&) const;
-	 virtual int getResource(Random&, int, int);
-	virtual int getSpawnResourcesAuxValue(unsigned char);
+	virtual int getExperienceDrop(Random&) const;
+	virtual int getResource(Random&, int, int);
 	virtual int getResourceCount(Random&, int, int);
-	const TextureUVCoordinateSet& getTexture(signed char, int);
 };

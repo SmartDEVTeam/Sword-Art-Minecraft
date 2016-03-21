@@ -8,7 +8,7 @@ static std::string Common$getGameDevVersionString() {
 	if(DEV_MODE) {
 		return "DEV Version §a§l" + MOD_VERSION;
 	} else {
-      return "§a§lSA: M " + MOD_VERSION;
+		return "§a§lSA: M " + MOD_VERSION;
    }
 }
 
@@ -17,7 +17,7 @@ static void Item$initCreativeItems() {
 	_Item$initCreativeItems();
 	
 	CardinalItems::initItems();
-   //CardinalBlocks::initBlocks();
+	CardinalBlocks::initCreativeBlocks();
 }
 
 void (*_Block$initBlocks)();
@@ -48,12 +48,12 @@ static void Mob$die(Mob* dead, EntityDamageSource const& damage) {
 
 JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	MSHookFunction((void*) &Common::getGameDevVersionString, (void*) &Common$getGameDevVersionString, (void**) &_Common$getGameDevVersionString);
-   MSHookFunction((void*) &Item::initCreativeItems, (void*) &Item$initCreativeItems, (void**) &_Item$initCreativeItems);
-   MSHookFunction((void*) &Block::initBlocks, (void*) &Block$initBlocks, (void**) &_Block$initBlocks);
-    MSHookFunction((void*) &Recipes::init, (void*) &Recipes$init, (void**) &_Recipes$init);
-    //MSHookFunction((void*) &I18n::get, (void*) &I18n$get, (void**) &_I18n$get);
+	MSHookFunction((void*) &Item::initCreativeItems, (void*) &Item$initCreativeItems, (void**) &_Item$initCreativeItems);
+	MSHookFunction((void*) &Block::initBlocks, (void*) &Block$initBlocks, (void**) &_Block$initBlocks);
+	MSHookFunction((void*) &Recipes::init, (void*) &Recipes$init, (void**) &_Recipes$init);
+	//MSHookFunction((void*) &I18n::get, (void*) &I18n$get, (void**) &_I18n$get);
 	MSHookFunction((void*) &Mob::causeFallDamage, (void*) &Mob$causeFallDamage, (void**) &_Mob$causeFallDamage);
-    MSHookFunction((void*) &Mob::die, (void*) &Mob$die, (void**) &_Mob$die);
+	MSHookFunction((void*) &Mob::die, (void*) &Mob$die, (void**) &_Mob$die);
 
 	return JNI_VERSION_1_2;
 }

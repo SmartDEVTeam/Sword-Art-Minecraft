@@ -2,12 +2,14 @@
 
 #include "com/mojang/minecraftpe/leveledit.h"
 #include "com/mojang/minecraftpe/world/item/Item.h"
+#include "com/mojang/minecraftpe/world/util/Random.h"
 
 #include "../CardinalBlocks.h"
 #include "../../items/CardinalItems.h"
 
-CrystalliteOre::CrystalliteOre(std::string asset, int id) : Block("crystalliteOre", id, asset, Material::getMaterial(MaterialType::STONE)) {
-   setSolid(true);
+CrystalliteOre::CrystalliteOre(std::string asset, int id) : 
+	Block("crystalliteOre", id, asset, Material::getMaterial(MaterialType::STONE)) {
+	
 	creativeCategory = 3;
 	setDestroyTime(0.5F);
 	setSoundType(SOUND_STONE);
@@ -15,22 +17,14 @@ CrystalliteOre::CrystalliteOre(std::string asset, int id) : Block("crystalliteOr
 	CardinalBlocks::registerBlock(this);
 }
 
-const TextureUVCoordinateSet& CrystalliteOre::getTexture(signed char side, int data){
-	return getTextureUVCoordinateSet("crystalliteOre", 0);
-}
-
 int CrystalliteOre::getExperienceDrop(Random& rand) const{
-return 2;
+	return 2;
 };
 
 int CrystalliteOre::getResource(Random& random, int data, int fortune) {
 	return CardinalItems::crystalliteFragment->itemId;
 }
 
-int CrystalliteOre::getSpawnResourcesAuxValue(unsigned char data) {
-	return data;
-}
-
-int CrystalliteOre::getResourceCount(Random& random, int data, int fortune) {
-	return 1 + (fortune * data);
+int CrystalliteOre::getResourceCount(Random& rand, int data, int fortune) {
+	return (rand.genrand_int32() % 3) + 1; // drops anything from 1 to 4
 }
