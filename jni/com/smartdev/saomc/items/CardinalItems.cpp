@@ -25,33 +25,33 @@ Item* CardinalItems::elucidadorFragment;
 Item* CardinalItems::elucidadorStick;
 
 void CardinalItems::initItems() {
-//Swords
-   elucidator = new Elucidator("elucidator", 1000);
-   darkRepulser = new DarkRepulser("darkRepulser", 1001);
-   kagemitsu = new Kagemitsu("kagemitsu", 1002);
-   lambentLight = new LambentLight("lambentLight", 1003);
+	
+	//Swords
+	elucidator = new Elucidator("elucidator", 1000);
+	darkRepulser = new DarkRepulser("darkRepulser", 1001);
+	kagemitsu = new Kagemitsu("kagemitsu", 1002);
+	lambentLight = new LambentLight("lambentLight", 1003);
 
-//Valuables
-	 crystalliteFragment = new CrystalliteFragment("crystalliteFragment", 900);
-	 crystalliteStick = new CrystalliteStick("crystalliteStick", 901);
+	//Valuables
+	crystalliteFragment = new CrystalliteFragment("crystalliteFragment", 900);
+	crystalliteStick = new CrystalliteStick("crystalliteStick", 901);
 
-    elucidadorFragment = new ElucidadorFragment("elucidadorFragment", 902);
-	 elucidadorStick = new ElucidadorStick("elucidadorStick", 903);
+	elucidadorFragment = new ElucidadorFragment("elucidadorFragment", 902);
+	elucidadorStick = new ElucidadorStick("elucidadorStick", 903);
 
 	initCreativeItems();
 }
 
 void CardinalItems::initCreativeItems() {
-//Swords
+	//Swords
 	Item::addCreativeItem(elucidator, 0);
-   Item::addCreativeItem(darkRepulser, 0);
-   Item::addCreativeItem(kagemitsu, 0);
-   Item::addCreativeItem(lambentLight, 0);
+	Item::addCreativeItem(darkRepulser, 0);
+	Item::addCreativeItem(kagemitsu, 0);
+	Item::addCreativeItem(lambentLight, 0);
  
-//Valuables 
-Item::addCreativeItem(crystalliteFragment, 0);
-Item::addCreativeItem(crystalliteStick, 0);
-Item::addCreativeItem(elucidadorFragment, 0);
-Item::addCreativeItem(elucidadorStick, 0); 
-CardinalBlocks::initCreativeItems();
+	//Valuables 
+	Item::addCreativeItem(crystalliteFragment, 0);
+	Item::addCreativeItem(crystalliteStick, 0);
+	Item::addCreativeItem(elucidadorFragment, 0);
+	Item::addCreativeItem(elucidadorStick, 0); 
 }

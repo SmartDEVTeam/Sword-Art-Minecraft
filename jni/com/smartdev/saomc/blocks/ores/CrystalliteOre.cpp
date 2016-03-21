@@ -3,6 +3,7 @@
 #include "com/mojang/minecraftpe/leveledit.h"
 #include "com/mojang/minecraftpe/world/item/Item.h"
 #include "com/mojang/minecraftpe/world/util/Random.h"
+#include "com/mojang/minecraftpe/CreativeItemCategory.h"
 
 #include "../CardinalBlocks.h"
 #include "../../items/CardinalItems.h"
@@ -10,7 +11,7 @@
 CrystalliteOre::CrystalliteOre(std::string asset, int id) : 
 	Block("crystalliteOre", id, asset, Material::getMaterial(MaterialType::STONE)) {
 	
-	creativeCategory = 3;
+	creativeCategory = CreativeItemCategory::DECORATIONS;
 	setDestroyTime(0.5F);
 	setSoundType(SOUND_STONE);
 	
