@@ -19,6 +19,6 @@ void CardinalBlocks::registerBlock(Block* block) {
 	Item::mItems[block->blockId] = new BlockItem(block->getDescriptionId(), block->blockId - 0x100);
 }
 
-void CardinalBlocks::initCreativeItems() {
+void CardinalBlocks::initCreativeBlocks() {
 	Item::addCreativeItem(crystalliteOre, 0);
 }

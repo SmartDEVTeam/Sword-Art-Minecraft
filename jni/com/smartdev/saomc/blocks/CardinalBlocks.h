@@ -8,5 +8,5 @@ public:
 	static void initBlocks();
 	static void registerBlock(Block*);
 	
-	static void initCreativeItems();
+	static void initCreativeBlocks();
 };
