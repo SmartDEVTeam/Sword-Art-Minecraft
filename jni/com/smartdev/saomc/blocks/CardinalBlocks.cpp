@@ -4,12 +4,12 @@
 #include "com/mojang/minecraftpe/world/item/Item.h"
 #include "com/mojang/minecraftpe/world/item/BlockItem.h"
 
-#include "ores/CrystalliteOre.h"
+#include "ores/CardinalOre.h"
 
 Block* CardinalBlocks::crystalliteOre;
 
 void CardinalBlocks::initBlocks() {
-	crystalliteOre = new CrystalliteOre("crystalliteore", 210);
+	cardinalOre = new CardinalOre(210);
 }
 
 void CardinalBlocks::registerBlock(Block* block) {
@@ -19,5 +19,7 @@ void CardinalBlocks::registerBlock(Block* block) {
 	Item::mItems[block->blockId] = new BlockItem(block->getDescriptionId(), block->blockId - 0x100);
 }
 
-void CardinalBlocks::initCreativeBlocks() {	Item::addCreativeItem(Item::mItems[CardinalBlocks::crystalliteOre->blockId], 0);
+void CardinalBlocks::initCreativeBlocks() {	
+	Item::addCreativeItem(cardinalOre, 0);
+	Item::addCreativeItem(CardinalOre, 1);
 }
