@@ -6,23 +6,17 @@
 #include "swords/Kagemitsu.h"
 #include "swords/LambentLight.h"
 
-#include "valuables/crystallite/CrystalliteFragment.h"
-#include "valuables/crystallite/CrystalliteStick.h"
-
-#include "valuables/elucidador/ElucidadorFragment.h"
-#include "valuables/elucidador/ElucidadorStick.h"
+#include "valuables/CardinalFragment.h"
+#include "valuables/CardinalStick.h"
 
 #include "com/mojang/minecraftpe/world/item/Item.h"
-#include "../blocks/CardinalBlocks.h"
 
 Item* CardinalItems::elucidator;
 Item* CardinalItems::darkRepulser;
 Item* CardinalItems::kagemitsu;
 Item* CardinalItems::lambentLight;
-Item* CardinalItems::crystalliteFragment;
-Item* CardinalItems::crystalliteStick;
-Item* CardinalItems::elucidadorFragment;
-Item* CardinalItems::elucidadorStick;
+Item* CardinalItems::cardinalFragment;
+Item* CardinalItems::cardinalStick;
 
 void CardinalItems::initItems() {
 	
@@ -33,11 +27,8 @@ void CardinalItems::initItems() {
 	lambentLight = new LambentLight("lambentLight", 1003);
 
 	//Valuables
-	crystalliteFragment = new CrystalliteFragment("crystalliteFragment", 900);
-	crystalliteStick = new CrystalliteStick("crystalliteStick", 901);
-
-	elucidadorFragment = new ElucidadorFragment("elucidadorFragment", 902);
-	elucidadorStick = new ElucidadorStick("elucidadorStick", 903);
+	cardinalFragment = new CrystalliteFragment(900);
+	cardinalStick = new CrystalliteStick(901);
 
 	initCreativeItems();
 }
@@ -50,8 +41,17 @@ void CardinalItems::initCreativeItems() {
 	Item::addCreativeItem(lambentLight, 0);
  
 	//Valuables 
-	Item::addCreativeItem(crystalliteFragment, 0);
-	Item::addCreativeItem(crystalliteStick, 0);
-	Item::addCreativeItem(elucidadorFragment, 0);
-	Item::addCreativeItem(elucidadorStick, 0); 
+	Item::addCreativeItem(cardinalFragment, 0);
+	Item::addCreativeItem(cardinalStick, 0);
+	Item::addCreativeItem(cardinalFragment, 1);
+	Item::addCreativeItem(cardinalStick, 1); 
+}
+
+std::string CardinalItems::getItemTypeByData(int data) {
+	switch(data) {
+		case 0:
+			return "crystallite";
+		case 1:
+			return "elucidator";
+	}
 }

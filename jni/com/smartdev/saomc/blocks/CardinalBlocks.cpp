@@ -21,5 +21,5 @@ void CardinalBlocks::registerBlock(Block* block) {
 
 void CardinalBlocks::initCreativeBlocks() {	
 	Item::addCreativeItem(cardinalOre, 0);
-	Item::addCreativeItem(CardinalOre, 1);
+	//Item::addCreativeItem(cardinalOre, 1);
 }
