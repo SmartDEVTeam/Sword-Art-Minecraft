@@ -11,7 +11,7 @@
 CrystalliteOre::CrystalliteOre(std::string asset, int id) : 
 	Block("crystalliteOre", id, asset, Material::getMaterial(MaterialType::STONE)) {
 	
-	creativeCategory = CreativeItemCategory::DECORATIONS;
+	creativeCategory = CreativeItemCategory::BLOCKS;
 	setDestroyTime(0.5F);
 	setSoundType(SOUND_STONE);
 	
@@ -19,7 +19,7 @@ CrystalliteOre::CrystalliteOre(std::string asset, int id) :
 }
 
 int CrystalliteOre::getExperienceDrop(Random& rand) const{
-	return 2;
+	return (rand.genrand_int32() % 3); // drops from 0 to 4 experience orbs
 };
 
 int CrystalliteOre::getResource(Random& random, int data, int fortune) {
@@ -27,5 +27,5 @@ int CrystalliteOre::getResource(Random& random, int data, int fortune) {
 }
 
 int CrystalliteOre::getResourceCount(Random& rand, int data, int fortune) {
-	return (rand.genrand_int32() % 3) + 1; // drops anything from 1 to 4
+	return fortune * (rand.genrand_int32() % 3) + 1; // drops between 1 and 4 * fortune
 }

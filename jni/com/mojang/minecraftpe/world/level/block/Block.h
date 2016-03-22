@@ -70,7 +70,7 @@ public:
 	bool heavy; // 108
 	float hardness; // 112
 	float explosionResistance; // 116
-	CreativeItemCategory creativeCategory; // 120
+	CreativeItemCategory creativeCategory; //120
 	AABB hitbox; // 124
 
 

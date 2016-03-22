@@ -15,4 +15,5 @@
 #include "com/mojang/minecraftpe/world/level/block/Block.h"
 #include "com/mojang/minecraftpe/world/item/BlockItem.h"
 #include "com/mojang/minecraftpe/world/item/recipes/Recipes.h"
+#include "com/mojang/minecraftpe/world/item/recipes/FurnaceRecipes.h"
 #include "com/mojang/minecraftpe/world/material/Material.h"

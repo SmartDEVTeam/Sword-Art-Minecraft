@@ -1,11 +1,17 @@
 #include "CardinalRecipes.h"
-#include "../items/CardinalItems.h"
-#include "../blocks/CardinalBlocks.h"
-#include "com/mojang/minecraftpe/world/item/ItemInstance.h"
+
+#include "../items/CardinalItems.h" 
+#include "../blocks/CardinalBlocks.h" 
+#include "com/mojang/minecraftpe/world/item/ItemInstance.h" 
 #include "com/mojang/minecraftpe/world/item/Item.h" 
 #include "com/mojang/minecraftpe/world/level/block/Block.h" 
+
 Recipes* CardinalRecipes::_Instance;
 std::vector<Recipes::Type> CardinalRecipes::_ingredients;
+
+void CardinalRecipes::initFurnaceRecipes(FurnaceRecipes* instance) {
+instance->addFurnaceRecipe(CardinalBlocks::crystalliteOre->blockId, ItemInstance(CardinalItems::crystalliteFragment, 1));
+}
 
 void CardinalRecipes::initRecipes(Recipes* instance) {	
 	_Instance = instance;		

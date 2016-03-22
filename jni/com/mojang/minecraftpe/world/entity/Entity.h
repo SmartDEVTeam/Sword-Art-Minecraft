@@ -18,7 +18,6 @@ class ChangeDimensionPacket;
 class ExplodeComponent;
 class Dimension;
 class Random;
-class Entity;
 #include "../material/Material.h"
 #include "EntityType.h"
 #include "EntityRendererId.h"
@@ -30,7 +29,7 @@ class Entity;
 #include "../util/Color.h"
 #include "../../CommonTypes.h"
 
-typedef std::vector<Entity*> EntityList;
+//typedef std::vector<Entity*> EntityList;
 
 class Entity {
 public:
@@ -63,7 +62,7 @@ public:
 	int noclue; // 236  **ALWAYS 255**
 	char filler5[4]; // 240
 	EntityRendererId rendererId; // 244
-	EntityList riders; // 248
+	//EntityList riders; // 248
 	Entity& rider; // 252
 	Entity& riding; // 256
 	bool isRiding; // 260

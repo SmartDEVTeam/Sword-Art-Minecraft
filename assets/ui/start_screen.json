@@ -27,10 +27,18 @@
   }, 
   "feedbackTweet_icon": {
     "type": "image",
-    "texture": "gui/FeedbackTwitter.png",
-    "layer": 3,
+    "texture": "gui/newgui/Twitter1.png",
+    "layer": 1,
     "uv": [ 0, 0 ],
-    "uv_size": [ 500, 500 ],
+    "uv_size": [ 16, 16 ],
+    "size": [ 18, 18 ]
+  },
+  "feedbackTweet1_icon": {
+    "type": "image",
+    "texture": "gui/newgui/Twitter2.png",
+    "layer": 1,
+    "uv": [ 0, 0 ],
+    "uv_size": [ 16, 16 ],
     "size": [ 18, 18 ]
   },
   "copyright": {
@@ -47,6 +55,7 @@
   "development_version": {
     "type": "label",
     "size": [ 50, 10 ],
+    "offset": [ 0, "4%" ],
     "alignment": "center",
     "layer": 2,
     "text": "#development_version",
@@ -314,21 +323,21 @@
       {
         "default@$button_state_default_base": {
           "controls": [
-            { "@start.language_icon": { } }
+            { "@start.options_icon": { } }
           ]
         }
       },
       {
         "hover@$button_state_hover_base": {
           "controls": [
-            { "@start.language_icon": { } }
+            { "@start.options_pressed_icon": { } }
           ]
         }
       },
       {
         "pressed@$button_state_pressed_base": {
           "controls": [
-            { "@start.language_icon": {
+            { "@start.options_pressed_icon": {
                 "alpha": 0.65
               } }
           ]
@@ -356,14 +365,14 @@
       {
         "hover@$button_state_hover_base": {
           "controls": [
-            { "@start.feedbackTweet_icon": { } }
+            { "@start.feedbackTweet1_icon": { } }
           ]
         }
       },
       {
         "pressed@$button_state_pressed_base": {
           "controls": [
-            { "@start.feedbackTweet_icon": { 
+            { "@start.feedbackTweet1_icon": { 
                 "alpha": 0.65
               } }
           ]
@@ -393,14 +402,14 @@
       {
         "hover@$button_state_hover_base": {
           "controls": [
-            { "@start.feedbackTweet_icon": { } }
+            { "@start.feedbackTweet1_icon": { } }
           ]
         }
       },
       {
         "pressed@$button_state_pressed_base": {
           "controls": [
-            { "@start.feedbackTweet_icon": { 
+            { "@start.feedbackTweet1_icon": { 
                 "alpha": 0.65
               } }
           ]

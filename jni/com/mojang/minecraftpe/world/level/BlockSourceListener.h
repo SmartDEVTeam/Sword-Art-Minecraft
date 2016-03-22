@@ -1,9 +1,9 @@
 #pragma once
 #include <memory>
-class BlockSource;
-struct BlockPos;
+#include "BlockSource.h"
+#include "BlockPos.h"
+class FullBlock;
 class BlockEntity;
-#include "../../CommonTypes.h"
 
 class BlockSourceListener {
 public:
