@@ -6,13 +6,11 @@ class Item;
 class CardinalItems {
 public:
 	static Item* elucidator;
-   static Item* darkRepulser;
-   static Item* kagemitsu;
-   static Item* lambentLight;
-   static Item* crystalliteFragment;
-   static Item* crystalliteStick;
-   static Item* elucidadorFragment;
-   static Item* elucidadorStick;
+	static Item* darkRepulser;
+	static Item* kagemitsu;
+	static Item* lambentLight;
+	static Item* fragment;
+	static Item* stick;
 	
 	static void initItems();
 	static void initCreativeItems();

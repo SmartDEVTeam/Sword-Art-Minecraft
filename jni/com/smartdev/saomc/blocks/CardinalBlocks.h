@@ -3,7 +3,7 @@ class Block;
 
 class CardinalBlocks {
 public:
-	static Block* crystalliteOre;
+	static Block* cardinalOre;
 	
 	static void initBlocks();
 	static void registerBlock(Block*);

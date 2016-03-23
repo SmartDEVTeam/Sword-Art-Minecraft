@@ -6,8 +6,8 @@
 #include "com/mojang/minecraftpe/world/util/Random.h"
 #include "com/mojang/minecraftpe/CreativeItemCategory.h"
 
-#include "../CardinalBlocks.h"
-#include "../../items/CardinalItems.h"
+#include "CardinalBlocks.h"
+#include "../items/CardinalItems.h"
 
 CardinalOre::CardinalOre(int id) : 
 	Block("cardinalore", id, "stone", Material::getMaterial(MaterialType::STONE)) {
@@ -45,7 +45,7 @@ std::string CardinalOre::buildDescriptionName(const ItemInstance& item) const {
 	return "tile.cardinalOre." + CardinalItems::getItemTypeByData(item.data) + ".name"
 }
 
-void initTextures() {
+void CardinalOre::initTextures() {
 	textures[0] = getTextureUVCoordinateSet("crystalliteore", 0);
 	//add more textures here
 }

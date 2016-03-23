@@ -15,8 +15,8 @@ Item* CardinalItems::elucidator;
 Item* CardinalItems::darkRepulser;
 Item* CardinalItems::kagemitsu;
 Item* CardinalItems::lambentLight;
-Item* CardinalItems::cardinalFragment;
-Item* CardinalItems::cardinalStick;
+Item* CardinalItems::fragment;
+Item* CardinalItems::stick;
 
 void CardinalItems::initItems() {
 	
@@ -27,8 +27,8 @@ void CardinalItems::initItems() {
 	lambentLight = new LambentLight("lambentLight", 1003);
 
 	//Valuables
-	cardinalFragment = new CrystalliteFragment(900);
-	cardinalStick = new CrystalliteStick(901);
+	fragment = new CrystalliteFragment(900);
+	stick = new CrystalliteStick(901);
 
 	initCreativeItems();
 }
@@ -41,10 +41,10 @@ void CardinalItems::initCreativeItems() {
 	Item::addCreativeItem(lambentLight, 0);
  
 	//Valuables 
-	Item::addCreativeItem(cardinalFragment, 0);
-	Item::addCreativeItem(cardinalStick, 0);
-	Item::addCreativeItem(cardinalFragment, 1);
-	Item::addCreativeItem(cardinalStick, 1); 
+	Item::addCreativeItem(fragment, 0);
+	Item::addCreativeItem(stick, 0);
+	Item::addCreativeItem(fragment, 1);
+	Item::addCreativeItem(stick, 1); 
 }
 
 std::string CardinalItems::getItemTypeByData(int data) {

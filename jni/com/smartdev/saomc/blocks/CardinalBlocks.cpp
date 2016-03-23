@@ -4,9 +4,9 @@
 #include "com/mojang/minecraftpe/world/item/Item.h"
 #include "com/mojang/minecraftpe/world/item/BlockItem.h"
 
-#include "ores/CardinalOre.h"
+#include "CardinalOre.h"
 
-Block* CardinalBlocks::crystalliteOre;
+Block* CardinalBlocks::cardinalOre;
 
 void CardinalBlocks::initBlocks() {
 	cardinalOre = new CardinalOre(210);
