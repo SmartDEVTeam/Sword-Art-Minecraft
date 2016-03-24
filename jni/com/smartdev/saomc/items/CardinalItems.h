@@ -14,4 +14,5 @@ public:
 	
 	static void initItems();
 	static void initCreativeItems();
+	static std::string getItemTypeByData(int);
 };
