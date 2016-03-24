@@ -27,8 +27,8 @@ void CardinalItems::initItems() {
 	lambentLight = new LambentLight("lambentLight", 1003);
 
 	//Valuables
-	fragment = new CrystalliteFragment(900);
-	stick = new CrystalliteStick(901);
+	fragment = new CardinalFragment(900);
+	stick = new CardinalStick(901);
 
 	initCreativeItems();
 }

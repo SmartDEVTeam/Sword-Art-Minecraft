@@ -5,7 +5,7 @@
 
 class CardinalStick : public Item {
 private:
-	TextureUVCoordinateSet[3];
+	TextureUVCoordinateSet textures[3];
 public:
 	CardinalStick(short);
 	virtual const std::string buildDescriptionName(const ItemInstance&) const;	

@@ -5,7 +5,7 @@
 
 class CardinalFragment : public Item {
 private:
-	TextureUVCoordinateSet[3];
+	TextureUVCoordinateSet textures[3];
 public:
 	CardinalFragment(short);
 	virtual const std::string buildDescriptionName(const ItemInstance&) const;	
