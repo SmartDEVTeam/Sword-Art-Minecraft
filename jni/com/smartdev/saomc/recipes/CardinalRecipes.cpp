@@ -53,7 +53,7 @@ void CardinalRecipes::pushIngredient(int id, int data, char letter) {
 } 
 
 void CardinalRecipes::addRecipe(int outputID, int outputCount, int outputData, const std::vector<std::string>& shape) {
-	ItemInstance output(outputID, 1, 0);
+	ItemInstance output(outputID, 1, outputData);
 	output.count = outputCount;
 	_Instance->addShapedRecipe(output, shape, _ingredients);	
 	_ingredients.clear();

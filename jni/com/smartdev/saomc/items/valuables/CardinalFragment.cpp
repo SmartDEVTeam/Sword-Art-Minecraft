@@ -17,7 +17,7 @@ const std::string CardinalFragment::buildDescriptionName(ItemInstance const& ite
 	return "item.cardinalFragment." + CardinalItems::getItemTypeByData(item.data) + ".name";
 }
 
-const TextureUVCoordinateSet& getIcon(int data, int i2, bool b1) const {
+const TextureUVCoordinateSet& CardinalFragment::getIcon(int data, int i2, bool b1) const {
 	return textures[data];
 }
 
