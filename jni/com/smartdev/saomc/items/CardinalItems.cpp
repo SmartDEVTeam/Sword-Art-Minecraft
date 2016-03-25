@@ -52,6 +52,6 @@ std::string CardinalItems::getItemTypeByData(int data) {
 		case 0:
 			return "crystallite";
 		case 1:
-			return "elucidator";
+			return "elucidador";
 	}
 }

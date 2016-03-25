@@ -47,5 +47,5 @@ std::string CardinalOre::buildDescriptionName(const ItemInstance& item) const {
 
 void CardinalOre::initTextures() {
 	textures[0] = getTextureUVCoordinateSet("crystalliteore", 0);
-	//add more textures here
+	textures[1] = getTextureUVCoordinateSet("elucidadorore", 0);
 }
