@@ -2,6 +2,7 @@
 #include <string>
 
 #include "com/mojang/minecraftpe/world/item/Item.h"
+#include "com/mojang/minecraftpe/client/renderer/texture/TextureUVCoordinateSet.h"
 
 class CardinalStick : public Item {
 private:

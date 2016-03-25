@@ -42,7 +42,7 @@ const TextureUVCoordinateSet& CardinalOre::getTexture(signed char side, int data
 }
 
 std::string CardinalOre::buildDescriptionName(const ItemInstance& item) const {
-	return "tile.cardinalOre." + CardinalItems::getItemTypeByData(item.data) + ".name"
+	return "tile.cardinalOre." + CardinalItems::getItemTypeByData(item.aux) + ".name";
 }
 
 void CardinalOre::initTextures() {

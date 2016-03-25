@@ -4,7 +4,7 @@
 
 class CardinalOre : public Block {
 private:
-	TextureUVCoordinateSet[3] textures;
+	TextureUVCoordinateSet textures[3];
 public:
 	CardinalOre(int);
 

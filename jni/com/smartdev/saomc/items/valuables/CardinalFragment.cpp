@@ -14,7 +14,7 @@ CardinalFragment::CardinalFragment(short itemId) : Item("cardinalFragment", item
 }
 
 const std::string CardinalFragment::buildDescriptionName(ItemInstance const& item) const{
-	return "item.cardinalFragment." + CardinalItems::getItemTypeByData(item.data) + ".name";
+	return "item.cardinalFragment." + CardinalItems::getItemTypeByData(item.aux) + ".name";
 }
 
 const TextureUVCoordinateSet& CardinalFragment::getIcon(int data, int i2, bool b1) const {
@@ -22,6 +22,6 @@ const TextureUVCoordinateSet& CardinalFragment::getIcon(int data, int i2, bool b
 }
 
 void CardinalFragment::initTextures() {
-	textures[0] = getTextureUVCoorinateSet("crystallitefragment", 0);
-	textures[1] = getTextureUVCoorinateSet("elucidatorfragment", 0);
+	textures[0] = getTextureUVCoordinateSet("crystallitefragment", 0);
+	textures[1] = getTextureUVCoordinateSet("elucidadorfragment", 0);
 }
