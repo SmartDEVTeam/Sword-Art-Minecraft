@@ -10,7 +10,8 @@ Recipes* CardinalRecipes::_Instance;
 std::vector<Recipes::Type> CardinalRecipes::_ingredients;
 
 void CardinalRecipes::initFurnaceRecipes(FurnaceRecipes* instance) {
-	instance->addFurnaceRecipe(CardinalBlocks::cardinalOre->blockId, ItemInstance(CardinalItems::fragment, 1, 0));
+	instance->addFurnaceRecipeAuxData(CardinalBlocks::cardinalOre->blockId, 0, ItemInstance(CardinalItems::fragment, 1, 0));
+	instance->addFurnaceRecipeAuxData(CardinalBlocks::cardinalOre->blockId, 1, ItemInstance(CardinalItems::fragment, 1, 1));
 }
 
 void CardinalRecipes::initRecipes(Recipes* instance) {	
