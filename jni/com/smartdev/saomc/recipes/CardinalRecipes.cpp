@@ -48,7 +48,7 @@ void CardinalRecipes::initRecipes(Recipes* instance) {
 } 
 
 void CardinalRecipes::pushIngredient(int id, int data, char letter) {
-	Recipes::Type type {Item::mItems[id], NULL, ItemInstance(), letter};
+	Recipes::Type type {NULL, NULL, ItemInstance(id, 1, data), letter};
 	_ingredients.push_back(type);
 } 
 

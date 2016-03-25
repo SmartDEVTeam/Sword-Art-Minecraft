@@ -24,15 +24,15 @@ static void Item$initCreativeItems() {
 	CardinalBlocks::initCreativeBlocks();
 }
 
-void (*_Block$initBlocks)();
-void Block$initBlocks() {
+static void (*_Block$initBlocks)();
+static void Block$initBlocks() {
 	_Block$initBlocks();
 	
 	CardinalBlocks::initBlocks();
 }
 
-void (*_Recipes$init)(Recipes*);
-void Recipes$init(Recipes* self) {	
+static void (*_Recipes$init)(Recipes*);
+static void Recipes$init(Recipes* self) {	
 	_Recipes$init(self);	
 	
 	CardinalRecipes::initRecipes(self);
@@ -57,6 +57,13 @@ static void Mob$die(Mob* dead, EntityDamageSource const& damage) {
 	dead->playSound("saomc.entity.death", 1.0F, 1.0F);//sao.mob.death
 }
 
+static void (*_BiomeDecorator$decorateOres)(BiomeDecorator*, BlockSource*, Random&, const BlockPos&);
+static void BiomeDecorator$decorateOres(BiomeDecorator* decorator, BlockSource* region, Random& random, const BlockPos& blockPos) {
+	_BiomeDecorator$decorateOres(decorator, region, random, blockPos);
+	
+	//CardinalDecorator::decorateOres(decorator, region, random, blockPos);
+}
+
 JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 
 	MSHookFunction((void*) &Common::getGameDevVersionString, (void*) &Common$getGameDevVersionString, (void**) &_Common$getGameDevVersionString);
@@ -75,6 +82,8 @@ JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	MSHookFunction((void*) &Mob::causeFallDamage, (void*) &Mob$causeFallDamage, (void**) &_Mob$causeFallDamage);
 
 	MSHookFunction((void*) &Mob::die, (void*) &Mob$die, (void**) &_Mob$die);
+	
+	MSHookFunction((void*) &BiomeDecorator::decorateOres, (void*) &BiomeDecorator$decorateOres, (void**) &_BiomeDecorator$decorateOres);
 
 	return JNI_VERSION_1_2;
 }
