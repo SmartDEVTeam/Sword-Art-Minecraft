@@ -18,7 +18,7 @@ CardinalOre::CardinalOre(int id) :
 	
 	initTextures();
 	
-	CardinalBlocks::registerBlock(this);
+	CardinalBlocks::registerAuxDataBlock(this);
 }
 
 int CardinalOre::getExperienceDrop(Random& rand) const{

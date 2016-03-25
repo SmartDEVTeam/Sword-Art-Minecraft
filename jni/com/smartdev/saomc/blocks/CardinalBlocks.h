@@ -7,6 +7,7 @@ public:
 	
 	static void initBlocks();
 	static void registerBlock(Block*);
+	static void registerAuxDataBlock(Block*);
 	
 	static void initCreativeBlocks();
 };
