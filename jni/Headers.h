@@ -22,3 +22,8 @@
 #include "com/mojang/minecraftpe/world/material/Material.h"
 #include "com/mojang/minecraftpe/world/level/biome/BiomeDecorator.h"
 
+//Skin Pack
+#include "com/mojang/minecraftpe/locale/Skin.h"
+#include "com/mojang/minecraftpe/locale/SkinPack.h"
+#include "com/mojang/minecraftpe/locale/SkinRepository.h"
+#include "com/mojang/minecraftpe/client/settings/Options.h"
