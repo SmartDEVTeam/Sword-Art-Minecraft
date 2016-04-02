@@ -14,7 +14,7 @@ CardinalStick::CardinalStick(short itemId) : Item("cardinalStick", itemId - 0x10
 }
 
 const std::string CardinalStick::buildDescriptionName(ItemInstance const& item) const{
-	return "item.cardinalFragment." + CardinalItems::getItemTypeByData(item.aux) + ".name";
+	return "item.cardinalStick." + CardinalItems::getItemTypeByData(item.aux) + ".name";
 }
 
 const TextureUVCoordinateSet& CardinalStick::getIcon(int data, int i2, bool b1) const {
