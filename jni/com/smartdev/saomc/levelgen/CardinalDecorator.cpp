@@ -14,7 +14,8 @@ void CardinalDecorator::registerOres() {
 		return;
 	initialized = true;
 	
-	features.emplace_back(CardinalFeatureInfo::GenType::SPAN, std::unique_ptr<Feature>(new OreFeature(CardinalBlocks::cardinalOre->blockId, 0, 17)), 20, 0, 128);
+	features.emplace_back(CardinalFeatureInfo::GenType::SPAN, std::unique_ptr<Feature>(new OreFeature(CardinalBlocks::cardinalOre->blockId, 0, 5)), 1, 0, 16);
+	features.emplace_back(CardinalFeatureInfo::GenType::SPAN, std::unique_ptr<Feature>(new OreFeature(CardinalBlocks::cardinalOre->blockId, 1, 5)), 1, 0, 16);
 }
 
 void CardinalDecorator::decorateOres(BiomeDecorator* decorator, BlockSource* region, Random& random, const BlockPos& pos) {	
