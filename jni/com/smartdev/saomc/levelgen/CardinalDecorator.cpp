@@ -17,9 +17,7 @@ void CardinalDecorator::registerOres() {
 	features.emplace_back(CardinalFeatureInfo::GenType::SPAN, std::unique_ptr<Feature>(new OreFeature(CardinalBlocks::cardinalOre->blockId, 0, 17)), 20, 0, 128);
 }
 
-void CardinalDecorator::decorateOres(BiomeDecorator* decorator, BlockSource* region, Random& random, const BlockPos& pos) {
-	registerOres();
-	
+void CardinalDecorator::decorateOres(BiomeDecorator* decorator, BlockSource* region, Random& random, const BlockPos& pos) {	
 	for(CardinalFeatureInfo& fe : features) {
 		if(fe.gentype == CardinalFeatureInfo::GenType::SPAN)
 			decorator->decorateDepthSpan(region, random, pos, fe.amountPerChunk, fe.feature, fe.minY, fe.maxY);

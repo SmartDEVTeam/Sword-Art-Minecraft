@@ -3,6 +3,10 @@
 
 class OreFeature : public Feature {
 public:
+	BlockID id; // 9
+	unsigned char data; // 10
+	int veinSize; // 12
+	
 	OreFeature(BlockID, int);
 	OreFeature(BlockID, unsigned char, int);
 	

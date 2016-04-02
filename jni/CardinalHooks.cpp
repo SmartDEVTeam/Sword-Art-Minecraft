@@ -57,33 +57,38 @@ static void Mob$die(Mob* dead, EntityDamageSource const& damage) {
 	dead->playSound("saomc.entity.death", 1.0F, 1.0F);//sao.mob.death
 }
 
+static BiomeDecorator* (*_BiomeDecorator$BiomeDecorator)(BiomeDecorator*);
+static BiomeDecorator* BiomeDecorator$BiomeDecorator(BiomeDecorator* self) {
+	BiomeDecorator* retval = _BiomeDecorator$BiomeDecorator(self);
+	
+	CardinalDecorator::registerOres();
+	
+	return retval;
+}
+
 static void (*_BiomeDecorator$decorateOres)(BiomeDecorator*, BlockSource*, Random&, const BlockPos&);
 static void BiomeDecorator$decorateOres(BiomeDecorator* decorator, BlockSource* region, Random& random, const BlockPos& blockPos) {
 	_BiomeDecorator$decorateOres(decorator, region, random, blockPos);
 	
-	//CardinalDecorator::decorateOres(decorator, region, random, blockPos);
+	CardinalDecorator::decorateOres(decorator, region, random, blockPos);
 }
 
 JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 
 	MSHookFunction((void*) &Common::getGameDevVersionString, (void*) &Common$getGameDevVersionString, (void**) &_Common$getGameDevVersionString);
-
 	MSHookFunction((void*) &Item::initCreativeItems, (void*) &Item$initCreativeItems, (void**) &_Item$initCreativeItems);
-
 	MSHookFunction((void*) &Block::initBlocks, (void*) &Block$initBlocks, (void**) &_Block$initBlocks);
-
 	MSHookFunction((void*) &Recipes::init, (void*) &Recipes$init, (void**) &_Recipes$init);
-
-	 void* furnaceRecipes = dlsym(RTLD_DEFAULT, "_ZN14FurnaceRecipesC1Ev");
-	MSHookFunction(furnaceRecipes, (void*) &FurnaceRecipes$FurnaceRecipes, (void**) &_FurnaceRecipes$FurnaceRecipes);
-
+	MSHookFunction((void*) &Mob::causeFallDamage, (void*) &Mob$causeFallDamage, (void**) &_Mob$causeFallDamage);
+	MSHookFunction((void*) &Mob::die, (void*) &Mob$die, (void**) &_Mob$die);
+	MSHookFunction((void*) &BiomeDecorator::decorateOres, (void*) &BiomeDecorator$decorateOres, (void**) &_BiomeDecorator$decorateOres);
 	//MSHookFunction((void*) &I18n::get, (void*) &I18n$get, (void**) &_I18n$get);
 
-	MSHookFunction((void*) &Mob::causeFallDamage, (void*) &Mob$causeFallDamage, (void**) &_Mob$causeFallDamage);
+	void* furnaceRecipes = dlsym(RTLD_DEFAULT, "_ZN14FurnaceRecipesC1Ev");
+	MSHookFunction(furnaceRecipes, (void*) &FurnaceRecipes$FurnaceRecipes, (void**) &_FurnaceRecipes$FurnaceRecipes);
 
-	MSHookFunction((void*) &Mob::die, (void*) &Mob$die, (void**) &_Mob$die);
-	
-	MSHookFunction((void*) &BiomeDecorator::decorateOres, (void*) &BiomeDecorator$decorateOres, (void**) &_BiomeDecorator$decorateOres);
+	void* biomeDecorator = dlsym(RTLD_DEFAULT, "_ZN14BiomeDecoratorC2Ev");
+	MSHookFunction(biomeDecorator, (void*) &BiomeDecorator$BiomeDecorator, (void**) &_BiomeDecorator$BiomeDecorator);
 
 	return JNI_VERSION_1_2;
 }

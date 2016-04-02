@@ -7,6 +7,9 @@ class Random;
 
 class Feature {
 public:
+	unsigned char updateNotify; // 4
+	bool isManuallyPlaced; // 8
+
 	Feature(bool);
 	
 	virtual ~Feature();
