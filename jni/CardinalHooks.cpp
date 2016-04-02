@@ -68,9 +68,9 @@ void skinRepoHook(SkinRepository* repo, Options& op, GeometryGroup& ge, GameStor
 
 	Skin Kirito ("Kirito: Coat of Midnight", "Kirito: Coat of midnight", "geometry.humanoid.normal", "mob/skins/SAO/Kirito.png", Skin::SkinType::FREE);
     
-    Skin Kirito2 ("Kirito: Knights of the Blood", "Kirito: Knights of the Blood", "geometry.humanoid.normal", "mob/skins/SAO/Kirito2.png", Skin::SkinType::FREE);
+	Skin Kirito2 ("Kirito: Knights of the Blood", "Kirito: Knights of the Blood", "geometry.humanoid.normal", "mob/skins/SAO/Kirito2.png", Skin::SkinType::FREE);
    
-    Skin Kirito3 ("Kirito: Alternative", "Kirito: Alternative", "geometry.humanoid.normal", "mob/skins/SAO/Kirito3.png", Skin::SkinType::FREE);
+	Skin Kirito3 ("Kirito: Alternative", "Kirito: Alternative", "geometry.humanoid.normal", "mob/skins/SAO/Kirito3.png", Skin::SkinType::FREE);
 
 	Skin Klein ("Klein", "Klein", "geometry.humanoid.normal", "mob/skins/SAO/Klein.png", Skin::SkinType::FREE);
 
