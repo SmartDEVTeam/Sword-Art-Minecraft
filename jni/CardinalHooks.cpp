@@ -95,7 +95,7 @@ static BiomeDecorator* (*_BiomeDecorator$BiomeDecorator)(BiomeDecorator*);
 static BiomeDecorator* BiomeDecorator$BiomeDecorator(BiomeDecorator* self) {
 	BiomeDecorator* retval = _BiomeDecorator$BiomeDecorator(self);
 	
-	CardinalDecorator::registerOres();
+	CardinalDecorator::registerFeatures();
 	
 	return retval;
 }
@@ -107,6 +107,13 @@ static void BiomeDecorator$decorateOres(BiomeDecorator* decorator, BlockSource* 
 	CardinalDecorator::decorateOres(decorator, region, random, blockPos);
 }
 
+static void (*_BiomeDecorator$decorate)(BiomeDecorator*, BlockSource*, Random&, Biome*, const BlockPos&, bool, float);
+static void BiomeDecorator$decorate(BiomeDecorator* decorator, BlockSource* region, Random& random, Biome* biome, const BlockPos& pos, bool b1, float f1) {
+	_BiomeDecorator$decorate(decorator, region, random, biome, pos, b1, f1);
+	
+	CardinalDecorator::decorate(decorator, region, random, biome, pos, b1, f1);
+}
+
 JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 
 	MSHookFunction((void*) &Common::getGameDevVersionString, (void*) &Common$getGameDevVersionString, (void**) &_Common$getGameDevVersionString);
@@ -116,6 +123,7 @@ JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	MSHookFunction((void*) &Mob::causeFallDamage, (void*) &Mob$causeFallDamage, (void**) &_Mob$causeFallDamage);
 	MSHookFunction((void*) &Mob::die, (void*) &Mob$die, (void**) &_Mob$die);
 	MSHookFunction((void*) &BiomeDecorator::decorateOres, (void*) &BiomeDecorator$decorateOres, (void**) &_BiomeDecorator$decorateOres);
+	MSHookFunction((void*) &BiomeDecorator::decorate, (void*) &BiomeDecorator$decorate, (void**) &_BiomeDecorator$decorate);
 	//MSHookFunction((void*) &I18n::get, (void*) &I18n$get, (void**) &_I18n$get);
 
     void* SkinRepository = dlsym(RTLD_DEFAULT, "_ZN14SkinRepositoryC2ER7OptionsR13GeometryGroupR9GameStoreR12TextureGroupRKSsy");

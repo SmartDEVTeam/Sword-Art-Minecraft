@@ -29,4 +29,11 @@ struct FullBlock {
 
 	FullBlock(BlockID id, DataID aux) : blockId(id), data(aux) {
 	}
+	
+	FullBlock(unsigned char id, DataID aux) : blockId(BlockID(id)), data(aux) {
+		
+	}
+	
+	FullBlock(FullBlock const& other): blockId(other.blockId), data(other.data) {
+	}
 };

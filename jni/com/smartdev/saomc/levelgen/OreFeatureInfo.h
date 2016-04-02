@@ -2,15 +2,15 @@
 #include <memory>
 #include "com/mojang/minecraftpe/world/level/levelgen/feature/Feature.h"
 
-struct CardinalFeatureInfo {
+struct OreFeatureInfo {
 	enum class GenType : int {
 		SPAN,
 		AVERAGE
 	};
 	
-	CardinalFeatureInfo(CardinalFeatureInfo::GenType, std::unique_ptr<Feature>, int, int, int);
+	OreFeatureInfo(OreFeatureInfo::GenType, std::unique_ptr<Feature>, int, int, int);
 	
-	CardinalFeatureInfo::GenType gentype;
+	OreFeatureInfo::GenType gentype;
 	std::unique_ptr<Feature> feature;
 	int amountPerChunk;
 	int minY;
