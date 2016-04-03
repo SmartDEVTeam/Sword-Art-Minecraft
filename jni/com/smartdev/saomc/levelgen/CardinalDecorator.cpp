@@ -36,6 +36,6 @@ void CardinalDecorator::decorateOres(BiomeDecorator* decorator, BlockSource* reg
 }
 
 void CardinalDecorator::decorate(BiomeDecorator* decorator, BlockSource* region, Random& random, Biome* biome, const BlockPos& pos, bool b1, float f1) {
-	int topY = region->getTopSolidBlock(pos.x + (random.genrand_int32() & 15), pos.y + (random.genrand_int32() & 15), false);
+	int topY = region->getTopSolidBlock(pos.x + (random.genrand_int32() % 15), pos.y + (random.genrand_int32() % 15), false);
 	decorator->_placeFeature(region, saoHouseFeature, {pos.x, topY, pos.z}, random);
 }
