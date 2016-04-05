@@ -11,6 +11,10 @@ public:
 	static Item* lambentLight;
 	static Item* fragment;
 	static Item* stick;
+	static Item* boots;
+	static Item* pants;
+	static Item* chestPlate;
+	static Item* helmet;
 	
 	static void initItems();
 	static void initCreativeItems();

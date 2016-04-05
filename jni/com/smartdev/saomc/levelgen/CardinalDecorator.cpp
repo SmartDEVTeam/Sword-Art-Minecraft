@@ -20,8 +20,8 @@ void CardinalDecorator::registerFeatures() {
 		return;
 	initialized = true;
 	
-	oreFeatures.emplace_back(OreFeatureInfo::GenType::SPAN, std::unique_ptr<Feature>(new OreFeature(CardinalBlocks::cardinalOre->blockId, 0, 5)), 1, 0, 16);
-	oreFeatures.emplace_back(OreFeatureInfo::GenType::SPAN, std::unique_ptr<Feature>(new OreFeature(CardinalBlocks::cardinalOre->blockId, 1, 5)), 1, 0, 16);
+	oreFeatures.emplace_back(OreFeatureInfo::GenType::SPAN, std::unique_ptr<Feature>(new OreFeature(CardinalBlocks::cardinalOre->blockId, 0, 10)), 1, 1, 16);
+	oreFeatures.emplace_back(OreFeatureInfo::GenType::SPAN, std::unique_ptr<Feature>(new OreFeature(CardinalBlocks::cardinalOre->blockId, 1, 10)), 1, 1, 16);
 	
 	saoHouseFeature = std::unique_ptr<Feature>(new SaoHouseFeature());
 }
