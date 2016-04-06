@@ -63,7 +63,7 @@ public:
 	Level* level; // 20
 	Entity* cameraEntity; // 24
 	Entity* crosshairPickEntity; // 28
-	float cameraRot; // 32
+	Vec3& cameraRot; // 32
 	char erd_vars1[4]; // 36
 	Options* options; // 40
 	Font* font; // 44
