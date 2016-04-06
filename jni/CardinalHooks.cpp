@@ -62,35 +62,6 @@ static void Mob$die(Mob* dead, EntityDamageSource const& damage) {
 	dead->playSound("saomc.entity.death", 1.0F, 1.0F);//sao.mob.death
 }
 
-void (*skinRepoOrg)(SkinRepository*, Options&, GeometryGroup&, GameStore&, TextureGroup&, std::string const&, unsigned long long);
-void skinRepoHook(SkinRepository* repo, Options& op, GeometryGroup& ge, GameStore& st, TextureGroup& tex, std::string const& text, unsigned long long HELP) {
-	skinRepoOrg(repo, op, ge, st, tex, text, HELP);
-
-	Skin Kirito ("Kirito: Coat of Midnight", "Kirito: Coat of midnight", "geometry.humanoid.normal", "mob/skins/SAO/Kirito.png", Skin::SkinType::FREE);
-    
-	Skin Kirito2 ("Kirito: Knights of the Blood", "Kirito: Knights of the Blood", "geometry.humanoid.normal", "mob/skins/SAO/Kirito2.png", Skin::SkinType::FREE);
-   
-	Skin Kirito3 ("Kirito: Alternative", "Kirito: Alternative", "geometry.humanoid.normal", "mob/skins/SAO/Kirito3.png", Skin::SkinType::FREE);
-
-	Skin Klein ("Klein", "Klein", "geometry.humanoid.normal", "mob/skins/SAO/Klein.png", Skin::SkinType::FREE);
-
-	Skin Agil ("Agil the Merchant", "Agil the Merchant", "geometry.humanoid.normal", "mob/skins/SAO/Agil.png", Skin::SkinType::FREE);
-
-	Skin Asuna ("Asuna the FlashLight", "Asuna the FlashLight", "geometry.humanoid.normal", "mob/skins/SAO/Asuna.png", Skin::SkinType::FREE);
-
-	Skin Lizbeth ("Lizbeth the Blacksmith", "Lizbeth the Blacksmith", "geometry.humanoid.normal", "mob/skins/SAO/Lizbeth.png", Skin::SkinType::FREE);
-
-	Skin Silica ("Silica the Dragon Tamer", "Silica the Dragon Tamer", "geometry.humanoid.normal", "mob/skins/SAO/Silica.png", Skin::SkinType::FREE);
-
-	Skin Strea ("Strea-MHCP002", "Strea-MHCP002", "geometry.humanoid.normal", "mob/skins/SAO/Strea.png", Skin::SkinType::FREE);
-
-	Skin Philia ("Philia the Treasure Hunter", "Philia the Treasure Hunter", "geometry.humanoid.normal", "mob/skins/SAO/Philia.png", Skin::SkinType::FREE);
-
-	SkinPack* SAOSkinPack = new SkinPack(SkinPack::SkinPackType::PACK, "Sword Art Online: World of Aincrad", "SAO: WoA" , true, {Kirito, Kirito2, Kirito3, Klein, Agil, Asuna, Lizbeth, Silica, Strea, Philia});
-	repo->skinPacks.push_back(SAOSkinPack);
-	SAOSkinPack->unlocked = true;
-}
-
 static BiomeDecorator* (*_BiomeDecorator$BiomeDecorator)(BiomeDecorator*);
 static BiomeDecorator* BiomeDecorator$BiomeDecorator(BiomeDecorator* self) {
 	BiomeDecorator* retval = _BiomeDecorator$BiomeDecorator(self);
@@ -126,9 +97,6 @@ JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	MSHookFunction((void*) &BiomeDecorator::decorate, (void*) &BiomeDecorator$decorate, (void**) &_BiomeDecorator$decorate);
 	//MSHookFunction((void*) &I18n::get, (void*) &I18n$get, (void**) &_I18n$get);
 
-    void* SkinRepository = dlsym(RTLD_DEFAULT, "_ZN14SkinRepositoryC2ER7OptionsR13GeometryGroupR9GameStoreR12TextureGroupRKSsy");
-	MSHookFunction(SkinRepository, (void *) &skinRepoHook, (void **) &skinRepoOrg);
-	
 	void* furnaceRecipes = dlsym(RTLD_DEFAULT, "_ZN14FurnaceRecipesC1Ev");
 	MSHookFunction(furnaceRecipes, (void*) &FurnaceRecipes$FurnaceRecipes, (void**) &_FurnaceRecipes$FurnaceRecipes);
 	
