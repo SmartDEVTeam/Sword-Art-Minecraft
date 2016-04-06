@@ -15,6 +15,7 @@ public:
 	ModelPart leftArmArmor; // 2592
 	ModelPart rightArmArmor; // 2752
 
+public:
 	PlayerModel(const GeometryPtr&);
 	virtual ~PlayerModel();
 	virtual void render(Entity&, float, float, float, float, float, float);
