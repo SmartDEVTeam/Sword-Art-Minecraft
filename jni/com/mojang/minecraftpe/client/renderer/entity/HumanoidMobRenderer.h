@@ -6,7 +6,6 @@
 
 class HumanoidModel;
 
-// Size : 108
 class HumanoidMobRenderer : public MobRenderer {
 public:
 	HumanoidModel& babyModel; // 180
