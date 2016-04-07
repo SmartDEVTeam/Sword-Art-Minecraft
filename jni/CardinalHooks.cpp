@@ -5,11 +5,6 @@ bool DEV_MODE = false;
 bool BEATER_MODE = true;
 std::string BUILD_VERSION = "1";
 
-class GameStore;
-class Textures;
-class GeometryGroup;
-class TextureGroup;
-
 static std::string (*_Common$getGameDevVersionString)();
 static std::string Common$getGameDevVersionString() {
 	if(DEV_MODE) {
@@ -44,9 +39,8 @@ static void Recipes$init(Recipes* self) {
 }
 
 static FurnaceRecipes* (*_FurnaceRecipes$FurnaceRecipes)(FurnaceRecipes*);
-static FurnaceRecipes* FurnaceRecipes$FurnaceRecipes(FurnaceRecipes* self) 
-{
- _FurnaceRecipes$FurnaceRecipes(self);
+static FurnaceRecipes* FurnaceRecipes$FurnaceRecipes(FurnaceRecipes* self) {
+	_FurnaceRecipes$FurnaceRecipes(self);
 	CardinalRecipes::initFurnaceRecipes(self);
 }
 
