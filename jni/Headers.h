@@ -11,6 +11,7 @@
 
 #include "com/mojang/minecraftpe/Common.h"
 #include "com/mojang/minecraftpe/locale/I18n.h"
+#include "com/mojang/minecraftpe/locale/Localization.h"
 #include "com/mojang/minecraftpe/world/entity/Mob.h"
 #include "com/mojang/minecraftpe/world/level/Level.h"
 #include "com/mojang/minecraftpe/world/level/LevelListener.h"

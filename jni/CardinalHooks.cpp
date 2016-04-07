@@ -79,6 +79,13 @@ static void BiomeDecorator$decorate(BiomeDecorator* decorator, BlockSource* regi
 	CardinalDecorator::decorate(decorator, region, random, biome, pos, b1, f1);
 }
 
+static void (*_Localization$_load)(Localization*, const std::string&);
+static void Localization$_load(Localization* self, const std::string& langCode) {
+	_Localization$_load(self, langCode);
+	if(langCode == "en_US")
+		self->_appendTranslations("loc/cardinal/" + langCode + "-pocket.lang");
+}
+
 JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 
 	MSHookFunction((void*) &Common::getGameDevVersionString, (void*) &Common$getGameDevVersionString, (void**) &_Common$getGameDevVersionString);
@@ -89,7 +96,7 @@ JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	MSHookFunction((void*) &Mob::die, (void*) &Mob$die, (void**) &_Mob$die);
 	MSHookFunction((void*) &BiomeDecorator::decorateOres, (void*) &BiomeDecorator$decorateOres, (void**) &_BiomeDecorator$decorateOres);
 	MSHookFunction((void*) &BiomeDecorator::decorate, (void*) &BiomeDecorator$decorate, (void**) &_BiomeDecorator$decorate);
-	//MSHookFunction((void*) &I18n::get, (void*) &I18n$get, (void**) &_I18n$get);
+	MSHookFunction((void*) &Localization::_load, (void*) &Localization$_load, (void**) &_Localization$_load);
 
 	void* furnaceRecipes = dlsym(RTLD_DEFAULT, "_ZN14FurnaceRecipesC1Ev");
 	MSHookFunction(furnaceRecipes, (void*) &FurnaceRecipes$FurnaceRecipes, (void**) &_FurnaceRecipes$FurnaceRecipes);
