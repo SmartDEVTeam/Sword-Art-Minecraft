@@ -82,7 +82,7 @@ static void BiomeDecorator$decorate(BiomeDecorator* decorator, BlockSource* regi
 static void (*_Localization$_load)(Localization*, const std::string&);
 static void Localization$_load(Localization* self, const std::string& langCode) {
 	_Localization$_load(self, langCode);
-	if(langCode == "en_US")
+	if(langCode == "en_US" || langCode == "es_ES")
 		self->_appendTranslations("loc/cardinal/" + langCode + "-pocket.lang");
 }
 
