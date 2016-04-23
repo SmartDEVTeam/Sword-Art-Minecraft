@@ -33,5 +33,5 @@ public:
 	virtual void init();
 	void init(AppContext&);
 	void changeContext(AppContext&);
-	Token* getCommandLineParameter(const std::string&);
+	//Token* getCommandLineParameter(const std::string&);
 };

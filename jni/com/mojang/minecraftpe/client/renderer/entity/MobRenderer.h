@@ -13,7 +13,7 @@ class ArmorSlot;
 // Size : 108
 class MobRenderer : public EntityRenderer {
 public:
-	bool idk_b;	// 128
+	bool isRenderering;	// 128
 	Model& mainModel; // 132
 	mce::TexturePtr skin; // 136
 	Model& armorModel; // 148

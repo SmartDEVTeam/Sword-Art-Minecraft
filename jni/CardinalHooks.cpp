@@ -1,8 +1,8 @@
 #include <Headers.h>
 
 std::string MOD_VERSION = "1.0.0 Alpha";
-bool DEV_MODE = false;
-bool BEATER_MODE = true;
+bool DEV_MODE = true;
+bool BEATER_MODE = false;
 std::string BUILD_VERSION = "1";
 
 static std::string (*_Common$getGameDevVersionString)();
@@ -86,6 +86,52 @@ static void Localization$_load(Localization* self, const std::string& langCode) 
 		self->_appendTranslations("loc/cardinal/" + langCode + "-pocket.lang");
 }
 
+void (*_Gui$renderHearts)(Gui*);
+void Gui$renderHearts(Gui* self) {
+}
+
+static void (*_InventoryScreen$init)(DeathScreen*);
+static void InventoryScreen$init(DeathScreen* self)
+{
+	/*if(self->mcClient->getLocalPlayer()->IsCreative() && self->craftingType != CraftingType::FULLCRAFTING)*/
+		 CardinalDeathScreen::init(self);
+
+	_InventoryScreen$init(self);
+}
+
+static void (*_InventoryScreen$setupPositions)(DeathScreen*);
+static void InventoryScreen$setupPositions(DeathScreen* self)
+{
+	_InventoryScreen$setupPositions(self);
+	
+	/*if(self->mcClient->getLocalPlayer()->IsCreative() && self->craftingType != CraftingType::FULLCRAFTING)*/
+		 CardinalDeathScreen::setupPositions(self);
+}
+
+static void (*_InventoryScreen$render)(DeathScreen*, int, int, float);
+static void InventoryScreen$render(DeathScreen* self, int i1, int i2, float f1)
+{
+	_InventoryScreen$render(self, i1, i2, f1);
+	
+/*	if(self->mcClient->getLocalPlayer()->IsCreative() && self->craftingType != CraftingType::FULLCRAFTING)*/
+		 CardinalDeathScreen::render(self, i1, i2, f1);
+}
+
+static void (*_InventoryScreen$_buttonClicked)(DeathScreen*, Button&);
+static void InventoryScreen$_buttonClicked(DeathScreen* self, Button& button)
+{
+	_InventoryScreen$_buttonClicked(self, button);
+	
+	/*if(self->mcClient->getLocalPlayer()->IsCreative() && self->craftingType != CraftingType::FULLCRAFTING)*/
+		 //CardinalDeathScreen::_buttonClicked(self, button);
+}
+
+static std::string (*_I18n$get)(const std::string&);
+static std::string I18n$get(const std::string& key) {	
+if(key == "deathScreen.title") return "";
+return _I18n$get(key);
+};
+
 JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 
 	MSHookFunction((void*) &Common::getGameDevVersionString, (void*) &Common$getGameDevVersionString, (void**) &_Common$getGameDevVersionString);
@@ -103,6 +149,17 @@ JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	
 	void* biomeDecorator = dlsym(RTLD_DEFAULT, "_ZN14BiomeDecoratorC2Ev");
 	MSHookFunction(biomeDecorator, (void*) &BiomeDecorator$BiomeDecorator, (void**) &_BiomeDecorator$BiomeDecorator);
+
+MSHookFunction((void*) &Gui::renderHearts, (void*) &Gui$renderHearts, (void**) &_Gui$renderHearts);
+
+MSHookFunction((void*) &DeathScreen::init, (void*) &InventoryScreen$init, (void**) &_InventoryScreen$init);
+	MSHookFunction((void*) &DeathScreen::setupPositions, (void*) &InventoryScreen$setupPositions, (void**) &_InventoryScreen$setupPositions);
+	MSHookFunction((void*) &DeathScreen::render, (void*) &InventoryScreen$render, (void**) &_InventoryScreen$render);
+	MSHookFunction((void*) &DeathScreen::_buttonClicked, (void*) &InventoryScreen$_buttonClicked, (void**) &_InventoryScreen$_buttonClicked);
+
+   void* I18n_get = dlsym(RTLD_DEFAULT, "_ZN4I18n3getE");	
+
+MSHookFunction(I18n_get, (void*) &I18n$get, (void**) &_I18n$get);	
 
 	return JNI_VERSION_1_2;
 }

@@ -166,6 +166,14 @@
       "damage/hit3"
     ]
   },
+  "game.player.hit": {
+    "category": "player",
+    "sounds": [
+      "random/hit/strong0",
+      "random/hit/strong1",
+      "random/hit/strong3"
+    ]
+  },
   "game.player.die": {
     "category": "player",
     "sounds": [
@@ -1116,7 +1124,9 @@
   "random.chestclosed": {
     "category": "block",
     "sounds": [
-      "random/chestclosed"
+      "random/chestclosed_0",
+      "random/chestclosed_1",
+      "random/chestclosed_2"
     ]
   },
   "random.chestopen": {
@@ -1128,7 +1138,7 @@
   "random.click": {
     "category": "ui",
     "sounds": [
-      "random/clicking"
+      "random/click"
     ]
   },
   "random.door_close": {
@@ -1231,6 +1241,14 @@
       "random/hurt"
     ]
   },
+  "camera.take_picture": {
+    "category": "player",
+    "sounds": [
+      "camera/camera_snap1",
+      "camera/camera_snap2",
+      "camera/camera_snap3"
+    ]
+  },
   "step.ladder": {
     "category": "neutral",
     "sounds": [
@@ -1311,12 +1329,103 @@
       "step/wood6"
     ]
   },
+    "jump.cloth": {
+    "category": "neutral",
+    "sounds": [
+      "step/cloth1",
+      "step/cloth2",
+      "step/cloth3",
+      "step/cloth4"
+    ]
+  },
+  "jump.grass": {
+    "category": "neutral",
+    "sounds": [
+      "step/grass1",
+      "step/grass2",
+      "step/grass3",
+      "step/grass4",
+      "step/grass5",
+      "step/grass6"
+    ]
+  },
+  "jump.gravel": {
+    "category": "neutral",
+    "sounds": [
+      "step/gravel1",
+      "step/gravel2",
+      "step/gravel3",
+      "step/gravel4"
+    ]
+  },
+  "jump.sand": {
+    "category": "neutral",
+    "sounds": [
+      "step/sand1",
+      "step/sand2",
+      "step/sand3",
+      "step/sand4",
+      "step/sand5"
+    ]
+  },
+  "jump.snow": {
+    "category": "neutral",
+    "sounds": [
+      "step/snow1",
+      "step/snow2",
+      "step/snow3",
+      "step/snow4"
+    ]
+  },
+  "jump.stone": {
+    "category": "neutral",
+    "sounds": [
+      "step/stone1",
+      "step/stone2",
+      "step/stone3",
+      "step/stone4",
+      "step/stone5",
+      "step/stone6"
+    ]
+  },
+  "jump.wood": {
+    "category": "neutral",
+    "sounds": [
+      "step/wood1",
+      "step/wood2",
+      "step/wood3",
+      "step/wood4",
+      "step/wood5",
+      "step/wood6"
+    ]
+  },
+  "vr.stutterturn": {
+    "category": "player",
+    "sounds": [
+      "vr/turn1",
+      "vr/turn2",
+      "vr/turn3",
+      "vr/turn4",
+      "vr/turn5"
+    ]
+  },
   "music.menu": {
     "category": "music",
     "sounds": [
       {
-        "name": "music/sao/lost_song/menu_0",
-        "volume": 0.001,
+        "name": "music/menu/menu1",
+        "stream": true
+      },
+      {
+        "name": "music/menu/menu2",
+        "stream": true
+      },
+      {
+        "name": "music/menu/menu3",
+        "stream": true
+      },
+      {
+        "name": "music/menu/menu4",
         "stream": true
       }
     ]
@@ -1325,8 +1434,51 @@
     "category": "music",
     "sounds": [
       {
-        "name": "music/sao/lost_song/overworld_0",
-        "volume": 0.001,
+        "name": "music/game/calm1",
+        "stream": true
+      },
+      {
+        "name": "music/game/calm2",
+        "stream": true
+      },
+      {
+        "name": "music/game/calm3",
+        "stream": true
+      },
+      {
+        "name": "music/game/hal1",
+        "stream": true
+      },
+      {
+        "name": "music/game/hal2",
+        "stream": true
+      },
+      {
+        "name": "music/game/hal3",
+        "stream": true
+      },
+      {
+        "name": "music/game/hal4",
+        "stream": true
+      },
+      {
+        "name": "music/game/nuance1",
+        "stream": true
+      },
+      {
+        "name": "music/game/nuance2",
+        "stream": true
+      },
+      {
+        "name": "music/game/piano1",
+        "stream": true
+      },
+      {
+        "name": "music/game/piano2",
+        "stream": true
+      },
+      {
+        "name": "music/game/piano3",
         "stream": true
       }
     ]
@@ -1335,8 +1487,31 @@
     "category": "music",
     "sounds": [
       {
-        "name": "music/sao/lost_song/overworld_0",
-        "volume": 0.001,
+        "type": "event",
+        "name": "music.game"
+      },
+      {
+        "name": "music/game/creative/creative1",
+        "stream": true
+      },
+      {
+        "name": "music/game/creative/creative2",
+        "stream": true
+      },
+      {
+        "name": "music/game/creative/creative3",
+        "stream": true
+      },
+      {
+        "name": "music/game/creative/creative4",
+        "stream": true
+      },
+      {
+        "name": "music/game/creative/creative5",
+        "stream": true
+      },
+      {
+        "name": "music/game/creative/creative6",
         "stream": true
       }
     ]
@@ -1345,30 +1520,21 @@
     "category": "music",
     "sounds": [
       {
-        "name": "music/sao/lost_song/nether_0",
-        "volume": 0.001,
+        "name": "music/game/nether/nether1",
+        "stream": true
+      },
+      {
+        "name": "music/game/nether/nether2",
+        "stream": true
+      },
+      {
+        "name": "music/game/nether/nether3",
+        "stream": true
+      },
+      {
+        "name": "music/game/nether/nether4",
         "stream": true
       }
-    ]
-  },
-/*modded sounds*/
-  "saomc.entity.death": {
-    "category": "neutral",
-    "sounds": [
-      "saomc/entity_death"
-    ]
-  },
-  "random.player.linkstart": {
-    "category": "player",
-    "sounds": [
-      "saomc/linkstart/link_start_0", 
-      "saomc/linkstart/link_start_1", 
-      "saomc/linkstart/link_start_3", 
-      "saomc/linkstart/link_start_4", 
-      "saomc/linkstart/link_start_5", 
-      "saomc/linkstart/link_start_6", 
-      "saomc/linkstart/link_start_7", 
-      "saomc/linkstart/link_start_8"
     ]
   }
 }

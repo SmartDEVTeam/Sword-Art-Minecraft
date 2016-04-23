@@ -10,11 +10,13 @@ class Mob;
 class AABB;
 class ModelPart;
 class GeometryPtr;
+namespace mce { class TexturePtr; };
 
 // Size : 176
 class Model : public AppPlatformListener {
 public:
-	char model_vars[16];					// 8
+	char model_vars[12];					// 8
+	mce::TexturePtr& texture;				// 20
 	mce::MaterialPtr entity;				// 24
 	mce::MaterialPtr entity_alphatest;		// 36
 	mce::MaterialPtr entity_alphablend;		// 48
