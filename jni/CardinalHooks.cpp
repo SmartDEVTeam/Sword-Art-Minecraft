@@ -1,9 +1,15 @@
 #include <Headers.h>
 
 std::string MOD_VERSION = "1.0.0 Alpha";
-bool DEV_MODE = true;
-bool BEATER_MODE = false;
+bool DEV_MODE = false;
+bool BEATER_MODE = true;
 std::string BUILD_VERSION = "1";
+
+#define PLAYER_INVENTORY_OFFSET 3480
+
+static int originalSlot = 0;
+static MinecraftClient* mcinstance;
+static const int kLeftHandSlot = -1;
 
 static std::string (*_Common$getGameDevVersionString)();
 static std::string Common$getGameDevVersionString() {
@@ -90,37 +96,37 @@ void (*_Gui$renderHearts)(Gui*);
 void Gui$renderHearts(Gui* self) {
 }
 
-static void (*_InventoryScreen$init)(DeathScreen*);
-static void InventoryScreen$init(DeathScreen* self)
+static void (*_DeathScreen$init)(DeathScreen*);
+static void DeathScreen$init(DeathScreen* self)
 {
 	/*if(self->mcClient->getLocalPlayer()->IsCreative() && self->craftingType != CraftingType::FULLCRAFTING)*/
 		 CardinalDeathScreen::init(self);
 
-	_InventoryScreen$init(self);
+	 _DeathScreen$init(self);
 }
 
-static void (*_InventoryScreen$setupPositions)(DeathScreen*);
-static void InventoryScreen$setupPositions(DeathScreen* self)
+static void (*_DeathScreen$setupPositions)(DeathScreen*);
+static void DeathScreen$setupPositions(DeathScreen* self)
 {
-	_InventoryScreen$setupPositions(self);
+	_DeathScreen$setupPositions(self);
 	
 	/*if(self->mcClient->getLocalPlayer()->IsCreative() && self->craftingType != CraftingType::FULLCRAFTING)*/
 		 CardinalDeathScreen::setupPositions(self);
 }
 
-static void (*_InventoryScreen$render)(DeathScreen*, int, int, float);
-static void InventoryScreen$render(DeathScreen* self, int i1, int i2, float f1)
+static void (*_DeathScreen$render)(DeathScreen*, int, int, float);
+static void DeathScreen$render(DeathScreen* self, int i1, int i2, float f1)
 {
-	_InventoryScreen$render(self, i1, i2, f1);
+	_DeathScreen$render(self, i1, i2, f1);
 	
 /*	if(self->mcClient->getLocalPlayer()->IsCreative() && self->craftingType != CraftingType::FULLCRAFTING)*/
 		 CardinalDeathScreen::render(self, i1, i2, f1);
 }
 
-static void (*_InventoryScreen$_buttonClicked)(DeathScreen*, Button&);
-static void InventoryScreen$_buttonClicked(DeathScreen* self, Button& button)
+static void (*_DeathScreen$_buttonClicked)(DeathScreen*, Button&);
+static void DeathScreen$_buttonClicked(DeathScreen* self, Button& button)
 {
-	_InventoryScreen$_buttonClicked(self, button);
+	_DeathScreen$_buttonClicked(self, button);
 	
 	/*if(self->mcClient->getLocalPlayer()->IsCreative() && self->craftingType != CraftingType::FULLCRAFTING)*/
 		 //CardinalDeathScreen::_buttonClicked(self, button);
@@ -132,8 +138,41 @@ if(key == "deathScreen.title") return "";
 return _I18n$get(key);
 };
 
-JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
+void (*_ItemInHandRenderer$render)(ItemInHandRenderer*, float);
+void ItemInHandRenderer$render(ItemInHandRenderer* renderer, float partialTicks) {
+	mcinstance = renderer->minecraft;
+	// call the actual Minecraft method first to render the right hand
+	_ItemInHandRenderer$render(renderer, partialTicks);
+	// store the current camera position
+	MatrixStack::Ref matref = MatrixStack::Projection.push();
+	// move the camera 1 units to the left
+	Vec3 oneleft {-1.01f, 0.0f, 0.0f};
+	matref.matrix->translate(oneleft);
+	uintptr_t playerPtr = (uintptr_t) mcinstance->getLocalPlayer();
+	Inventory* inventory = *((Inventory**) (playerPtr + PLAYER_INVENTORY_OFFSET));
+	ItemInstance backup(renderer->itemToRender);	
 
+	// change the active slot to the item held in slot 1
+if(originalSlot != kLeftHandSlot){
+	renderer->itemToRender.cloneSafe(inventory->getLinked(kLeftHandSlot));
+} else {
+renderer->itemToRender = ItemInstance(Item::mItems[0]);
+}
+
+	// and call the actual ItemInHandRenderer method in MCPE again
+	_ItemInHandRenderer$render(renderer, partialTicks);
+
+	// restore active slot
+	renderer->itemToRender.cloneSafe(&backup);
+}
+
+static void (*_HudScreen$render)(HudScreen*, int, int, float);
+static void HudScreen$render(HudScreen* self, int i1, int i2, float f1)
+{
+	_HudScreen$render(self, i1, i2, f1);
+}
+
+JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	MSHookFunction((void*) &Common::getGameDevVersionString, (void*) &Common$getGameDevVersionString, (void**) &_Common$getGameDevVersionString);
 	MSHookFunction((void*) &Item::initCreativeItems, (void*) &Item$initCreativeItems, (void**) &_Item$initCreativeItems);
 	MSHookFunction((void*) &Block::initBlocks, (void*) &Block$initBlocks, (void**) &_Block$initBlocks);
@@ -152,14 +191,19 @@ JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 
 MSHookFunction((void*) &Gui::renderHearts, (void*) &Gui$renderHearts, (void**) &_Gui$renderHearts);
 
-MSHookFunction((void*) &DeathScreen::init, (void*) &InventoryScreen$init, (void**) &_InventoryScreen$init);
-	MSHookFunction((void*) &DeathScreen::setupPositions, (void*) &InventoryScreen$setupPositions, (void**) &_InventoryScreen$setupPositions);
-	MSHookFunction((void*) &DeathScreen::render, (void*) &InventoryScreen$render, (void**) &_InventoryScreen$render);
-	MSHookFunction((void*) &DeathScreen::_buttonClicked, (void*) &InventoryScreen$_buttonClicked, (void**) &_InventoryScreen$_buttonClicked);
+MSHookFunction((void*) &DeathScreen::init, (void*) &DeathScreen$init, (void**) &_DeathScreen$init);
+	MSHookFunction((void*) &DeathScreen::setupPositions, (void*) &DeathScreen$setupPositions, (void**) &_DeathScreen$setupPositions);
+	MSHookFunction((void*) &DeathScreen::render, (void*) &DeathScreen$render, (void**) &_DeathScreen$render);
+	MSHookFunction((void*) &DeathScreen::_buttonClicked, (void*) &DeathScreen$_buttonClicked, (void**) &_DeathScreen$_buttonClicked);
 
    void* I18n_get = dlsym(RTLD_DEFAULT, "_ZN4I18n3getE");	
 
 MSHookFunction(I18n_get, (void*) &I18n$get, (void**) &_I18n$get);	
+
+MSHookFunction((void*) &ItemInHandRenderer::render, (void*) &ItemInHandRenderer$render, (void**) &_ItemInHandRenderer$render);
+	//MSHookFunction((void*) &TouchTurnInteractControl::switchState, (void*) &TouchTurnInteractControl$switchState, (void**) &_TouchTurnInteractControl$switchState);
+
+MSHookFunction((void*) &HudScreen::render, (void*) &HudScreen$render, (void**) &_HudScreen$render);
 
 	return JNI_VERSION_1_2;
 }

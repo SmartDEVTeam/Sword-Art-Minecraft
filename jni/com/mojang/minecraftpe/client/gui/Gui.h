@@ -12,6 +12,7 @@ public:
 	virtual ~Gui();
 	virtual void onAppSuspended();
 	virtual void onConfigChanged(const Config&);
+    virtual void render(float, bool, int, int);
 	void renderToolBar(float, float, bool);
    virtual void renderHearts();
 	void renderProgressIndicator(int, int, float);

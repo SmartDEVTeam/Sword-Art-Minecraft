@@ -7,13 +7,13 @@
 #include "com/mojang/minecraftpe/world/util/Random.h"
 #include "OreFeatureInfo.h"
 
-#include "features/SaoHouseFeature.h"
+#include "features/CardinalHouseStructure.h"
 
 #include "../blocks/CardinalBlocks.h"
 
 bool CardinalDecorator::initialized = false;
 std::vector<OreFeatureInfo> CardinalDecorator::oreFeatures;
-std::unique_ptr<Feature> CardinalDecorator::saoHouseFeature;
+std::unique_ptr<Feature> CardinalDecorator::CardinalHouseFeature;
 
 void CardinalDecorator::registerFeatures() {
 	if(initialized)
@@ -39,5 +39,5 @@ void CardinalDecorator::decorate(BiomeDecorator* decorator, BlockSource* region,
 	int randX = pos.x + (random.genrand_int32() % 15);
 	int randZ = pos.z + (random.genrand_int32() % 15);
 	int topY = region->getTopSolidBlock(randX, randZ, false);
-	decorator->_placeFeature(region, saoHouseFeature, {randX, topY, randZ}, random);
+	decorator->_placeFeature(region, CardinalHouseFeature, {randX, topY, randZ}, random);
 }
