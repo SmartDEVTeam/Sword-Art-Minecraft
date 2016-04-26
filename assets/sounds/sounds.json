@@ -1538,14 +1538,32 @@
     ]
   },
 /*modded sounds*/
+"saomc.player.welcome": {
+    "category": "ui",
+    "sounds": [
+        "saomc/player_welcome"
+    ]
+},
+"saomc.entity.spawn": {
+    "category": "ui",
+    "sounds": [
+        "saomc/entity_spawn"
+    ]
+},
 "saomc.entity.death": {
     "category": "neutral",
     "sounds": [
         "saomc/entity_death"
     ]
 },
+"saomc.player.death": {
+    "category": "ui",
+    "sounds": [
+        "saomc/player_death"
+    ]
+},
 "random.player.linkstart": {
-    "category": "player",
+    "category": "ui",
     "sounds": [
         "saomc/linkstart/link_start_0",
         "saomc/linkstart/link_start_1",

@@ -7,13 +7,10 @@
 #include "com/mojang/minecraftpe/world/util/Random.h"
 #include "OreFeatureInfo.h"
 
-#include "features/CardinalHouseStructure.h"
-
 #include "../blocks/CardinalBlocks.h"
 
 bool CardinalDecorator::initialized = false;
 std::vector<OreFeatureInfo> CardinalDecorator::oreFeatures;
-std::unique_ptr<Feature> CardinalDecorator::CardinalHouseFeature;
 
 void CardinalDecorator::registerFeatures() {
 	if(initialized)
@@ -22,8 +19,6 @@ void CardinalDecorator::registerFeatures() {
 	
 	oreFeatures.emplace_back(OreFeatureInfo::GenType::SPAN, std::unique_ptr<Feature>(new OreFeature(CardinalBlocks::cardinalOre->blockId, 0, 10)), 1, 1, 16);
 	oreFeatures.emplace_back(OreFeatureInfo::GenType::SPAN, std::unique_ptr<Feature>(new OreFeature(CardinalBlocks::cardinalOre->blockId, 1, 10)), 1, 1, 16);
-	
-	saoHouseFeature = std::unique_ptr<Feature>(new SaoHouseFeature());
 }
 
 void CardinalDecorator::decorateOres(BiomeDecorator* decorator, BlockSource* region, Random& random, const BlockPos& pos) {	
@@ -39,5 +34,5 @@ void CardinalDecorator::decorate(BiomeDecorator* decorator, BlockSource* region,
 	int randX = pos.x + (random.genrand_int32() % 15);
 	int randZ = pos.z + (random.genrand_int32() % 15);
 	int topY = region->getTopSolidBlock(randX, randZ, false);
-	decorator->_placeFeature(region, CardinalHouseFeature, {randX, topY, randZ}, random);
+	//decorator->_placeFeature(region, CardinalHouseFeature, {randX, topY, randZ}, random);
 }

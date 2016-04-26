@@ -12,8 +12,9 @@ public:
 	virtual ~Gui();
 	virtual void onAppSuspended();
 	virtual void onConfigChanged(const Config&);
-    virtual void render(float, bool, int, int);
 	void renderToolBar(float, float, bool);
+   void displayChatMessage(std::string const&, std::string const&);
+  void displayClientMessage(std::string const&);
    virtual void renderHearts();
 	void renderProgressIndicator(int, int, float);
 	void showPopupNotice(const std::string&, const std::string&);
