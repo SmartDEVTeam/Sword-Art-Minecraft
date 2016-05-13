@@ -2,8 +2,6 @@
 #include <string>
 
 class AppPlatform {
-public:
-	static AppPlatform* mSingleton;
-   std::string getEdition() const;
+	public:
+	std::string getEdition() const;
 };
-

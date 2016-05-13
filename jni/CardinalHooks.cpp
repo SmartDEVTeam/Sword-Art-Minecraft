@@ -19,11 +19,19 @@ static std::string Common$getGameDevVersionString() {
    }
 }
 
+static void (*_Item$initItems)();
+static void Item$initItems() {
+	//CardinalItems::initItems();
+	
+	_Item$initItems();
+	//CardinalBlocks::initCreativeBlocks();
+}
+
 static void (*_Item$initCreativeItems)();
 static void Item$initCreativeItems() {
 	_Item$initCreativeItems();
 	
-	//CardinalItems::initItems();
+	//CardinalItems::initCreativeItems();
 	//CardinalBlocks::initCreativeBlocks();
 }
 
@@ -44,31 +52,34 @@ static void Recipes$init(Recipes* self) {
 static FurnaceRecipes* (*_FurnaceRecipes$FurnaceRecipes)(FurnaceRecipes*);
 static FurnaceRecipes* FurnaceRecipes$FurnaceRecipes(FurnaceRecipes* self) {
 	_FurnaceRecipes$FurnaceRecipes(self);
+	
 	//CardinalRecipes::initFurnaceRecipes(self);
 }
 
 void (*_MinecraftClient$onPlayerLoaded)(MinecraftClient*, Player&);
 void MinecraftClient$onPlayerLoaded(MinecraftClient *client, Player &player){
-	client->getGui()->displayChatMessage("SA: M", "Welcome to Sword Art: Minecraft!");
-	client->getGui()->displayChatMessage("SA: M", "Enjoy with the new SAO features in Minecraft: Pocket Edition");
+	_MinecraftClient$onPlayerLoaded(client, player);
+	
+	client->sendLocalMessage("SA: M", "Welcome to Sword Art: Minecraft!");
+	client->sendLocalMessage("SA: M", "Enjoy with the new SAO features in Minecraft: Pocket Edition");
 	client->playUI("saomc.player.welcome", 1.0F, 1.0F);
 	//Mob* playerPtr = (Mob*) client->getLocalPlayer();
-	_MinecraftClient$onPlayerLoaded(client, player);
 	//playerPtr->playSound("saomc.player.welcome", 1.0F, 1.0F);
 }
 
 static void (*_Mob$causeFallDamage)(Mob*, float);
-static void Mob$causeFallDamage(Mob* self, float blocksFallen) {
+static void Mob$causeFallDamage(Mob *self, float blocksFallen) {
 	return;
 }
 
 static void (*_Mob$die)( Mob*, EntityDamageSource const&);
 static void Mob$die(Mob* dead, EntityDamageSource const& damage) {
-		dead->playSound("saomc.entity.death", 1.0F, 1.0F);
-		if(dead == ((Mob*) mcinstance->getLocalPlayer())){
+	dead->playSound("saomc.entity.death", 1.0F, 1.0F);
+	if(dead == ((Mob*) mcinstance->getLocalPlayer())){
 	    mcinstance->playUI("saomc.player.death", 1.0F, 1.0F);
-		}
-		_Mob$die(dead, damage);
+	}
+	
+	_Mob$die(dead, damage);
 }
 
 static BiomeDecorator* (*_BiomeDecorator$BiomeDecorator)(BiomeDecorator*);
@@ -101,18 +112,13 @@ static void Localization$_load(Localization* self, const std::string& langCode) 
 		self->_appendTranslations("loc/cardinal/" + langCode + "-pocket.lang");
 }
 
-void (*_Gui$renderHearts)(Gui*);
-void Gui$renderHearts(Gui* self) {
-	_Gui$renderHearts(self);
-}
-
 static void (*_DeathScreen$init)(DeathScreen*);
 static void DeathScreen$init(DeathScreen* self)
 {
 	/*if(self->mcClient->getLocalPlayer()->IsCreative() && self->craftingType != CraftingType::FULLCRAFTING)*/
 		 CardinalDeathScreen::init(self);
 
-	 _DeathScreen$init(self);
+	_DeathScreen$init(self);
 }
 
 static void (*_DeathScreen$setupPositions)(DeathScreen*);
@@ -144,13 +150,14 @@ static void DeathScreen$_buttonClicked(DeathScreen* self, Button& button)
 
 static std::string (*_I18n$get)(std::string const&, std::vector<std::string,std::allocator<std::string>> const&);
 static std::string I18n$get(std::string const& key, std::vector<std::string,std::allocator<std::string>> const& a) {
-if(key == "deathScreen.title") {return "";}
-if(key == "deathScreen.message") {return "";}
-return _I18n$get(key, a);
+	if(key == "deathScreen.title") return "";
+	if(key == "deathScreen.message") return "";
+	return _I18n$get(key, a);
 };
 
 JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	MSHookFunction((void*) &Common::getGameDevVersionString, (void*) &Common$getGameDevVersionString, (void**) &_Common$getGameDevVersionString);
+	MSHookFunction((void*) &Item::initItems, (void*) &Item$initItems, (void**) &_Item$initItems);
 	MSHookFunction((void*) &Item::initCreativeItems, (void*) &Item$initCreativeItems, (void**) &_Item$initCreativeItems);
 	MSHookFunction((void*) &Block::initBlocks, (void*) &Block$initBlocks, (void**) &_Block$initBlocks);
 	MSHookFunction((void*) &Recipes::init, (void*) &Recipes$init, (void**) &_Recipes$init);
@@ -167,14 +174,11 @@ JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	void* biomeDecorator = dlsym(RTLD_DEFAULT, "_ZN14BiomeDecoratorC2Ev");
 	MSHookFunction(biomeDecorator, (void*) &BiomeDecorator$BiomeDecorator, (void**) &_BiomeDecorator$BiomeDecorator);
 
-MSHookFunction((void*) &Gui::renderHearts, (void*) &Gui$renderHearts, (void**) &_Gui$renderHearts);
-
-MSHookFunction((void*) &DeathScreen::init, (void*) &DeathScreen$init, (void**) &_DeathScreen$init);
+	MSHookFunction((void*) &DeathScreen::init, (void*) &DeathScreen$init, (void**) &_DeathScreen$init);
 	MSHookFunction((void*) &DeathScreen::setupPositions, (void*) &DeathScreen$setupPositions, (void**) &_DeathScreen$setupPositions);
 	MSHookFunction((void*) &DeathScreen::render, (void*) &DeathScreen$render, (void**) &_DeathScreen$render);
 	MSHookFunction((void*) &DeathScreen::_buttonClicked, (void*) &DeathScreen$_buttonClicked, (void**) &_DeathScreen$_buttonClicked);
-    void* I18n_get = dlsym(RTLD_DEFAULT, "_ZN4I18n3getERKSsRKSt6vectorISsSaISsEE");
-	MSHookFunction(I18n_get, (void*) &I18n$get, (void**) &_I18n$get);
+	MSHookFunction((void*) &I18n::get, (void*) &I18n$get, (void**) &_I18n$get);
 	
 	return JNI_VERSION_1_2;
 }

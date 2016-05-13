@@ -1,4 +1,5 @@
 #pragma once
+
 class Item;
 class CompoundTag;
 class Block;
@@ -13,7 +14,6 @@ public:
 	Block* block;
 
 	ItemInstance();
-   ItemInstance(const Item*);
 	ItemInstance(int, int, int);
 	ItemInstance(const Item*, int);
 	ItemInstance(const Item*, int, int);
@@ -22,7 +22,6 @@ public:
 	ItemInstance(const ItemInstance&);
 	
 	const ItemInstance& operator=(const ItemInstance&);
-   ItemInstance* cloneSafe(ItemInstance const*);
 	
 	bool isLiquidClipItem();
 	void hurtAndBreak(int, Mob*);

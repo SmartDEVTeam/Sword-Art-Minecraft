@@ -2,15 +2,17 @@
 
 #include <string>
 
-class TextureGroup;
+#include "texture/TextureLocation.h"
 
 namespace mce {
+	class TextureGroup;
+	
 	class TexturePtr {
 	public:
-		char filler1[12];	// 0
+		char filler1[16];	// 0
 
-		MaterialPtr(TexturePtr&&);
-		MaterialPtr(TextureGroup&, const std::string&);
-		MaterialPtr();
+		TexturePtr(TexturePtr&&);
+		TexturePtr(mce::TextureGroup&, const std::string&, TextureLocation);
+		TexturePtr();
 	};
 };

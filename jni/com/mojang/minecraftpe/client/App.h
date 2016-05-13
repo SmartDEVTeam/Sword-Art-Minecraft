@@ -4,6 +4,7 @@
 #include "AppPlatformListener.h"
 
 class AppContext;
+class Token;
 
 // Size : 28
 class App : public AppPlatformListener {
@@ -33,5 +34,5 @@ public:
 	virtual void init();
 	void init(AppContext&);
 	void changeContext(AppContext&);
-	//Token* getCommandLineParameter(const std::string&);
+	Token* getCommandLineParameter(const std::string&);
 };

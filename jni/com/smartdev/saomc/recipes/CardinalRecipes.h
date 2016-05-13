@@ -9,7 +9,7 @@
 class CardinalRecipes { 
 public: 
 	static void initRecipes(Recipes*);
-   static void initFurnaceRecipes(FurnaceRecipes*);
+	static void initFurnaceRecipes(FurnaceRecipes*);
 private: 	
 	static Recipes* _Instance; 	
 	static std::vector<Recipes::Type> _ingredients; 	 	
