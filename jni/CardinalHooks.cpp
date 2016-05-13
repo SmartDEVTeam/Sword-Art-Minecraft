@@ -19,19 +19,11 @@ static std::string Common$getGameDevVersionString() {
    }
 }
 
-static void (*_Item$initItems)();
-static void Item$initItems() {
-	//CardinalItems::initItems();
-	
-	_Item$initItems();
-	//CardinalBlocks::initCreativeBlocks();
-}
-
 static void (*_Item$initCreativeItems)();
 static void Item$initCreativeItems() {
 	_Item$initCreativeItems();
 	
-	//CardinalItems::initCreativeItems();
+	//CardinalItems::initItems();
 	//CardinalBlocks::initCreativeBlocks();
 }
 
@@ -118,13 +110,13 @@ static void DeathScreen$init(DeathScreen* self)
 	/*if(self->mcClient->getLocalPlayer()->IsCreative() && self->craftingType != CraftingType::FULLCRAFTING)*/
 		 CardinalDeathScreen::init(self);
 
-	_DeathScreen$init(self);
+	//_DeathScreen$init(self);
 }
 
 static void (*_DeathScreen$setupPositions)(DeathScreen*);
 static void DeathScreen$setupPositions(DeathScreen* self)
 {
-	_DeathScreen$setupPositions(self);
+	//_DeathScreen$setupPositions(self);
 	
 	/*if(self->mcClient->getLocalPlayer()->IsCreative() && self->craftingType != CraftingType::FULLCRAFTING)*/
 		 CardinalDeathScreen::setupPositions(self);
@@ -133,19 +125,19 @@ static void DeathScreen$setupPositions(DeathScreen* self)
 static void (*_DeathScreen$render)(DeathScreen*, int, int, float);
 static void DeathScreen$render(DeathScreen* self, int i1, int i2, float f1)
 {
-	_DeathScreen$render(self, i1, i2, f1);
+	//_DeathScreen$render(self, i1, i2, f1);
 	
-/*	if(self->mcClient->getLocalPlayer()->IsCreative() && self->craftingType != CraftingType::FULLCRAFTING)*/
+	/*if(self->mcClient->getLocalPlayer()->IsCreative() && self->craftingType != CraftingType::FULLCRAFTING)*/
 		 CardinalDeathScreen::render(self, i1, i2, f1);
 }
 
 static void (*_DeathScreen$_buttonClicked)(DeathScreen*, Button&);
 static void DeathScreen$_buttonClicked(DeathScreen* self, Button& button)
 {
-	_DeathScreen$_buttonClicked(self, button);
+	//_DeathScreen$_buttonClicked(self, button);
 	
 	/*if(self->mcClient->getLocalPlayer()->IsCreative() && self->craftingType != CraftingType::FULLCRAFTING)*/
-		 //CardinalDeathScreen::_buttonClicked(self, button);
+		 CardinalDeathScreen::_buttonClicked(self, button);
 }
 
 static std::string (*_I18n$get)(std::string const&, std::vector<std::string,std::allocator<std::string>> const&);
@@ -157,7 +149,6 @@ static std::string I18n$get(std::string const& key, std::vector<std::string,std:
 
 JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	MSHookFunction((void*) &Common::getGameDevVersionString, (void*) &Common$getGameDevVersionString, (void**) &_Common$getGameDevVersionString);
-	MSHookFunction((void*) &Item::initItems, (void*) &Item$initItems, (void**) &_Item$initItems);
 	MSHookFunction((void*) &Item::initCreativeItems, (void*) &Item$initCreativeItems, (void**) &_Item$initCreativeItems);
 	MSHookFunction((void*) &Block::initBlocks, (void*) &Block$initBlocks, (void**) &_Block$initBlocks);
 	MSHookFunction((void*) &Recipes::init, (void*) &Recipes$init, (void**) &_Recipes$init);

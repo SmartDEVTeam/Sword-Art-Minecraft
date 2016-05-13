@@ -6,7 +6,7 @@ class GlobalPermissionsLevel;
 class UserPermissionsLevel;
 class BlockEntity;
 class TelemetryEventPacket;
-class GameType;
+enum GameType;
 
 class Player : public Mob {
 public:

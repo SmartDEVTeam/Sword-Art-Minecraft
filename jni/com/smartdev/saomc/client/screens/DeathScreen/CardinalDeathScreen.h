@@ -3,15 +3,13 @@
 #include <memory>
 #include <vector>
 
-#include "com/mojang/minecraftpe/client/gui/TButton.h"
-
+#include "com/mojang/minecraftpe/client/gui/ImageButton.h"
 class Screen;
-class ExtendedInventoryScreen;
 
 class CardinalDeathScreen
 {
 public:
-static std::shared_ptr<NinePatchLayer> image;
+	static std::shared_ptr<ImageButton> respawnButton;
 
 	static void init(Screen*);
 	static void setupPositions(Screen*);
