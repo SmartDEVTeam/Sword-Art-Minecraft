@@ -5,8 +5,8 @@ bool DEV_MODE = true;
 bool BEATER_MODE = false;
 std::string BUILD_VERSION = "1";
 
-static MinecraftClient* mcinstance;
-static LocalPlayer* localplayer;
+//static MinecraftClient* mcinstance;
+//static LocalPlayer* localplayer;
 
 static std::string (*_Common$getGameDevVersionString)();
 static std::string Common$getGameDevVersionString() {
@@ -14,9 +14,9 @@ static std::string Common$getGameDevVersionString() {
 		return "§a§lSA: M " + MOD_VERSION + "\n§r§fDevelopment Build " + BUILD_VERSION;
 	} else if(BEATER_MODE){
 		return "§a§lSA: M " + MOD_VERSION +"\n§r§fBeater Build " + BUILD_VERSION;
-   } else {
+	} else {
 		return "§a§lSA: M " + MOD_VERSION;
-   }
+	}
 }
 
 static void (*_Item$initCreativeItems)();
@@ -35,14 +35,14 @@ static void Block$initBlocks() {
 }
 
 static void (*_Recipes$init)(Recipes*);
-static void Recipes$init(Recipes* self) {	
+static void Recipes$init(Recipes *self) {	
 	_Recipes$init(self);	
 	
 	//CardinalRecipes::initRecipes(self);
 }
 
 static FurnaceRecipes* (*_FurnaceRecipes$FurnaceRecipes)(FurnaceRecipes*);
-static FurnaceRecipes* FurnaceRecipes$FurnaceRecipes(FurnaceRecipes* self) {
+static FurnaceRecipes* FurnaceRecipes$FurnaceRecipes(FurnaceRecipes *self) {
 	_FurnaceRecipes$FurnaceRecipes(self);
 	
 	//CardinalRecipes::initFurnaceRecipes(self);
@@ -64,14 +64,15 @@ static void Mob$causeFallDamage(Mob *self, float blocksFallen) {
 	return;
 }
 
-static void (*_Mob$die)( Mob*, EntityDamageSource const&);
-static void Mob$die(Mob* dead, EntityDamageSource const& damage) {
-	dead->playSound("saomc.entity.death", 1.0F, 1.0F);
-	if(dead == ((Mob*) mcinstance->getLocalPlayer())){
+static void (*_Mob$die)(Mob*, const EntityDamageSource&);
+static void Mob$die(Mob *self, const EntityDamageSource &damage) {
+	MinecraftClient* mcinstance;
+	self->playSound("saomc.entity.death", 1.0F, 1.0F);
+	if(self == ((Mob*) mcinstance->getLocalPlayer())){
 	    mcinstance->playUI("saomc.player.death", 1.0F, 1.0F);
 	}
 	
-	_Mob$die(dead, damage);
+	_Mob$die(self, damage);
 }
 
 static BiomeDecorator* (*_BiomeDecorator$BiomeDecorator)(BiomeDecorator*);
@@ -109,15 +110,11 @@ static void DeathScreen$init(DeathScreen* self)
 {
 	/*if(self->mcClient->getLocalPlayer()->IsCreative() && self->craftingType != CraftingType::FULLCRAFTING)*/
 		 CardinalDeathScreen::init(self);
-
-	//_DeathScreen$init(self);
 }
 
 static void (*_DeathScreen$setupPositions)(DeathScreen*);
 static void DeathScreen$setupPositions(DeathScreen* self)
 {
-	//_DeathScreen$setupPositions(self);
-	
 	/*if(self->mcClient->getLocalPlayer()->IsCreative() && self->craftingType != CraftingType::FULLCRAFTING)*/
 		 CardinalDeathScreen::setupPositions(self);
 }
@@ -125,8 +122,6 @@ static void DeathScreen$setupPositions(DeathScreen* self)
 static void (*_DeathScreen$render)(DeathScreen*, int, int, float);
 static void DeathScreen$render(DeathScreen* self, int i1, int i2, float f1)
 {
-	//_DeathScreen$render(self, i1, i2, f1);
-	
 	/*if(self->mcClient->getLocalPlayer()->IsCreative() && self->craftingType != CraftingType::FULLCRAFTING)*/
 		 CardinalDeathScreen::render(self, i1, i2, f1);
 }
@@ -134,16 +129,15 @@ static void DeathScreen$render(DeathScreen* self, int i1, int i2, float f1)
 static void (*_DeathScreen$_buttonClicked)(DeathScreen*, Button&);
 static void DeathScreen$_buttonClicked(DeathScreen* self, Button& button)
 {
-	//_DeathScreen$_buttonClicked(self, button);
-	
 	/*if(self->mcClient->getLocalPlayer()->IsCreative() && self->craftingType != CraftingType::FULLCRAFTING)*/
 		 CardinalDeathScreen::_buttonClicked(self, button);
 }
 
-static std::string (*_I18n$get)(std::string const&, std::vector<std::string,std::allocator<std::string>> const&);
-static std::string I18n$get(std::string const& key, std::vector<std::string,std::allocator<std::string>> const& a) {
+static std::string (*_I18n$get)(const std::string&, const std::vector<std::string,std::allocator<std::string>>&);
+static std::string I18n$get(const std::string &key, const std::vector<std::string,std::allocator<std::string>> &a) {
 	if(key == "deathScreen.title") return "";
 	if(key == "deathScreen.message") return "";
+	
 	return _I18n$get(key, a);
 };
 
