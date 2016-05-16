@@ -19,4 +19,3 @@
 #include "com/mojang/minecraftpe/client/gui/screen/DeathScreen.h"
 #include "com/mojang/minecraftpe/client/MinecraftClient.h"
 #include "com/mojang/minecraftpe/client/AppPlatform.h"
-#include "com/mojang/minecraftpe/locale/I18n.h"

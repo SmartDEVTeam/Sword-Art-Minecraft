@@ -24,7 +24,7 @@ public:
 	Skin(std::string const&, std::string const&, std::string const&, std::string const&, Skin::SkinType);
 
 	SkinPack *getSkinPack() const;
-	void setSkinPack(SkinPack *);
+	void setSkinPack(SkinPack*);
 
 	const std::string &getSerializable() const;
 	const std::string &getName() const;

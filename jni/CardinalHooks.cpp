@@ -5,9 +5,6 @@ bool DEV_MODE = true;
 bool BEATER_MODE = false;
 std::string BUILD_VERSION = "1";
 
-//static MinecraftClient* mcinstance;
-//static LocalPlayer* localplayer;
-
 static std::string (*_Common$getGameDevVersionString)();
 static std::string Common$getGameDevVersionString() {
 	if(DEV_MODE) {
@@ -76,7 +73,7 @@ static void Mob$die(Mob *self, const EntityDamageSource &damage) {
 }
 
 static BiomeDecorator* (*_BiomeDecorator$BiomeDecorator)(BiomeDecorator*);
-static BiomeDecorator* BiomeDecorator$BiomeDecorator(BiomeDecorator* self) {
+static BiomeDecorator* BiomeDecorator$BiomeDecorator(BiomeDecorator *self) {
 	BiomeDecorator* retval = _BiomeDecorator$BiomeDecorator(self);
 	
 	//CardinalDecorator::registerFeatures();
@@ -85,61 +82,50 @@ static BiomeDecorator* BiomeDecorator$BiomeDecorator(BiomeDecorator* self) {
 }
 
 static void (*_BiomeDecorator$decorateOres)(BiomeDecorator*, BlockSource*, Random&, const BlockPos&);
-static void BiomeDecorator$decorateOres(BiomeDecorator* decorator, BlockSource* region, Random& random, const BlockPos& blockPos) {
-	_BiomeDecorator$decorateOres(decorator, region, random, blockPos);
+static void BiomeDecorator$decorateOres(BiomeDecorator *self, BlockSource *region, Random &random, const BlockPos &pos) {
+	_BiomeDecorator$decorateOres(self, region, random, pos);
 	
-	//CardinalDecorator::decorateOres(decorator, region, random, blockPos);
+	//CardinalDecorator::decorateOres(self, region, random, blockPos);
 }
 
 static void (*_BiomeDecorator$decorate)(BiomeDecorator*, BlockSource*, Random&, Biome*, const BlockPos&, bool, float);
-static void BiomeDecorator$decorate(BiomeDecorator* decorator, BlockSource* region, Random& random, Biome* biome, const BlockPos& pos, bool b1, float f1) {
-	_BiomeDecorator$decorate(decorator, region, random, biome, pos, b1, f1);
+static void BiomeDecorator$decorate(BiomeDecorator *self, BlockSource *region, Random &random, Biome *biome, const BlockPos &pos, bool b1, float f1) {
+	_BiomeDecorator$decorate(self, region, random, biome, pos, b1, f1);
 	
-	//CardinalDecorator::decorate(decorator, region, random, biome, pos, b1, f1);
+	//CardinalDecorator::decorate(self, region, random, biome, pos, b1, f1);
 }
 
 static void (*_Localization$_load)(Localization*, const std::string&);
 static void Localization$_load(Localization* self, const std::string& langCode) {
 	_Localization$_load(self, langCode);
+	
 	if(langCode == "en_US" || langCode == "es_ES")
 		self->_appendTranslations("loc/cardinal/" + langCode + "-pocket.lang");
 }
 
 static void (*_DeathScreen$init)(DeathScreen*);
-static void DeathScreen$init(DeathScreen* self)
+static void DeathScreen$init(DeathScreen *self)
 {
-	/*if(self->mcClient->getLocalPlayer()->IsCreative() && self->craftingType != CraftingType::FULLCRAFTING)*/
-		 CardinalDeathScreen::init(self);
+	CardinalDeathScreen::init(self);
 }
 
 static void (*_DeathScreen$setupPositions)(DeathScreen*);
-static void DeathScreen$setupPositions(DeathScreen* self)
+static void DeathScreen$setupPositions(DeathScreen *self)
 {
-	/*if(self->mcClient->getLocalPlayer()->IsCreative() && self->craftingType != CraftingType::FULLCRAFTING)*/
-		 CardinalDeathScreen::setupPositions(self);
+	CardinalDeathScreen::setupPositions(self);
 }
 
 static void (*_DeathScreen$render)(DeathScreen*, int, int, float);
-static void DeathScreen$render(DeathScreen* self, int i1, int i2, float f1)
+static void DeathScreen$render(DeathScreen *self, int i1, int i2, float f1)
 {
-	/*if(self->mcClient->getLocalPlayer()->IsCreative() && self->craftingType != CraftingType::FULLCRAFTING)*/
-		 CardinalDeathScreen::render(self, i1, i2, f1);
+	CardinalDeathScreen::render(self, i1, i2, f1);
 }
 
 static void (*_DeathScreen$_buttonClicked)(DeathScreen*, Button&);
-static void DeathScreen$_buttonClicked(DeathScreen* self, Button& button)
+static void DeathScreen$_buttonClicked(DeathScreen *self, Button &button)
 {
-	/*if(self->mcClient->getLocalPlayer()->IsCreative() && self->craftingType != CraftingType::FULLCRAFTING)*/
-		 CardinalDeathScreen::_buttonClicked(self, button);
+	CardinalDeathScreen::_buttonClicked(self, button);
 }
-
-static std::string (*_I18n$get)(const std::string&, const std::vector<std::string,std::allocator<std::string>>&);
-static std::string I18n$get(const std::string &key, const std::vector<std::string,std::allocator<std::string>> &a) {
-	if(key == "deathScreen.title") return "";
-	if(key == "deathScreen.message") return "";
-	
-	return _I18n$get(key, a);
-};
 
 JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	MSHookFunction((void*) &Common::getGameDevVersionString, (void*) &Common$getGameDevVersionString, (void**) &_Common$getGameDevVersionString);
@@ -163,7 +149,6 @@ JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	MSHookFunction((void*) &DeathScreen::setupPositions, (void*) &DeathScreen$setupPositions, (void**) &_DeathScreen$setupPositions);
 	MSHookFunction((void*) &DeathScreen::render, (void*) &DeathScreen$render, (void**) &_DeathScreen$render);
 	MSHookFunction((void*) &DeathScreen::_buttonClicked, (void*) &DeathScreen$_buttonClicked, (void**) &_DeathScreen$_buttonClicked);
-	MSHookFunction((void*) &I18n::get, (void*) &I18n$get, (void**) &_I18n$get);
 	
 	return JNI_VERSION_1_2;
 }
