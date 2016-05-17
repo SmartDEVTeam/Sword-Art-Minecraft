@@ -7,7 +7,7 @@
 #include "com/mojang/minecraftpe/client/gui/NinePatchLayer.h"
 #include "com/mojang/minecraftpe/client/gui/IntRectangle.h"
 #include "com/mojang/minecraftpe/client/renderer/Tessellator.h"
-#include "com/mojang/minecraftpe/world/entity/player/Player.h"
+#include "com/mojang/minecraftpe/world/entity/player/LocalPlayer.h"
 
 //std::shared_ptr<NinePatchLayer>CardinalDeathScreen::image = NULL;
 std::shared_ptr<ImageButton> CardinalDeathScreen::respawnButton = NULL;
@@ -37,7 +37,6 @@ void CardinalDeathScreen::render(Screen *self, int i1, int i2, float f1)
 
 void CardinalDeathScreen::_buttonClicked(Screen *self, Button &button)
 {
-	Player* player;
 	if(button.id == respawnButton->id)
-		player->respawn();
+		self->mcClient->getLocalPlayer()->respawn();
 }
