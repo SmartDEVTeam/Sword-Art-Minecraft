@@ -6,6 +6,7 @@
 #include "com/mojang/minecraftpe/client/gui/screen/ScreenChooser.h"
 #include "com/mojang/minecraftpe/client/gui/NinePatchLayer.h"
 #include "com/mojang/minecraftpe/client/gui/IntRectangle.h"
+#include "com/mojang/minecraftpe/client/MinecraftClient.h"
 #include "com/mojang/minecraftpe/client/renderer/Tessellator.h"
 #include "com/mojang/minecraftpe/world/entity/player/LocalPlayer.h"
 
