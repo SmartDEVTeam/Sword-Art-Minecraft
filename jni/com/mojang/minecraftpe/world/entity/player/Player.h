@@ -1,18 +1,20 @@
 #pragma once
 
 #include "../Mob.h"
+#include "../../../gamemode/GameType.h"
 class ChunkSource;
 class GlobalPermissionsLevel;
 class UserPermissionsLevel;
 class BlockEntity;
 class TelemetryEventPacket;
-class GameType;
+class Inventory;
 
 class Player : public Mob {
 public:
 	char filler2[2971];
 	bool creativeMode;
-	bool surivivalMode;
+	bool survivalMode;
+   Inventory* inventory;
 
 	/* vtable */
 	virtual ~Player();
@@ -25,7 +27,7 @@ public:
 	virtual bool isImmobile() const;
 	virtual bool isPushable() const;
 	virtual bool isShootable();
-	virtual bool isCreativeModeAllowe();
+	virtual bool isCreativeModeAllowed();
 	virtual void hurt(const EntityDamageSource&, int);
 	virtual void onBounceStarted(const BlockPos&, const FullBlock&);
 	virtual void handleENtityEvent(EntityEvent);
@@ -64,7 +66,7 @@ public:
 	virtual void onDimensionChanged();
 	virtual void tickWorld();
 	virtual void moveView();
-	virtual void setName(std::string&);
+	virtual void setName(const std::string&);
 	virtual void _checkMovementStatistics(const Vec3&);
 	virtual void respawn();
 	virtual void resetPos(bool);

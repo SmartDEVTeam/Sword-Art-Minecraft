@@ -1,15 +1,9 @@
 #pragma once
 
 #include "Screen.h"
-//class TButton;
 
 class DeathScreen : public Screen {
 public:
-
-/*this doesn't work!*/
-//std::shared_ptr<Touch::TButton> respawnButton;
-//std::shared_ptr<Touch::TButton> quitButton;
-
 	DeathScreen(MinecraftClient&);
 
 	virtual void handleButtonPress(short);

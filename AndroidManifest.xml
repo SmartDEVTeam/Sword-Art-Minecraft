@@ -2,17 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         package="com.smartdev.saomc.addon"
         android:versionCode="1"
-        android:versionName="1.0.0">
+        android:versionName="1.0.1">
 
     <uses-permission android:name="net.zhuoweizhang.mcpelauncher.ADDON"/>
+    <!-- This is the platform API where NativeActivity was introduced. -->
     <uses-sdk android:minSdkVersion="9" />
 
+    <!-- This .apk has no Java code itself, so set hasCode to false. -->
     <application android:label="@string/app_name" android:icon="@drawable/pack" android:hasCode="false">
 
+    <!-- metadata specifying the library name. must match Android.mk.-->
     <meta-data android:name="net.zhuoweizhang.mcpelauncher.api.nativelibname"
         android:value="com.smartdev.saomc.addon"/>
 
-    <meta-data android:name="net.zhuoweizhang.mcpelauncher.api.targetmcpeversion" android:value="0.14.2"/>
+    <meta-data android:name="net.zhuoweizhang.mcpelauncher.api.targetmcpeversion" android:value="0.14.3"/>
     </application>
 
 </manifest> 

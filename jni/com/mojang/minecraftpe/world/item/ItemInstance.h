@@ -25,4 +25,8 @@ public:
 	
 	bool isLiquidClipItem();
 	void hurtAndBreak(int, Mob*);
+   bool sameItemAndAux(const ItemInstance*) const;
+    int getMaxStackSize() const;
+ 	std::string getName() const;
+	std::string getEffectName() const;
 };

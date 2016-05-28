@@ -7,49 +7,59 @@
     "layer": 3,
     "uv": [ 0, 0 ],
     "uv_size": [ 16, 16 ],
-    "size": [ 18, 18 ]
-  }, 
-  "options_icon": {
+    "size": [ 16, 16 ]
+  },
+
+  "feedback_icon": {
     "type": "image",
-    "texture": "gui/newgui/Wrenches1.png",
+    "texture": "gui/newgui/Feedback.png",
     "layer": 3,
     "uv": [ 0, 0 ],
     "uv_size": [ 16, 16 ],
-    "size": [ 18, 18 ]
-  }, 
-  "options_pressed_icon": {
+    "size": [ 16, 16 ]
+  },
+
+  "wrench_icon": {
     "type": "image",
     "texture": "gui/newgui/Wrenches2.png",
+    "layer": 5,
+    "uv": [ 0, 0 ],
+    "uv_size": [ 14, 14 ],
+    "size": [ 14, 14 ]
+  },
+
+  "feedbackTweet_icon": {
+    "type": "image",
+    "texture": "gui/newgui/buttons/twitter/Twitter1.png",
+    "layer": 1,
+    "uv": [ 0, 0 ],
+    "uv_size": [ 16, 16 ],
+    "size": [ 18, 18 ]
+  },
+
+  "feedbackTweet1_icon": {
+    "type": "image",
+    "texture": "gui/newgui/buttons/twitter/Twitter2.png",
+    "layer": 1,
+    "uv": [ 0, 0 ],
+    "uv_size": [ 16, 16 ],
+    "size": [ 18, 18 ]
+  },
+
+  "realms_icon": {
+    "type": "image",
+    "texture": "gui/newgui/Invite2.png",
     "layer": 3,
     "uv": [ 0, 0 ],
     "uv_size": [ 16, 16 ],
     "size": [ 18, 18 ]
-  }, 
-  "feedbackTweet_icon": {
-    "type": "image",
-    "texture": "gui/newgui/Twitter1.png",
-    "layer": 1,
-    "uv": [ 0, 0 ],
-    "uv_size": [ 16, 16 ],
-    "size": [ 18, 18 ]
   },
-  "feedbackTweet1_icon": {
-    "type": "image",
-    "texture": "gui/newgui/Twitter2.png",
-    "layer": 1,
-    "uv": [ 0, 0 ],
-    "uv_size": [ 16, 16 ],
-    "size": [ 18, 18 ]
-  },
+
   "copyright": {
     "type": "label",
-    "size": [ 50, 10 ],
-    "offset": [ 1, 0 ],
     "alignment": "top_left",
     "layer": 2,
-    "text": "menu.copyright",
-    "anchor_from": "bottom_left",
-    "anchor_to": "bottom_left"
+    "text": "menu.copyright"
   },
 
   "development_version": {
@@ -71,16 +81,31 @@
 
   "version": {
     "type": "label",
-    "size": [ 50, 10 ],
     "alignment": "top_right",
     "layer": 2,
     "text": "#version",
-    "anchor_from": "bottom_right",
-    "anchor_to": "bottom_right",
     "bindings": [
-      { 
+      {
         "binding_name": "#version",
         "binding_condition": "visible"
+      }
+    ]
+  },
+
+  "text_panel": {
+    "type": "panel",
+    "size": [ "100%-2px", 9 ],
+    "anchor_from": "bottom_middle",
+    "anchor_to": "bottom_middle",
+    "controls": [
+      {
+        "@start.copyright": { }
+      },
+      {
+        "@start.development_version": { }
+      },
+      {
+        "@start.version": { }
       }
     ]
   },
@@ -96,23 +121,25 @@
 
   "title_panel_pocket": {
     "type": "panel",
-    "size": [ "55%", "10.6%x" ],
     "offset": [ 0, "10%" ],
     "anchor_from": "top_middle",
     "anchor_to": "top_middle",
+    "size": [ "100%", "12.5%x" ],
     "controls": [
       {
         "title_image": {
           "type": "image",
           "layer": 1,
-          "texture": "gui/titleOriginal.png",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "texture": "gui/title.png",
           "uv": [ 0, 0 ],
-          "uv_size": [ 1936, 375 ]
+          "uv_size": [ 512, 64 ]
         }
       },
       {
         "@splash_text": {
-          "offset": [ 0, "-6.25%x" ]
+          "offset": [ "-28%", "-4%x" ]
         }
       }
     ]
@@ -141,7 +168,7 @@
       }
     ]
   },
-  
+
   "title_panel_edu": {
     "type": "panel",
     "size": [ "55%", "13.35%x" ],
@@ -161,6 +188,32 @@
       {
         "@splash_text": {
           "offset": [ "-3.5%", "-9.25%x" ]
+        }
+      }
+    ]
+  },
+
+  "title_panel_vr": {
+    "type": "panel",
+    "size": [ "100%", "12.5%x" ],
+    "offset": [ 0, "10%" ],
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "controls": [
+      {
+        "title_image": {
+          "type": "image",
+          "layer": 1,
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "texture": "gui/titleVR.png",
+          "uv": [ 0, 0 ],
+          "uv_size": [ 512, 64 ]
+        }
+      },
+      {
+        "@splash_text": {
+          "offset": [ "-28%", "-4%x" ]
         }
       }
     ]
@@ -234,12 +287,50 @@
   // Buttons
   //---------------------------------------------------------------------------
 
-  "linkstart_button@common.button": {
+  "realms_button@common.button": {
+    "$pressed_button_name": "button.menu_realms_beta",
+    "size": [ 24, 24 ],
+    "offset": [ "15%", "-10%" ],
+    "anchor_to": "bottom_left",
+    "anchor_from": "bottom_left",
+    "visible": "$realms_beta_button_visible",
+    "controls": [
+      {
+        "default@$button_state_default_base": {
+          "controls": [
+            { "@start.realms_icon": { } }
+          ]
+        }
+      },
+      {
+        "hover@$button_state_hover_base": {
+          "controls": [
+            { "@start.realms_icon": { } }
+          ]
+        }
+      },
+      {
+        "pressed@$button_state_pressed_base": {
+          "controls": [
+            {
+              "@start.realms_icon": {
+                "alpha": 0.65
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "play_button@common.button": {
     "$pressed_button_name": "button.menu_play",
-    "size": [ "30%", "15%" ],
-    "offset": [ "0%", "37%" ],
+    "size": [ 90, 30 ],
+    "offset": [ "0%", "35%" ],
+    "anchor_from": "bottom_middle",
+    "anchor_to": "bottom",
     "sound_name": "random.player.linkstart",
-    "sound_volume": 5.0,
+    "sound_volume": 1.0,
     "controls": [
       {
         "default@$button_state_default_base": {
@@ -313,31 +404,34 @@
     ]
   },
 
- "option_button@common.button": {
-    "$pressed_button_name": "button.menu_options",
-    "size": [ 24, 24 ],
-    "offset": [ "-13%", "-10%" ],
-    "anchor_to": "bottom_right",
-    "anchor_from": "bottom_right",
+  "feedback_Khristian_button@common.hyperlink_button": {
+   "size": [ 24, 24 ],
+    "offset": [ "5%", "-10%" ],
+    "anchor_to": "bottom_left",
+    "anchor_from": "bottom_left",
+    "property_bag": {
+      "#hyperlink": "https://twitter.com/Khristian_Kun"
+    },
+    "visible": "$feedback_Khristian_visible",
     "controls": [
       {
         "default@$button_state_default_base": {
           "controls": [
-            { "@start.options_icon": { } }
+            { "@start.feedbackTweet_icon": { } }
           ]
         }
       },
       {
         "hover@$button_state_hover_base": {
           "controls": [
-            { "@start.options_pressed_icon": { } }
+            { "@start.feedbackTweet1_icon": { } }
           ]
         }
       },
       {
         "pressed@$button_state_pressed_base": {
           "controls": [
-            { "@start.options_pressed_icon": {
+            { "@start.feedbackTweet1_icon": { 
                 "alpha": 0.65
               } }
           ]
@@ -345,91 +439,138 @@
       }
     ]
   },
-  "feedbackTweetKhristian_button@common.hyperlink_button": {
+
+  "options_icon_button@common.button": {
+    "$pressed_button_name": "button.menu_options",
     "size": [ 24, 24 ],
-    "offset": [ "5%", "-10%" ],
-    "anchor_to": "bottom_left",
-    "anchor_from": "bottom_left",
-    "property_bag": {
-      "#hyperlink": "https://twitter.com/Khristian_Kun"
-    },
-    "visible": "$feedbackTweetKhristian_visible",
+    "offset": [ "-15%", "-10%" ],
+    "anchor_to": "bottom_right",
+    "anchor_from": "bottom_right",
+    "visible": "$options_icon_visible",
     "controls": [
       {
         "default@$button_state_default_base": {
           "controls": [
-            { "@start.feedbackTweet_icon": { } }
+            { "@start.wrench_icon": { } }
           ]
         }
       },
       {
         "hover@$button_state_hover_base": {
           "controls": [
-            { "@start.feedbackTweet1_icon": { } }
+            { "@start.wrench_icon": { } }
           ]
         }
       },
       {
         "pressed@$button_state_pressed_base": {
           "controls": [
-            { "@start.feedbackTweet1_icon": { 
+            {
+              "@start.wrench_icon": {
                 "alpha": 0.65
-              } }
+              }
+            }
           ]
         }
       }
     ]
-  }, 
+  },
 
 
-"feedbackTweetRivera_button@common.hyperlink_button": {
+
+
+  "language_button@common.button": {
+    "$pressed_button_name": "button.menu_language",
     "size": [ 24, 24 ],
-    "offset": [ "13%", "-10%" ],
-    "anchor_to": "bottom_left",
-    "anchor_from": "bottom_left",
-    "property_bag": {
-      "#hyperlink": "https://twitter.com/RiveraE_PlaysMC"
-    },
-    "visible": "$feedbackTweetRivera_visible",
+    "offset": [ "-5%", "-10%" ],
+    "anchor_to": "bottom_right",
+    "anchor_from": "bottom_right",
     "controls": [
       {
         "default@$button_state_default_base": {
           "controls": [
-            { "@start.feedbackTweet_icon": { } }
+            { "@start.language_icon": { } }
           ]
         }
       },
       {
         "hover@$button_state_hover_base": {
           "controls": [
-            { "@start.feedbackTweet1_icon": { } }
+            { "@start.language_icon": { } }
           ]
         }
       },
       {
         "pressed@$button_state_pressed_base": {
           "controls": [
-            { "@start.feedbackTweet1_icon": { 
+            {
+              "@start.language_icon": {
                 "alpha": 0.65
-              } }
+              }
+            }
           ]
         }
       }
     ]
-  }, 
+  },
 
+  "empty_panel": {
+    "type": "panel"
+  },
+
+  "achievements_button@common.button": {
+    "$pressed_button_name": "button.menu_achievements",
+    "anchor_to": "left_middle",
+    "anchor_from": "left_middle",
+    "visible": "$achivements_visible",
+    "size": "$menu_button_size",
+    "controls": [
+      {
+        "default@$button_state_default_base": {
+          "controls": [
+            {
+              "@common.button_text": {
+                "text": "menu.achievements"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "hover@$button_state_hover_base": {
+          "controls": [
+            {
+              "@common.button_text": {
+                "text": "menu.achievements",
+                "color": [ 1.0, 1.0, 0.2 ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pressed@$button_state_pressed_base": {
+          "controls": [
+            {
+              "@common.button_text": {
+                "text": "menu.achievements",
+                "color": [ 1.0, 1.0, 0.2 ],
+                "alpha": 0.65
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
 
   "buy_game_button@common.button": {
     "$pressed_button_name": "button.menu_buy_game",
     "anchor_to": "bottom_left",
     "anchor_from": "bottom_left",
-
-
-
     "size": [ "100%", "31.25%" ],
     "controls": [
       {
-
         "default@$button_state_default_base": {
           "controls": [
             {
@@ -474,14 +615,32 @@
     "offset": [ 0, "7.5%" ],
     "anchor_from": "center",
     "anchor_to": "center",
+    "$achivements_button_control_name": "achievements_button",
+    "variables": [
+      {
+        "requires": "$education_edition",
+        "$achivements_button_control_name": "empty_panel"
+      }
+    ],
     "controls": [
       {
-        "@achievements_button": {
+        "@play_button": {
+        }
+      },
+      {
+        "@$achivements_button_control_name": {
           "ignored": "$trial"
         }
       },
       {
         "@options_button": {
+          "ignored": "$realms_beta",
+          "anchor_to": "$options_button_anchor",
+          "anchor_from": "$options_button_anchor"
+        }
+      },
+      {
+        "rbb@realms_beta_button": {
           "anchor_to": "$options_button_anchor",
           "anchor_from": "$options_button_anchor"
         }
@@ -528,7 +687,143 @@
   // Screens
   //---------------------------------------------------------------------------
 
-  "screen_common": {
+  "start_screen@common.base_screen": {
+    "variables": [
+      {
+        "requires": "$not_trial",
+        "$gamepad_helpers_offset": [ -10, "40%" ],
+        "$gamepad_helper_a_offset": [ -5, 0 ],
+        "$gamepad_helper_b_offset": [ 65, 0 ],
+        "$options_button_anchor": "bottom_left",
+        "$skins_button_anchor": "bottom_right"
+      },
+      {
+        "requires": "$trial",
+        "$gamepad_helpers_offset": [ "-5%", "40%" ],
+        "$gamepad_helper_a_offset": [ 0, 0 ],
+        "$gamepad_helper_b_offset": [ 40, 0 ],
+        "$options_button_anchor": "left_middle",
+        "$skins_button_anchor": "right_middle"
+      },
+      {
+        "requires": "$win10_edition",
+        "$button_state_default_base": "common.button_state_default",
+        "$button_state_hover_base": "common.button_state_hover",
+        "$button_state_pressed_base": "common.button_state_pressed",
+        "$title_panel": "title_panel_win10",
+        "$feedback_visible": true,
+        "$paper_doll_visible": true,
+        "$play_button_anchor": "top_middle",
+        "$achivements_visible": true,
+        "$button_panel_size": [ 100, 64 ],
+        "$menu_button_size": [ "100%", "31.25%" ],
+        "$menu_button_half_size": [ "49%", "31.25%" ],
+        "$skins_button_name": "button.menu_skins"
+      },
+      {
+        "requires": "$osx_edition",
+        "$button_state_default_base": "common.button_state_default",
+        "$button_state_hover_base": "common.button_state_hover",
+        "$button_state_pressed_base": "common.button_state_pressed",
+        "$title_panel": "title_panel_win10",
+        "$feedback_visible": true,
+        "$paper_doll_visible": true,
+        "$play_button_anchor": "top_middle",
+        "$achivements_visible": true,
+        "$button_panel_size": [ 100, 64 ],
+        "$menu_button_size": [ "100%", "31.25%" ],
+        "$menu_button_half_size": [ "49%", "31.25%" ],
+        "$skins_button_name": "button.menu_skins"
+      },
+      {
+        "requires": "$education_edition",
+        "$button_state_default_base": "common.button_state_default",
+        "$button_state_hover_base": "common.button_state_hover",
+        "$button_state_pressed_base": "common.button_state_pressed",
+        "$title_panel": "title_panel_edu",
+        "$feedback_visible": true,
+        "$paper_doll_visible": true,
+        "$play_button_anchor": "top_middle",
+        "$achivements_visible": true,
+        "$button_panel_size": [ 100, 48 ],
+        "$menu_button_size": [ "100%", "49%" ],
+        "$menu_button_half_size": [ "49%", "49%" ],
+        "$skins_button_name": "button.menu_skins_toggle"
+      },
+      {
+        "requires": "$pocket_edition",
+        "$button_state_default_base": "common.button_state_default",
+        "$button_state_hover_base": "common.button_state_hover",
+        "$button_state_pressed_base": "common.button_state_pressed",
+        "$title_panel": "title_panel_pocket",
+        "$feedback_visible": false,
+        "$paper_doll_visible": true,
+        "$play_button_anchor": "center",
+        "$achivements_visible": false,
+        "$button_panel_size": [ 100, 80 ],
+        "$menu_button_size": [ "100%", "31.25%" ],
+        "$menu_button_half_size": [ "49%", "31.25%" ],
+        "$skins_button_name": "button.menu_skins"
+      },
+      {
+        "requires": "$is_holographic",
+        "$button_state_default_base": "common.button_state_default",
+        "$button_state_hover_base": "common.button_state_hover",
+        "$button_state_pressed_base": "common.button_state_pressed",
+        "$title_panel": "title_panel_vr",
+        "$feedback_visible": false,
+        "$paper_doll_visible": true,
+        "$play_button_anchor": "center",
+        "$achivements_visible": false,
+        "$button_panel_size": [ 100, 80 ],
+        "$menu_button_size": [ "100%", "31.25%" ],
+        "$menu_button_half_size": [ "49%", "31.25%" ],
+        "$skins_button_name": "button.menu_skins"
+      }/*,
+      {
+        "requires": "$realms_beta",
+        "$options_icon_visible":  true,
+        "$realms_beta_button_visible": true
+      },
+      {
+        "requires": "$not_realms_beta",
+        "$options_icon_visible":  false,
+        "$realms_beta_button_visible": false
+      }
+*/
+    ],
+    "controls": [
+      {
+        "@$title_panel": { }
+      },
+      {
+        "@paper_doll_panel": { }
+      },
+      {
+        "@gamepad_helpers": { }
+      },
+      {
+        "@language_button": { }
+      },
+      {
+        "@options_icon_button": { }
+      },
+      {
+        "@feedback_button": { }
+      },
+      {
+        "@button_panel": { }
+      },
+      {
+        "@feedback_Khristian_button": { }
+      },
+      {
+        "@text_panel": { } 
+      } ,
+      {
+        "@realms_button": { } 
+      }
+    ],
     "button_mappings": [
       {
         "from_button_id": "button.menu_cancel",
@@ -558,101 +853,6 @@
         "to_button_id": "button.menu_right",
         "mapping_type": "global",
         "scope": "view"
-      }
-    ]
-  },
-
-  "screen@screen_common": {
-    "type": "screen",
-    "variables": [
-      {
-        "requires": "$not_trial",
-        "$gamepad_helpers_offset": [ -10, "40%" ],
-        "$gamepad_helper_a_offset": [ -5, 0 ],
-        "$gamepad_helper_b_offset": [ 65, 0 ],
-        "$options_button_anchor": "bottom_left",
-        "$skins_button_anchor": "bottom_right"
-      },
-      {
-        "requires": "$trial",
-        "$gamepad_helpers_offset": [ "-5%", "40%" ],
-        "$gamepad_helper_a_offset": [ 0, 0 ],
-        "$gamepad_helper_b_offset": [ 40, 0 ],
-        "$options_button_anchor": "left_middle",
-        "$skins_button_anchor": "right_middle"
-      },
-      {
-        "requires": "$win10_edition",
-        "$button_state_default_base": "common-classic.button_state_default",
-        "$button_state_hover_base": "common-classic.button_state_hover",
-        "$button_state_pressed_base": "common-classic.button_state_pressed",
-        "$title_panel": "title_panel_win10",
-        "$paper_doll_visible":  true,
-        "$play_button_anchor": "top_middle",
-        "$achivements_visible": true,
-        "$button_panel_size": [ 100, 64 ]
-      },
-      {
-        "requires": "$education_edition",
-        "$button_state_default_base": "common-classic.button_state_default",
-        "$button_state_hover_base": "common.button_state_hover",
-        "$button_state_pressed_base": "common.button_state_pressed",
-        "$title_panel": "title_panel_edu",
-        "$paper_doll_visible":  true,
-        "$play_button_anchor": "top_middle",
-        "$tPacks_button_anchor": "bottom_middle",
-        "$achivements_visible": true,
-        "$button_panel_size": [ 100, 64 ]
-      },
-      {
-        "requires": "$pocket_edition",
-        "$button_state_default_base": "common-classic.button_state_default",
-        "$button_state_hover_base": "common-classic.button_state_hover",
-        "$button_state_pressed_base": "common-classic.button_state_pressed",
-        "$title_panel": "title_panel_pocket",
-        "$paper_doll_visible":  true,
-        "$play_button_anchor": "top_middle",
-        "$tPacks_button_anchor": "center_middle",
-
-        "$button_panel_size": [ 100, 64 ]
-      }
-    ],
-    "controls": [
-      {
-        "@$title_panel": { }
-      },
-      {
-        "@paper_doll_panel": { }
-      },
-      {
-        "@copyright": { }
-      },
-      {
-        "@development_version": { }
-      },
-      {
-        "@version": { }
-      },
-      {
-        "@gamepad_helpers": { }
-      },
-      {
-        "@language_button": { }
-      },
-      {
-        "@linkstart_button": { }
-      },
-      {
-        "@option_button": { }
-      },
-      {
-        "@feedbackTweetKhristian_button": { }
-      },
-      {
-        "@feedbackTweetRivera_button": { }
-      },
-      {
-        "@button_panel": { }
       }
     ]
   }

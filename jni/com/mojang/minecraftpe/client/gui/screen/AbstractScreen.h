@@ -63,4 +63,3 @@ public:
 	virtual std::string getScreenName();
 	virtual void getSendTelemetry();
 };
-
