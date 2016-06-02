@@ -15,70 +15,21 @@ std::string BUILD_VERSION = "1";
 
 static std::string (*_Common$getGameDevVersionString)();
 static std::string Common$getGameDevVersionString() {
-return _Common$getGameDevVersionString();
-/*
 	if(DEV_MODE) {
 		return "§a§lSA: M " + MOD_VERSION + "\n§r§fDevelopment Build " + BUILD_VERSION;
 	} else if(BEATER_MODE){
 		return "§a§lSA: M " + MOD_VERSION +"\n§r§fBeater Build " + BUILD_VERSION;
 	} else {
 		return "§a§lSA: M " + MOD_VERSION;
-   }*/
-}
-
-static void (*_InventoryScreen$init)(InventoryScreen*);
-static void InventoryScreen$init(InventoryScreen* self)
-{
-	if(self->mcClient->getLocalPlayer()->IsCreative() && self->craftingType != CraftingType::FULLCRAFTING)
-		InventoryTransitions::init(self);
-
-	_InventoryScreen$init(self);
-}
-
-static void (*_InventoryScreen$setupPositions)(InventoryScreen*);
-static void InventoryScreen$setupPositions(InventoryScreen* self)
-{
-	_InventoryScreen$setupPositions(self);
-	
-	if(self->mcClient->getLocalPlayer()->IsCreative() && self->craftingType != CraftingType::FULLCRAFTING)
-		InventoryTransitions::setupPositions(self);
-}
-
-static void (*_InventoryScreen$render)(InventoryScreen*, int, int, float);
-static void InventoryScreen$render(InventoryScreen* self, int i1, int i2, float f1)
-{
-	_InventoryScreen$render(self, i1, i2, f1);
-	
-	if(self->mcClient->getLocalPlayer()->IsCreative() && self->craftingType != CraftingType::FULLCRAFTING)
-	{
-		InventoryTransitions::render(self, i1, i2, f1);
-		InventoryTransitions::currentPage = 1;
-	}
-}
-
-static void (*_InventoryScreen$_buttonClicked)(InventoryScreen*, Button&);
-static void InventoryScreen$_buttonClicked(InventoryScreen* self, Button& button)
-{
-	_InventoryScreen$_buttonClicked(self, button);
-	
-	if(self->mcClient->getLocalPlayer()->IsCreative() && self->craftingType != CraftingType::FULLCRAFTING)
-		InventoryTransitions::_buttonClicked(self, button);
+   }
 }
 
 static void (*_Item$initItems)();
-static void Item$initItems()
-{
+static void Item$initItems() {
 	_Item$initItems();
-
-	CardinalItemTabs::init();
-}
-
-static void (*_Item$initCreativeItems)();
-static void Item$initCreativeItems() {
-	_Item$initCreativeItems();
 	
 	CardinalItems::initItems();
-	CardinalBlocks::initCreativeBlocks();
+	//CardinalBlocks::initCreativeBlocks();
 }
 
 static void (*_Block$initBlocks)();
@@ -113,10 +64,11 @@ void MinecraftClient$onPlayerLoaded(MinecraftClient *client, Player &player){
 static void (*_Mob$die)( Mob*, EntityDamageSource const&);
 static void Mob$die(Mob* dead, EntityDamageSource const& damage) {
 	static MinecraftClient* mcinstance;
+    static LocalPlayer* player;
 		dead->playSound("saomc.entity.death", 1.0F, 1.0F);
-			/*if(dead == ((Mob*) mcinstance->getLocalPlayer())){
+			if(dead == (Mob*)player){
 			    mcinstance->playUI("saomc.player.death", 1.0F, 1.0F);
-			}*/
+			}
 	_Mob$die(dead, damage);
 }
 
@@ -130,12 +82,7 @@ static void Localization$_load(Localization* self, const std::string& langCode) 
 JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	
     MSHookFunction((void*) &Common::getGameDevVersionString, (void*) &Common$getGameDevVersionString, (void**) &_Common$getGameDevVersionString);
-	MSHookFunction((void*) &InventoryScreen::init, (void*) &InventoryScreen$init, (void**) &_InventoryScreen$init);
-	MSHookFunction((void*) &InventoryScreen::setupPositions, (void*) &InventoryScreen$setupPositions, (void**) &_InventoryScreen$setupPositions);
-	MSHookFunction((void*) &InventoryScreen::render, (void*) &InventoryScreen$render, (void**) &_InventoryScreen$render);
-	MSHookFunction((void*) &InventoryScreen::_buttonClicked, (void*) &InventoryScreen$_buttonClicked, (void**) &_InventoryScreen$_buttonClicked);
 	MSHookFunction((void*) &Item::initItems, (void*) &Item$initItems, (void**) &_Item$initItems);
-MSHookFunction((void*) &Item::initCreativeItems, (void*) &Item$initCreativeItems, (void**) &_Item$initCreativeItems);
 	MSHookFunction((void*) &Block::initBlocks, (void*) &Block$initBlocks, (void**) &_Block$initBlocks);
 	MSHookFunction((void*) &Recipes::init, (void*) &Recipes$init, (void**) &_Recipes$init);
 	MSHookFunction((void*) &MinecraftClient::onPlayerLoaded, (void*) &MinecraftClient$onPlayerLoaded, (void**) &_MinecraftClient$onPlayerLoaded);

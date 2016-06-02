@@ -13,6 +13,6 @@ public:
 	static Item* stick;
 	
 	static void initItems();
-	static void initCreativeItems();
+	static void initTabs();
 	static std::string getItemTypeByData(int);
 };

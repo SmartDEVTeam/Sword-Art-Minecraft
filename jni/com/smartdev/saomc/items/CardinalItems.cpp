@@ -9,6 +9,8 @@
 #include "valuables/CardinalFragment.h"
 #include "valuables/CardinalStick.h"
 
+#include "CreativeTab.h"
+
 #include "com/mojang/minecraftpe/world/item/Item.h"
 
 Item* CardinalItems::elucidator;
@@ -29,21 +31,28 @@ void CardinalItems::initItems() {
 	//Valuables
 	fragment = new CardinalFragment(900);
 	stick = new CardinalStick(901);
+	
+    initTabs();
 
 }
 
-void CardinalItems::initCreativeItems() {
+void CardinalItems::initTabs() {
+
+    CreativeTab* swordTab = new CreativeTab(elucidator, 0);
 	//Swords
-	Item::addCreativeItem(elucidator, 0);
-	Item::addCreativeItem(darkRepulser, 0);
-	Item::addCreativeItem(kagemitsu, 0);
-	Item::addCreativeItem(lambentLight, 0);
+	swordTab->addItem(elucidator, 0);
+	swordTab->addItem(darkRepulser, 0);
+	swordTab->addItem(kagemitsu, 0);
+	swordTab->addItem(lambentLight, 0);
+	swordTab->addToTabsList();
  
+	CreativeTab* materialTab = new CreativeTab(fragment, 0);
 	//Valuables 
-	Item::addCreativeItem(fragment, 0);
-	Item::addCreativeItem(stick, 0);
-	Item::addCreativeItem(fragment, 1);
-	Item::addCreativeItem(stick, 1); 
+	materialTab->addItem(fragment, 0);
+	materialTab->addItem(stick, 0);
+	materialTab->addItem(fragment, 1);
+	materialTab->addItem(stick, 1); 
+	materialTab->addToTabsList();
 }
 
 std::string CardinalItems::getItemTypeByData(int data) {
