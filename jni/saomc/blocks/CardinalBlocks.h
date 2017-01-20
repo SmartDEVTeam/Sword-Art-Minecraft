@@ -10,5 +10,6 @@ public:
 	static void initBlocks();
 	static void initBlockItems();
 	static void initCreativeBlocks();
+	static void initBlockGraphics();
 };
 

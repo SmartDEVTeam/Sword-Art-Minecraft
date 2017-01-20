@@ -6,13 +6,12 @@
 CardinalFragment::CardinalFragment(short id) : Item("cardinalFragment", id - 256)
 {
 	setMaxStackSize(16);
-	setStackedByData(true);
-	Item::mItems[itemId] = this;
+	Item::mItems[id] = this;
 	
 	initTextures();
 }
 
-const std::string CardinalFragment::buildDescriptionName(ItemInstance const& item) const
+const std::string CardinalFragment::buildDescriptionName(const ItemInstance &item) const
 {
 	return "item.cardinalFragment." + CardinalItems::getItemTypeByData(item.aux) + ".name";
 }

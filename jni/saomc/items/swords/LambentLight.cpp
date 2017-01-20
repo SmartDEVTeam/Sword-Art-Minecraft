@@ -4,20 +4,20 @@
 
 LambentLight::LambentLight(const std::string &name, short id) : Item(name, id - 256)
 {
-	creativeCategory = CreativeItemCategory::Tools;
+	setCategory(CreativeItemCategory::Tools);
 	setIcon("lambentlight", 0);
 	setMaxStackSize(1);
 	setMaxDamage(13800);
 	setHandEquipped();
-	Item::mItems[itemId] = this;
+	Item::mItems[id] = this;
 }
 
-const std::string LambentLight::buildDescriptionName(ItemInstance const& id) const
+const std::string LambentLight::buildDescriptionName(const ItemInstance &item) const
 {
 	return "§b§l[Rapier] §r§fLambent Light";
 }
 
-const std::string LambentLight::buildEffectDescriptionName(ItemInstance const& id) const
+const std::string LambentLight::buildEffectDescriptionName(const ItemInstance &item) const
 {
 	return "§bType: §a§lUncommon";
 }

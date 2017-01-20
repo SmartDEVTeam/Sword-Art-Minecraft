@@ -3,21 +3,21 @@
 
 DarkRepulser::DarkRepulser(const std::string &name, short id) : Item(name, id - 256)
 {
-	creativeCategory = CreativeItemCategory::Tools;
+	setCategory(CreativeItemCategory::Tools);
 	setIcon("darkrepulser", 0);
 	setMaxStackSize(1);
 	setMaxDamage(13800);
 	setHandEquipped();
 	setMaxUseDuration(1);
-	Item::mItems[itemId] = this;
+	Item::mItems[id] = this;
 }
 
-const std::string DarkRepulser::buildDescriptionName(ItemInstance const& id) const
+const std::string DarkRepulser::buildDescriptionName(const ItemInstance &item) const
 {
 	return "§b§l[One-Handed] §r§fDark Repulser";
 }
 
-const std::string DarkRepulser::buildEffectDescriptionName(ItemInstance const& id) const
+const std::string DarkRepulser::buildEffectDescriptionName(const ItemInstance &item) const
 {
 	return "§bType: §6§lLegendary";
 }

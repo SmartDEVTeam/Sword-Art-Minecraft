@@ -11,7 +11,6 @@ public:
 	virtual int getResource(Random&, int, int);
 	virtual int getSpawnResourcesAuxValue(unsigned char);
 	virtual int getResourceCount(Random&, int, int);
-	virtual const TextureUVCoordinateSet& getTexture(signed char, int);
 	virtual std::string buildDescriptionName(unsigned char) const;
 	std::string getTypeByData(int);
 };

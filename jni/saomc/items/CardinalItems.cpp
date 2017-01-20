@@ -33,6 +33,7 @@ void CardinalItems::initCreativeItems()
 {
 	Item::addCreativeItem(900, 0);
 	Item::addCreativeItem(901, 0);
+	
 	Item::addCreativeItem(1000, 0);
 	Item::addCreativeItem(1001, 0);
 	Item::addCreativeItem(1002, 0);

@@ -1,21 +1,22 @@
 #include "Kagemitsu.h"
 #include "minecraftpe/world/item/ItemInstance.h"
 
-Kagemitsu::Kagemitsu(const std::string &name, short id) : Item(name, id - 256) {
-	creativeCategory = CreativeItemCategory::Tools;
+Kagemitsu::Kagemitsu(const std::string &name, short id) : Item(name, id - 256)
+{
+	setCategory(CreativeItemCategory::Tools);
 	setIcon("kagemitsu", 0);
 	setMaxStackSize(1);
 	setMaxDamage(13800);
 	setHandEquipped();
-	Item::mItems[itemId] = this;
+	Item::mItems[id] = this;
 }
 
-const std::string Kagemitsu::buildDescriptionName(ItemInstance const& id) const
+const std::string Kagemitsu::buildDescriptionName(const ItemInstance &item) const
 {
 	return "§b§l[Photon] §r§fKagemitsu";
 }
 
-const std::string Kagemitsu::buildEffectDescriptionName(ItemInstance const& id) const
+const std::string Kagemitsu::buildEffectDescriptionName(const ItemInstance &item) const
 {
 	return "§bType: §e§lElectric";
 }

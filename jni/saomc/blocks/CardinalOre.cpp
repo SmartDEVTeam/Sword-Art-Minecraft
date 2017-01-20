@@ -11,7 +11,7 @@
 CardinalOre::CardinalOre(int id) : Block("cardinalore", id, Material::getMaterial(MaterialType::STONE))
 {
 	init();
-	creativeCategory = CreativeItemCategory::Blocks;
+	setCategory(CreativeItemCategory::Blocks);
 	setDestroyTime(0.5F);
 }
 

@@ -21,7 +21,7 @@
 
   	  <meta-data
 		  android:name="net.zhuoweizhang.mcpelauncher.api.targetmcpeversion"
-		  android:value="1.0.0.16"/>
+		  android:value="1.0.2.1"/>
     </application>
 </manifest>
 

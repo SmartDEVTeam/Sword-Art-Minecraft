@@ -3,20 +3,20 @@
 
 Elucidator::Elucidator(const std::string &name, short id) : Item(name, id - 256)
 {
-	creativeCategory = CreativeItemCategory::Tools;
+	setCategory(CreativeItemCategory::Tools);
 	setIcon("elucidator", 0);
 	setMaxStackSize(1);
 	setMaxDamage(13800);
 	setHandEquipped();
-	Item::mItems[itemId] = this;
+	Item::mItems[id] = this;
 }
 
-const std::string Elucidator::buildDescriptionName(ItemInstance const& id) const
+const std::string Elucidator::buildDescriptionName(const ItemInstance &item) const
 {
 	return "§b§l[One-Handed] §r§fElucidator";
 }
 
-const std::string Elucidator::buildEffectDescriptionName(ItemInstance const& id) const
+const std::string Elucidator::buildEffectDescriptionName(const ItemInstance &item) const
 {
 	return "§bType: §5§lLegit";
 }
