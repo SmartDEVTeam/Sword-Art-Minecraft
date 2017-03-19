@@ -17,7 +17,6 @@ Item* CardinalItems::stick;
 
 void CardinalItems::initItems()
 {
-	
 	//Swords
 	elucidator = new Elucidator("elucidator", 1000);
 	darkRepulser = new DarkRepulser("darkRepulser", 1001);
@@ -40,12 +39,13 @@ void CardinalItems::initCreativeItems()
 	Item::addCreativeItem(1003, 0);
 }
 
-std::string CardinalItems::getItemTypeByData(int data)
+std::string CardinalItems::getTypeByData(unsigned char aux)
 {
-	switch(data) {
+	switch (aux) {
 		case 0:
 			return "crystallite";
 		case 1:
 			return "elucidador";
 	}
 }
+

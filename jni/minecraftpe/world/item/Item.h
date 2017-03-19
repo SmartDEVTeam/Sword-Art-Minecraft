@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "../../CreativeItemCategory.h"
-#include "../../CommonTypes.h"
+#include "../level/block/BlockID.h"
 #include "../../UseAnimation.h"
 #include "../level/block/BlockShape.h"
 class TextureUVCoordinateSet;
@@ -27,6 +27,7 @@ struct IDataOutput;
 class Color;
 class Random;
 class ResourcePackManager;
+class TextureAtlasItem;
 namespace Json { class Value; };
 
 // Size: 104
@@ -50,26 +51,29 @@ public:
 
 	/* fields */
 	uint8_t _maxStackSize; // 4
-	std::string atlas; // 8
+	std::string iconAtlasName; // 8
 	int frameCount; // 12
-	short idk; // 16
+	short filler1; // 16
 	short itemId; // 18
-	std::string name; // 20
-	std::string simpleName; // 24
+	std::string descriptionId; // 20 : item...name
+	std::string descriptionName; // 24
 	bool mirroredArt; //28
 	short maxDamage; // 30
 	bool foil; // 32
 	bool handEquipped; // 33
 	bool stackedByData; // 34
-	int useDuration; // 36
-	char filler1[2]; // 40
-	char blockId; // 42
-	int useAnimation; // 43
+	int maxUseDuration; // 36
+	bool explodable; // 40
+	bool shouldDespawn; // 41
+	BlockID blockId; // 42
+	UseAnimation useAnimation; // 43
 	CreativeItemCategory creativeCategory; // 44
 	int filler2; // 48
 	void* colorFormat; // 52
 	TextureUVCoordinateSet& icon; // 56
-	int filler3[9]; // 60
+	TextureAtlasItem* customAtlasIcon; // 60
+	int filler3[7]; // 64
+	float vrHandControllerScale;// 92
 	std::unique_ptr <FoodItemComponent> _foodDetails; // 96
 	std::unique_ptr <SeedItemComponent> _seedDetails; // 100
 	std::unique_ptr <CameraItemComponent> _cameraDetails; // 104
@@ -127,8 +131,8 @@ public:
 	virtual void hurtEnemy(ItemInstance*, Mob*, Mob*);
 	virtual CameraItemComponent interactEnemy(ItemInstance*, Mob*, Player*);
 	virtual bool mineBlock(ItemInstance*, BlockID, int, int, int, Entity*);
-	virtual const std::string buildDescriptionName(const ItemInstance&) const;
-	virtual const std::string buildEffectDescriptionName(const ItemInstance&) const;
+	virtual std::string buildDescriptionName(const ItemInstance&) const;
+	virtual std::string buildEffectDescriptionName(const ItemInstance&) const;
 	virtual void readUserData(ItemInstance*, IDataInput&) const;
 	virtual void writeUserData(const ItemInstance*, IDataOutput&) const;
 	virtual int getMaxStackSize(const ItemInstance*);
@@ -144,7 +148,7 @@ public:
 	virtual bool isMirroredArt() const;
 
 	/* static function */
-	static TextureUVCoordinateSet getTextureUVCoordinateSet(const std::string&, int);
+	static TextureUVCoordinateSet* getTextureUVCoordinateSet(const std::string&, int);
 	static void initClientData();
 	static void initServerData(ResourcePackManager&);
 	static void initClient(Json::Value&, Json::Value&);
@@ -158,7 +162,7 @@ public:
 	static void registerItems();
 
 	static Item* mShovel_iron; // 256
-	static Item* mPickaxe_iron; // 257
+	static Item* mPickAxe_iron; // 257
 	static Item* mHatchet_iron; // 258
 	static Item* mFlintAndSteel; // 259
 	static Item* mApple; // 260
@@ -175,18 +179,18 @@ public:
 	static Item* mHatchet_wood; // 271
 	static Item* mSword_stone; // 272
 	static Item* mShovel_stone; // 273
-	static Item* mPickaxe_stone; // 274
+	static Item* mPickAxe_stone; // 274
 	static Item* mHatchet_stone; // 275
 	static Item* mSword_diamond; // 276
 	static Item* mShovel_diamond; // 277
-	static Item* mPickaxe_diamond; // 278
+	static Item* mPickAxe_diamond; // 278
 	static Item* mHatchet_diamond; // 279
 	static Item* mStick; // 280
 	static Item* mBowl; // 281
 	static Item* mMushroomStew; // 282
 	static Item* mSword_gold; // 283
 	static Item* mShovel_gold; // 284
-	static Item* mPickaxe_gold; // 285
+	static Item* mPickAxe_gold; // 285
 	static Item* mHatchet_gold; // 286
 	static Item* mString; // 287
 	static Item* mFeather; // 288

@@ -1,23 +1,24 @@
 #include "DarkRepulser.h"
 #include "minecraftpe/world/item/ItemInstance.h"
+#include "minecraftpe/world/entity/Mob.h"
 
 DarkRepulser::DarkRepulser(const std::string &name, short id) : Item(name, id - 256)
 {
+	Item::mItems[id] = this;
 	setCategory(CreativeItemCategory::Tools);
 	setIcon("darkrepulser", 0);
 	setMaxStackSize(1);
 	setMaxDamage(13800);
 	setHandEquipped();
 	setMaxUseDuration(1);
-	Item::mItems[id] = this;
 }
 
-const std::string DarkRepulser::buildDescriptionName(const ItemInstance &item) const
+std::string DarkRepulser::buildDescriptionName(const ItemInstance &item) const
 {
 	return "§b§l[One-Handed] §r§fDark Repulser";
 }
 
-const std::string DarkRepulser::buildEffectDescriptionName(const ItemInstance &item) const
+std::string DarkRepulser::buildEffectDescriptionName(const ItemInstance &item) const
 {
 	return "§bType: §6§lLegendary";
 }
@@ -29,7 +30,7 @@ bool DarkRepulser::canDestroyInCreative() const
 
 int DarkRepulser::getAttackDamage()
 {
-	return 6.5F;
+	return 6.5f;
 }
 
 int DarkRepulser::getEnchantSlot() const
@@ -42,13 +43,14 @@ int DarkRepulser::getEnchantValue() const
 	return 10;
 }
 
-void DarkRepulser::hurtEnemy(ItemInstance *item, Mob *attacker, Mob *victim)
+void DarkRepulser::hurtEnemy(ItemInstance *item, Mob*, Mob *victim)
 {
-	//item->hurtAndBreak(1, victim);
+	item->hurtAndBreak(1, victim);
 }
 
-void DarkRepulser::mineBlock(ItemInstance *item, BlockID block, int x, int y, int z, Mob *mob)
+bool DarkRepulser::mineBlock(ItemInstance *item, BlockID, int, int, int, Entity *entity)
 {
-	//item->hurtAndBreak(2, mob);
+	item->hurtAndBreak(2, entity);
+	return true;
 }
 

@@ -1,17 +1,13 @@
 #pragma once
 
-#include <string>
-#include <vector>
-#include <memory>
-
-#include "minecraftpe/client/renderer/texture/TextureUVCoordinateSet.h"
+#include "minecraftpe/client/render/TextureUVCoordinateSet.h"
 #include "minecraftpe/util/Color.h"
 #include "minecraftpe/world/phys/AABB.h"
 #include "../../material/Material.h"
 #include "BlockShape.h"
 #include "minecraftpe/CreativeItemCategory.h"
-#include "BlockSupportType.h"
 #include "entity/BlockEntityType.h"
+#include "BlockID.h"
 
 struct BlockEntity;
 struct Container;
@@ -25,9 +21,9 @@ struct ItemInstance;
 struct Random;
 struct Vec3;
 struct Brightness;
-class BlockID;
-class BlockProperty;
-#include "minecraftpe/CommonTypes.h"
+struct BlockProperty;
+struct BlockSupportType;
+class BlockRenderLayer;
 
 class Block
 {
@@ -43,15 +39,15 @@ public:
 	bool animates; // 32
 	float idk; // 36
 	float thickness; // 40
-	bool slippery; // 44
+	bool slideable; // 44
 	bool instaTicks; // 45
 	float gravity; // 48
 	Material& material; // 52
 	Color mapColor; // 56
 	float friction; // 72
 	bool heavy; // 76
-	float hardness; // 80
-	float explosionResistance; // 84
+	float destroyTime; // 80
+	float blastResistance; // 84
 	CreativeItemCategory creativeCategory; // 88	
 	AABB hitbox; // 92
 
@@ -67,15 +63,14 @@ public:
 	Block(const std::string&, int, const Material&);
 
 	/* vtable */
-	
 	virtual ~Block();
-	virtual void tick(BlockSource&, BlockPos const&, Random&) const;
-	virtual const AABB& getCollisionShape(AABB&, BlockSource&, BlockPos const&, Entity*) const;
+	virtual bool tick(BlockSource&, BlockPos const&, Random&) const;
+	virtual AABB& getCollisionShape(AABB&, BlockSource&, BlockPos const&, Entity*) const;
 	virtual bool isObstructingChests(BlockSource&, BlockPos const&) const;
-	virtual const Vec3& randomlyModifyPosition(BlockPos const&, int&) const;
-	virtual const Vec3& randomlyModifyPosition(BlockPos const&) const;
+	virtual Vec3& randomlyModifyPosition(BlockPos const&, int&) const;
+	virtual Vec3& randomlyModifyPosition(BlockPos const&) const;
 	virtual void addAABBs(BlockSource&, BlockPos const&, AABB const*, std::vector<AABB, std::allocator<AABB> >&) const;
-	virtual const AABB& getAABB(BlockSource&, BlockPos const&, AABB&, int, bool, int) const;
+	virtual AABB& getAABB(BlockSource&, BlockPos const&, AABB&, int, bool, int) const;
 	virtual void addCollisionShapes(BlockSource&, BlockPos const&, AABB const*, std::vector<AABB, std::allocator<AABB> >&, Entity*) const;
 	virtual bool canProvideSupport(BlockSource&, BlockPos const&, signed char, BlockSupportType) const;
 	virtual bool isInfiniburnBlock(int) const;
@@ -121,8 +116,8 @@ public:
 	virtual void destroy(BlockSource&, BlockPos const&, int, Entity*) const;
 	virtual void playerWillDestroy(Player&, BlockPos const&, int) const;
 	virtual void neighborChanged(BlockSource&, BlockPos const&, BlockPos const&) const;
-	virtual AABB const& getSecondPart(BlockSource&, BlockPos const&, BlockPos&) const;
-	virtual int getResource(Random&, int, int) const;
+	virtual AABB& getSecondPart(BlockSource&, BlockPos const&, BlockPos&) const;
+	virtual short getResource(Random&, int, int) const;
 	virtual int getResourceCount(Random&, int, int) const;
 	virtual void asItemInstance(BlockSource&, BlockPos const&, int) const;
 	virtual void spawnResources(BlockSource&, BlockPos const&, int, float, int) const;
@@ -192,7 +187,7 @@ public:
 	bool hasProperty(BlockProperty) const;
 	float getFriction() const;
 	Material& getMaterial() const;
-	void* lookupByName(const std::string&, bool);
+	Block* lookupByName(const std::string&, bool);
 	
 	static void initBlocks();
 	static void teardownBlocks();
@@ -388,3 +383,4 @@ public:
 	static Block* mObserver; // 251
 	static Block* mInfoReserved6; // 255
 };
+

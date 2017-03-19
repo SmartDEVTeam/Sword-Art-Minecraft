@@ -1,22 +1,23 @@
 #include "Elucidator.h"
 #include "minecraftpe/world/item/ItemInstance.h"
+#include "minecraftpe/world/entity/Mob.h"
 
 Elucidator::Elucidator(const std::string &name, short id) : Item(name, id - 256)
 {
+	Item::mItems[id] = this;
 	setCategory(CreativeItemCategory::Tools);
 	setIcon("elucidator", 0);
 	setMaxStackSize(1);
 	setMaxDamage(13800);
 	setHandEquipped();
-	Item::mItems[id] = this;
 }
 
-const std::string Elucidator::buildDescriptionName(const ItemInstance &item) const
+std::string Elucidator::buildDescriptionName(const ItemInstance&) const
 {
 	return "§b§l[One-Handed] §r§fElucidator";
 }
 
-const std::string Elucidator::buildEffectDescriptionName(const ItemInstance &item) const
+std::string Elucidator::buildEffectDescriptionName(const ItemInstance&) const
 {
 	return "§bType: §5§lLegit";
 }
@@ -41,13 +42,14 @@ int Elucidator::getEnchantValue() const
 	return 10;
 }
 
-void Elucidator::hurtEnemy(ItemInstance *item, Mob *attacker, Mob *victim)
+void Elucidator::hurtEnemy(ItemInstance *item, Mob*, Mob *victim)
 {
-	//item->hurtAndBreak(1, victim);
+	item->hurtAndBreak(1, victim);
 }
 
-void Elucidator::mineBlock(ItemInstance *item, BlockID block, int x, int y, int z, Mob *mob)
+bool Elucidator::mineBlock(ItemInstance *item, BlockID, int, int, int, Entity *entity)
 {
-	//item->hurtAndBreak(2, mob);
+	item->hurtAndBreak(2, entity);
+	return true;
 }
 

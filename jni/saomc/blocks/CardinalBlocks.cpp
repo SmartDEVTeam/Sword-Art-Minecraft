@@ -1,26 +1,26 @@
 #include "CardinalBlocks.h"
 
 #include "minecraftpe/world/item/AuxDataBlockItem.h"
-#include "minecraftpe/client/renderer/block/BlockGraphics.h"
+#include "minecraftpe/world/level/block/BlockGraphics.h"
 
 #include "CardinalOre.h"
 
-Block* CardinalBlocks::cardinalOre;
+Block* CardinalBlocks::mCardinalOre;
 
 void CardinalBlocks::initBlocks()
 {
-	cardinalOre = new CardinalOre(220);
+	mCardinalOre = new CardinalOre(220);
 }
 
 void CardinalBlocks::initBlockItems()
 {
-	Item::mItems[220] = new AuxDataBlockItem(cardinalOre->getDescriptionId(), 220 - 256, cardinalOre);
+	Item::mItems[mCardinalOre->blockId] = new AuxDataBlockItem(mCardinalOre->getDescriptionId(), mCardinalOre->blockId - 256, mCardinalOre);
 }
 
 void CardinalBlocks::initCreativeBlocks()
 {	
-	Item::addCreativeItem(220, 0);
-	Item::addCreativeItem(220, 1);
+	Item::addCreativeItem(mCardinalOre, 0);
+	Item::addCreativeItem(mCardinalOre, 1);
 }
 
 void CardinalBlocks::initBlockGraphics()

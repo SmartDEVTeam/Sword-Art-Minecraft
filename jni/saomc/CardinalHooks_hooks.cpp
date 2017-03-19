@@ -2,16 +2,14 @@
 #include <dlfcn.h>
 #include <android/log.h>
 #include <stdlib.h>
-#include <Substrate.h>
+#include "Substrate.h"
 
-//Vanilla
 //#include "minecraftpe/client/MinecraftClient.h"
 #include "minecraftpe/world/item/Item.h"
 #include "minecraftpe/world/level/block/Block.h"
 #include "minecraftpe/client/locale/Localization.h"
-#include "minecraftpe/client/renderer/block/BlockGraphics.h"
+#include "minecraftpe/world/level/block/BlockGraphics.h"
 
-//Custom
 #include "items/CardinalItems.h"
 #include "blocks/CardinalBlocks.h"
 #include "recipes/CardinalRecipes.h"
@@ -96,7 +94,7 @@ void Localization$_load(Localization* self, const std::string& langCode)
 		_Localization$_load(self, "cardinal/" + langCode);
 }
 
-JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved)
+JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved)
 {
 	MSHookFunction((void*) &Item::initClientData, (void*) &Item$initClientData, (void**) &_Item$initClientData);
 	MSHookFunction((void*) &Block::initBlocks, (void*) &Block$initBlocks, (void**) &_Block$initBlocks);

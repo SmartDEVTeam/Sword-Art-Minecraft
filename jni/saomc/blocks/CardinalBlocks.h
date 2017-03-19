@@ -5,7 +5,7 @@ class Block;
 class CardinalBlocks
 {
 public:
-	static Block* cardinalOre;
+	static Block* mCardinalOre;
 	
 	static void initBlocks();
 	static void initBlockItems();

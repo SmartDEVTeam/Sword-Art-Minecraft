@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	package="com.smartdev.saomc.addon"
 	android:versionCode="1"
-	android:versionName="1.0.1">
+	android:versionName="1.0">
 
     <uses-permission android:name="net.zhuoweizhang.mcpelauncher.ADDON"/>
     <!-- This is the platform API where NativeActivity was introduced. -->
@@ -21,7 +21,7 @@
 
   	  <meta-data
 		  android:name="net.zhuoweizhang.mcpelauncher.api.targetmcpeversion"
-		  android:value="1.0.2.1"/>
+		  android:value="1.0.4.11"/>
     </application>
 </manifest>
 

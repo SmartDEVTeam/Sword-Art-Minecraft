@@ -5,13 +5,12 @@
 class CardinalOre : public Block
 {
 public:
-	CardinalOre(int);
+	CardinalOre(short id);
 
 	virtual int getExperienceDrop(Random&) const;
-	virtual int getResource(Random&, int, int);
+	virtual short getResource(Random&, int, int);
 	virtual int getSpawnResourcesAuxValue(unsigned char);
 	virtual int getResourceCount(Random&, int, int);
 	virtual std::string buildDescriptionName(unsigned char) const;
-	std::string getTypeByData(int);
 };
 
